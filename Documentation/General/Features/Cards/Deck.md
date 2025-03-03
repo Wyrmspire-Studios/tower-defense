@@ -1,0 +1,3 @@
+- Deck určuje kolikrát může hráč kartu nakoupit v shopu co je v úrovních.
+	- Například pokud má hráč 5x archera, tak může mezi fázemi dohromady archera nakoupit 5x a mít ho někde položeného.
+- Jednu kartu může hráč mít několikrát, námi určený limit.

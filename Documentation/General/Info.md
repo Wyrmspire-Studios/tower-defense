@@ -1,1 +1,21 @@
-Zde budou základní informace o naší hře.
+- Tower Defense
+- Time Travelling
+- Spojování karet věží a nepřátel
+- Použité nástroje:
+	- Godot
+	- Rider
+	- Github
+	- Obsidian
+- Tým:
+	- David Dvořák - Manager + Programátor
+		- Dokumentace: [[Members/David Dvořák/Info]]
+	- Daniel Malík - Programátor
+		- Dokumentace: [[Members/Daniel Malík/Info]]
+	- Daniel Hlůšek - Programátor
+		- Dokumentace: [[Members/Daniel Hlůšek/Info]]
+	- Tomáš Hájek - Grafikář
+		- Dokumentace: [[Members/Tomáš Hájek/Info]]
+- Součásti informací:
+	- Gameplay: [[General/Features/Info]]
+	- Story: [[General/Story/Info]]
+	- Světy: [[General/Story/Worlds/Info]]

@@ -1,0 +1,12 @@
+- Stavíme my, pomocí tilesetů od Toma
+	- Každá mapa nějaká pěkná dekorace, landmark, něco co mapu odliší
+- Zóny kde se dá stavět, další zóny kde se stavět nedá (voda, láva, ...)
+	- Některé věže naopak potřebují tento speciální terén
+- Mapa obsahuje terén, přes který nejde střílet
+	- Některé věže to dokážou, popřípadě i získají bonusy
+- Některé mapy obsahují speciální zóny kde věže získají bonus na damage / range / ...
+- Občasně se na mapě stane i nějaká událost, která změní jak se mapa hraje
+	- Otevření nové cesty, zavření staré
+- Náhodně se také může stát počasí, které globálně ovlivňuje jak věže tak nepřátelé
+	- Déšť způsobí menší range, ale nepřátelé jsou pomalejší
+	- Sníh způsobí pomalejší útoky, ale někteří nepřátele zamrznou
