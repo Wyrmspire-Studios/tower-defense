@@ -1,0 +1,1 @@
+Zde budou informace o příběhu naší hry.

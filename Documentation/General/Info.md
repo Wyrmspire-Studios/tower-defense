@@ -1,0 +1,1 @@
+Zde budou základní informace o naší hře.

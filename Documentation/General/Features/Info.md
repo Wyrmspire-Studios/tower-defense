@@ -1,0 +1,1 @@
+Zde budou informace o různých funkcích naší hry.

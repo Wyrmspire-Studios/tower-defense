@@ -1,0 +1,1 @@
+Zde bude dokumentace od člena Daniela Hlůška.
