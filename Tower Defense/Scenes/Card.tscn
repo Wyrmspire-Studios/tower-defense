@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://bksr4kilkosp0"]
+
+[ext_resource type="Script" path="res://Scripts/Card.cs" id="1_dh2ae"]
+[ext_resource type="Texture2D" uid="uid://dgxrytfjo3wcx" path="res://Assets/card_background.png" id="2_80dyc"]
+[ext_resource type="Texture2D" uid="uid://b2n3epfliedej" path="res://Assets/baracks_card.png" id="3_ms6aj"]
+
+[node name="Card" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 48.0
+offset_bottom = 64.0
+script = ExtResource("1_dh2ae")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -24.0
+offset_top = -32.0
+offset_right = 24.0
+offset_bottom = 32.0
+texture = ExtResource("2_80dyc")
+
+[node name="Tower" type="TextureRect" parent="Background"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -17.0
+offset_top = -23.0
+offset_right = 17.0
+offset_bottom = 23.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_ms6aj")
+expand_mode = 1
