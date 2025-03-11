@@ -4,12 +4,22 @@
 [ext_resource type="Texture2D" uid="uid://dgxrytfjo3wcx" path="res://Assets/card_background.png" id="2_80dyc"]
 [ext_resource type="Texture2D" uid="uid://b2n3epfliedej" path="res://Assets/baracks_card.png" id="3_ms6aj"]
 
-[node name="Card" type="Control"]
+[node name="Card" type="Control" node_paths=PackedStringArray("_highlight")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 48.0
 offset_bottom = 64.0
 script = ExtResource("1_dh2ae")
+_highlight = NodePath("Hightlight")
+
+[node name="Hightlight" type="ColorRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = -25.0
+offset_top = -33.0
+offset_right = 25.0
+offset_bottom = 33.0
+color = Color(0.754691, 0.923563, 0, 1)
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 0

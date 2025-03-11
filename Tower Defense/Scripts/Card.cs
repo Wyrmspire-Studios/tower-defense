@@ -5,10 +5,11 @@ using Godot.Collections;
 namespace WyrmspireStudios;
 public partial class Card : Control
 {
-	bool _dragging = false;
-	Vector2 _defaultPosition;
+	[Export] private ColorRect _highlight;
 	
-	Tween _positionTween;
+	private bool _dragging = false;
+	private Vector2 _defaultPosition;
+	private Tween _positionTween;
 	
 	public override void _Ready()
 	{
@@ -18,7 +19,7 @@ public partial class Card : Control
 	public override void _Process(double delta)
 	{
 		var newPosition = _dragging ? GetGlobalMousePosition() : _defaultPosition;
-
+		
 		_positionTween?.Kill();
 		_positionTween = CreateTween()
 			.SetEase(Tween.EaseType.Out)
@@ -40,6 +41,24 @@ public partial class Card : Control
 		if (@event is InputEventMouseButton { ButtonIndex: MouseButton.Left, Pressed: false })
 		{
 			_dragging = false;
+		}
+	}
+
+	public override void _Notification(int what)
+	{
+		switch ((long) what)
+		{
+			case NotificationMouseEnter:
+				_defaultPosition = _defaultPosition + new Vector2(0, -10);
+				_highlight.Visible = true;
+				ZIndex = 10;
+				break;
+
+			case NotificationMouseExit:
+				_defaultPosition = _defaultPosition - new Vector2(0, -10);
+				_highlight.Visible = false;
+				ZIndex = 0;
+				break;
 		}
 	}
 }
