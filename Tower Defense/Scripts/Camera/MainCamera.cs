@@ -19,16 +19,37 @@ public partial class MainCamera : Camera2D
 	/// </summary>
 	[Export] private float _movementSmoothing = 15f;
 
+	/// <summary>
+	/// Speed at which to zoom
+	/// </summary>
+	[Export] private float _zoomSpeed = 7.5f;
+	
+	/// <summary>
+	/// Minimum allowed zoom
+	/// </summary>
+	[Export] private float _minZoom = 1f;
+	
+	/// <summary>
+	/// Maximum allowed zoom
+	/// </summary>
+	[Export] private float _maxZoom = 3f;
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		PositionSmoothingEnabled = true;
 		PositionSmoothingSpeed = _movementSmoothing;
+
+		Zoom = new Vector2(_minZoom, _minZoom);
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		var deltaFloat = (float)delta;
+
+		#region Movement
+
 		var movement = Vector2.Zero;
 		if (Input.IsActionPressed("Move Up")) movement += Vector2.Up;
 		if (Input.IsActionPressed("Move Down")) movement += Vector2.Down;
@@ -38,6 +59,20 @@ public partial class MainCamera : Camera2D
 		
 		var movementMultiplier = _movementSpeed * (Input.IsActionPressed("Run") ? _runMultiplier : 1f);
 
-		Position += movement * (movementMultiplier * (float)delta);
+		Position += movement * (movementMultiplier * deltaFloat);
+		
+		#endregion
+
+		#region Zoom
+
+		var zoom = 0f;
+		if (Input.IsActionJustPressed("Zoom In")) zoom += _zoomSpeed;
+		if (Input.IsActionJustPressed("Zoom Out")) zoom -= _zoomSpeed;
+
+		zoom *= deltaFloat;
+		
+		Zoom = (Zoom + new Vector2(zoom, zoom)).Clamp(_minZoom, _maxZoom);
+
+		#endregion
 	}
 }
