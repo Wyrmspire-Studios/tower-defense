@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bksr4kilkosp0"]
 
-[ext_resource type="Script" path="res://Scripts/Card.cs" id="1_dh2ae"]
+[ext_resource type="Script" uid="uid://beolouq3mhbn8" path="res://Scripts/Card.cs" id="1_dh2ae"]
 [ext_resource type="Texture2D" uid="uid://dgxrytfjo3wcx" path="res://Assets/card_background.png" id="2_80dyc"]
 [ext_resource type="Texture2D" uid="uid://b2n3epfliedej" path="res://Assets/baracks_card.png" id="3_ms6aj"]
 
