@@ -17,6 +17,7 @@ config/features=PackedStringArray("4.4", "C#", "Forward Plus")
 [autoload]
 
 GamepadFix="*res://Scripts/Gamepad/GamepadFix.cs"
+InputType="*res://Scripts/Input/InputType.cs"
 
 [dotnet]
 
