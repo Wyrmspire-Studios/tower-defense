@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 namespace WyrmspireStudios;
 public partial class MainCamera : Camera2D
@@ -7,7 +6,7 @@ public partial class MainCamera : Camera2D
 	/// <summary>
 	/// Movement speed of the camera
 	/// </summary>
-	[Export] private float _movementSpeed = 250f;
+	[ExportGroup("Movement")] [Export] private float _movementSpeed = 250f;
 	
 	/// <summary>
 	/// Multiplier applied when running
@@ -22,7 +21,7 @@ public partial class MainCamera : Camera2D
 	/// <summary>
 	/// Speed at which to zoom
 	/// </summary>
-	[Export] private float _zoomSpeed = 25f;
+	[ExportGroup("Zoom")] [Export] private float _zoomSpeed = 25f;
 	
 	/// <summary>
 	/// Minimum allowed zoom
@@ -49,7 +48,19 @@ public partial class MainCamera : Camera2D
 	/// </summary>
 	private Tween _zoomTween;
 
-	// Called when the node enters the scene tree for the first time.
+	/// <summary>
+	/// <b>Runs when the Node gets created. </b>
+	/// </summary>
+	/// <remarks>
+	/// <list>
+	///		<item>
+	///			Enables and sets movement smoothing.
+	///		</item>
+	///		<item>
+	///			Creates <see cref="_defaultZoom"/> and sets <see cref="Camera2D.Zoom"/> to it.
+	///		</item>
+	/// </list>
+	/// </remarks>
 	public override void _Ready()
 	{
 		PositionSmoothingEnabled = true;
@@ -59,7 +70,18 @@ public partial class MainCamera : Camera2D
 		Zoom = _defaultZoom;
 	}
 
-	public override void _Input(InputEvent ev)
+	/// <summary>
+	/// <b>Runs when an InputEvent does not get handled by anything.</b>
+	/// </summary>
+	/// <remarks>
+	/// <list>
+	///		<item>
+	///			Resets the camera <see cref="Node2D.Position" /> and <see cref="Camera2D.Zoom"/> if <c>Reset Camera</c> was pressed.
+	///		</item>
+	/// </list>
+	/// </remarks>
+	/// <param name="ev">InputEvent that got fired.</param>
+	public override void _UnhandledInput(InputEvent ev)
 	{
 		if (!ev.IsActionPressed("Reset Camera")) return;
 		
@@ -67,40 +89,118 @@ public partial class MainCamera : Camera2D
 		_setZoom(_defaultZoom);
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
+	/// <summary>
+	/// <b>Runs every frame.</b>
+	/// </summary>
+	/// <remarks>
+	/// <list>
+	///		<item>
+	///			Converts <paramref name="delta"/> to <see cref="float">float</see>.
+	///		</item>
+	///		<item>
+	///			Handles movement input.
+	///		</item>
+	///		<item>
+	///			Handles zoom input.
+	///		</item>
+	/// </list>
+	/// </remarks>
+	/// <param name="delta">Time since last frame.</param>
 	public override void _Process(double delta)
 	{
 		var deltaFloat = (float)delta;
+		_handleMovement(deltaFloat);
+		_handleZoom(deltaFloat);
+	}
 
-		#region Movement
-
+	/// <summary>
+	/// <b>Handles movement input and position updates.</b>
+	/// </summary>
+	/// <remarks>
+	/// <list>
+	///		<item>
+	///			Creates a movement <see cref="Vector2"/>.
+	///		</item>
+	///		<item>
+	///			Returns early if no movement input detected.
+	///		</item>
+	///		<item>
+	///			Creates a movement multiplier based on the <c>Run</c> input action.
+	///		</item>
+	///		<item>
+	///			Moves the camera.
+	///		</item>
+	/// </list>
+	/// </remarks>
+	/// <param name="deltaFloat">Time since last frame.</param>
+	private void _handleMovement(float deltaFloat)
+	{
 		var movement = Vector2.Zero;
 		if (Input.IsActionPressed("Move Up")) movement += Vector2.Up;
 		if (Input.IsActionPressed("Move Down")) movement += Vector2.Down;
 		if (Input.IsActionPressed("Move Left")) movement += Vector2.Left;
 		if (Input.IsActionPressed("Move Right")) movement += Vector2.Right;
 		movement = movement.Normalized();
+
+		if (movement.IsZeroApprox()) return;
 		
 		var movementMultiplier = _movementSpeed * (Input.IsActionPressed("Run") ? _runMultiplier : 1f);
-
 		Position += movement * (movementMultiplier * deltaFloat);
-		
-		#endregion
+	}
 
-		#region Zoom
-
+	/// <summary>
+	/// <b>Handles zoom input and zoom updates.</b>
+	/// </summary>
+	/// <remarks>
+	/// <list>
+	///		<item>
+	///			Creates a zoom <see cref="float">float</see>.
+	///		</item>
+	///		<item>
+	///			Returns early if no zoom input detected.
+	///		</item>
+	///		<item>
+	///			Creates a new zoom value clamped between <see cref="_minZoom"/> and <see cref="_maxZoom"/>.
+	///		</item>
+	///		<item>
+	///			Runs <see cref="_setZoom"/> to tween to the new zoom.
+	///		</item>
+	/// </list>
+	/// </remarks>
+	/// <param name="deltaFloat"></param>
+	private void _handleZoom(float deltaFloat)
+	{
 		var zoom = 0f;
 		if (Input.IsActionJustPressed("Zoom In")) zoom += _zoomSpeed;
 		if (Input.IsActionJustPressed("Zoom Out")) zoom -= _zoomSpeed;
 
 		if (zoom == 0) return;
-		var newZoom = Mathf.Clamp(Zoom.X + zoom * deltaFloat, _minZoom, _maxZoom);
 		
+		var newZoom = Mathf.Clamp(Zoom.X + zoom * deltaFloat, _minZoom, _maxZoom);
 		_setZoom(new Vector2(newZoom, newZoom));
-
-		#endregion
 	}
 
+	/// <summary>
+	/// <b>Creates and runs a <see cref="Tween"/> that tweens the <see cref="Camera2D.Zoom"/> to a new value.</b>
+	/// </summary>
+	/// <remarks>
+	///	<list>
+	///		<item>
+	///			Kills the currently running <see cref="Tween"/>, if there is one.
+	///		</item>
+	///		<item>
+	///			Constructs a new <see cref="Tween"/> with <see cref="Tween.TransitionType.Quad">Quad</see>
+	///			<see cref="Tween.EaseType.Out">Out</see> easing.
+	///		</item>
+	///		<item>
+	///			Tweens the camera's <see cref="Camera2D.Zoom"/> to the provided <paramref name="newZoom"/>.
+	///		</item>
+	///		<item>
+	///			Plays the <see cref="Tween"/>.
+	///		</item>
+	/// </list>
+	/// </remarks>
+	/// <param name="newZoom">The new <see cref="Camera2D.Zoom"/> to tween to.</param>
 	private void _setZoom(Vector2 newZoom)
 	{
 		_zoomTween?.Kill();
