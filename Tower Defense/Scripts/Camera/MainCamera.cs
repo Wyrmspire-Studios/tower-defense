@@ -18,11 +18,11 @@ public partial class MainCamera : Camera2D
 	/// Movement smoothing value applied to the camera
 	/// </summary>
 	[Export] private float _movementSmoothing = 15f;
-
+	
 	/// <summary>
 	/// Speed at which to zoom
 	/// </summary>
-	[Export] private float _zoomSpeed = 7.5f;
+	[Export] private float _zoomSpeed = 15f;
 	
 	/// <summary>
 	/// Minimum allowed zoom
@@ -33,6 +33,16 @@ public partial class MainCamera : Camera2D
 	/// Maximum allowed zoom
 	/// </summary>
 	[Export] private float _maxZoom = 3f;
+
+	/// <summary>
+	/// Duration the zoom Tween takes to complete
+	/// </summary>
+	[Export] private float _zoomTweenDuration = 0.1f;
+	
+	/// <summary>
+	/// Tween used for smooth zooming
+	/// </summary>
+	private Tween _zoomTween;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -69,9 +79,15 @@ public partial class MainCamera : Camera2D
 		if (Input.IsActionJustPressed("Zoom In")) zoom += _zoomSpeed;
 		if (Input.IsActionJustPressed("Zoom Out")) zoom -= _zoomSpeed;
 
-		zoom *= deltaFloat;
+		if (zoom == 0) return;
+		var newZoom = Mathf.Clamp(Zoom.X + zoom * deltaFloat, _minZoom, _maxZoom);
 		
-		Zoom = (Zoom + new Vector2(zoom, zoom)).Clamp(_minZoom, _maxZoom);
+		_zoomTween?.Kill();
+		_zoomTween = CreateTween()
+			.SetEase(Tween.EaseType.Out)
+			.SetTrans(Tween.TransitionType.Quad);
+		_zoomTween.TweenProperty(this, "zoom", new Vector2(newZoom, newZoom), _zoomTweenDuration);
+		_zoomTween.Play();
 
 		#endregion
 	}
