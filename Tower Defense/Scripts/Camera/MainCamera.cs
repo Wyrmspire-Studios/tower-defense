@@ -4,52 +4,52 @@ namespace WyrmspireStudios;
 public partial class MainCamera : Camera2D
 {
 	/// <summary>
-	/// Movement speed of the camera
+	/// Movement speed of the <see cref="MainCamera"/>.
 	/// </summary>
 	[ExportGroup("Movement")] [Export] private float _movementSpeed = 250f;
 	
 	/// <summary>
-	/// Multiplier applied when running
+	/// Multiplier applied to movement of the <see cref="MainCamera"/> when <c>Run</c> is pressed.
 	/// </summary>
 	[Export] private float _runMultiplier = 2f;
 
 	/// <summary>
-	/// Movement smoothing value applied to the camera
+	/// Movement smoothing value applied to the <see cref="MainCamera"/>.
 	/// </summary>
 	[Export] private float _movementSmoothing = 15f;
 	
 	/// <summary>
-	/// Speed at which to zoom if using a mouse
+	/// Speed at which to <see cref="Camera2D.Zoom"/> if using a mouse.
 	/// </summary>
 	[ExportGroup("Zoom")] [Export] private float _zoomSpeedMouse = 25f;
 
 	/// <summary>
-	/// Speed at which to zoom if using a gamepad
+	/// Speed at which to <see cref="Camera2D.Zoom"/> if using a gamepad.
 	/// </summary>
 	[Export] private float _zoomSpeedGamepad = 12.5f;
 	
 	/// <summary>
-	/// Minimum allowed zoom
+	/// Minimum allowed <see cref="Camera2D.Zoom"/>.
 	/// </summary>
 	[Export] private float _minZoom = 1f;
 	
 	/// <summary>
-	/// Maximum allowed zoom
+	/// Maximum allowed <see cref="Camera2D.Zoom"/>.
 	/// </summary>
 	[Export] private float _maxZoom = 3f;
 
 	/// <summary>
-	/// Duration the zoom Tween takes to complete
+	/// Duration the <see cref="Camera2D.Zoom">Zoom </see><see cref="Tween"/> takes to complete.
 	/// </summary>
 	[Export] private float _zoomTweenDuration = 0.1f;
 
 	/// <summary>
-	/// Default zoom to reset to
+	/// Default <see cref="Camera2D.Zoom"/> to reset to.
 	/// </summary>
 	private Vector2 _defaultZoom;
 	
 	/// <summary>
-	/// Tween used for smooth zooming
+	/// <see cref="Tween"/> used for smooth <see cref="Camera2D.Zoom"/>.
 	/// </summary>
 	private Tween _zoomTween;
 
@@ -76,7 +76,7 @@ public partial class MainCamera : Camera2D
 	}
 
 	/// <summary>
-	/// <b>Runs when an InputEvent does not get handled by anything.</b>
+	/// <b>Runs when an <see cref="InputEvent"/> does not get handled by anything.</b>
 	/// </summary>
 	/// <remarks>
 	/// <list>
@@ -85,7 +85,7 @@ public partial class MainCamera : Camera2D
 	///		</item>
 	/// </list>
 	/// </remarks>
-	/// <param name="ev">InputEvent that got fired.</param>
+	/// <param name="ev"><see cref="InputEvent"/> that got fired.</param>
 	public override void _UnhandledInput(InputEvent ev)
 	{
 		if (!ev.IsActionPressed("Reset Camera")) return;
@@ -106,7 +106,7 @@ public partial class MainCamera : Camera2D
 	///			Handles movement input.
 	///		</item>
 	///		<item>
-	///			Handles zoom input.
+	///			Handles <see cref="Camera2D.Zoom"/> input.
 	///		</item>
 	/// </list>
 	/// </remarks>
@@ -133,7 +133,7 @@ public partial class MainCamera : Camera2D
 	///			Creates a movement multiplier based on the <c>Run</c> input action.
 	///		</item>
 	///		<item>
-	///			Moves the camera.
+	///			Moves the <see cref="Camera2D"/>.
 	///		</item>
 	/// </list>
 	/// </remarks>
@@ -159,20 +159,20 @@ public partial class MainCamera : Camera2D
 	/// <remarks>
 	/// <list>
 	///		<item>
-	///			Creates a zoom <see cref="float">float</see>.
+	///			Creates a <see cref="Camera2D.Zoom"/> <see cref="float">float</see>.
 	///		</item>
 	///		<item>
-	///			Returns early if no zoom input detected.
+	///			Returns early if no <see cref="Camera2D.Zoom"/> input detected.
 	///		</item>
 	///		<item>
-	///			Creates a new zoom value clamped between <see cref="_minZoom"/> and <see cref="_maxZoom"/>.
+	///			Creates a new <see cref="Camera2D.Zoom"/> value clamped between <see cref="_minZoom"/> and <see cref="_maxZoom"/>.
 	///		</item>
 	///		<item>
-	///			Runs <see cref="_setZoom"/> to tween to the new zoom.
+	///			Runs <see cref="_setZoom"/> to tween to the new <see cref="Camera2D.Zoom"/>.
 	///		</item>
 	/// </list>
 	/// </remarks>
-	/// <param name="deltaFloat"></param>
+	/// <param name="deltaFloat">Time since last frame.</param>
 	private void _handleZoom(float deltaFloat)
 	{
 		var zoom = _getZoomInput();
@@ -183,7 +183,7 @@ public partial class MainCamera : Camera2D
 	}
 
 	/// <summary>
-	/// <b>Gets the current zoom input, based on input type.</b>
+	/// <b>Gets the current <see cref="Camera2D.Zoom"/> input, based on <see cref="InputType"/>.</b>
 	/// </summary>
 	/// <remarks>
 	///	<list>
@@ -195,7 +195,7 @@ public partial class MainCamera : Camera2D
 	///		</item>
 	/// </list>
 	/// </remarks>
-	/// <returns>The zoom input, positive for zooming in and negative for zooming out.</returns>
+	/// <returns>The <see cref="Camera2D.Zoom"/> input, positive for zooming in and negative for zooming out.</returns>
 	private float _getZoomInput()
 	{
 		if (!InputType.IsKeyboardAndMouse)
