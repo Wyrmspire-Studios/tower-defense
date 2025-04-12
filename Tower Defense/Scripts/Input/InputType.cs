@@ -1,10 +1,9 @@
 using Godot;
-using System;
 
 namespace WyrmspireStudios;
 public partial class InputType : Node
 {
-	public static bool IsKeyboardAndMouse = true;
+	public static bool IsKeyboardAndMouse { get; private set; }
 
 	public override void _Input(InputEvent ev)
 	{
