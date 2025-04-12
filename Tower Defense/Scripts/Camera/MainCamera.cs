@@ -19,9 +19,14 @@ public partial class MainCamera : Camera2D
 	[Export] private float _movementSmoothing = 15f;
 	
 	/// <summary>
-	/// Speed at which to zoom
+	/// Speed at which to zoom if using a mouse
 	/// </summary>
-	[ExportGroup("Zoom")] [Export] private float _zoomSpeed = 25f;
+	[ExportGroup("Zoom")] [Export] private float _zoomSpeedMouse = 25f;
+
+	/// <summary>
+	/// Speed at which to zoom if using a gamepad
+	/// </summary>
+	[Export] private float _zoomSpeedGamepad = 12.5f;
 	
 	/// <summary>
 	/// Minimum allowed zoom
@@ -135,12 +140,12 @@ public partial class MainCamera : Camera2D
 	/// <param name="deltaFloat">Time since last frame.</param>
 	private void _handleMovement(float deltaFloat)
 	{
-		var movement = Vector2.Zero;
-		if (Input.IsActionPressed("Move Up")) movement += Vector2.Up;
-		if (Input.IsActionPressed("Move Down")) movement += Vector2.Down;
-		if (Input.IsActionPressed("Move Left")) movement += Vector2.Left;
-		if (Input.IsActionPressed("Move Right")) movement += Vector2.Right;
-		movement = movement.Normalized();
+		var movement = Input.GetVector(
+			"Move Left",
+			"Move Right",
+			"Move Up",
+			"Move Down"
+		);
 
 		if (movement.IsZeroApprox()) return;
 		
@@ -170,14 +175,34 @@ public partial class MainCamera : Camera2D
 	/// <param name="deltaFloat"></param>
 	private void _handleZoom(float deltaFloat)
 	{
-		var zoom = 0f;
-		if (Input.IsActionJustPressed("Zoom In")) zoom += _zoomSpeed;
-		if (Input.IsActionJustPressed("Zoom Out")) zoom -= _zoomSpeed;
-
-		if (zoom == 0) return;
+		var zoom = _getZoomInput();
+		if (zoom == 0f) return;
 		
 		var newZoom = Mathf.Clamp(Zoom.X + zoom * deltaFloat, _minZoom, _maxZoom);
 		_setZoom(new Vector2(newZoom, newZoom));
+	}
+
+	/// <summary>
+	/// <b>Gets the current zoom input, based on input type.</b>
+	/// </summary>
+	/// <remarks>
+	///	<list>
+	///		<item>
+	///			If using a gamepad, uses <see cref="Input.GetAxis"/>.
+	///		</item>
+	///		<item>
+	///			If using a mouse, uses <see cref="Input.IsActionJustPressed"/> for mouse wheel input.
+	///		</item>
+	/// </list>
+	/// </remarks>
+	/// <returns>The zoom input, positive for zooming in and negative for zooming out.</returns>
+	private float _getZoomInput()
+	{
+		if (!InputType.IsKeyboardAndMouse)
+			return Input.GetAxis("Zoom Out", "Zoom In") * _zoomSpeedGamepad;
+		
+		return Input.IsActionJustPressed("Zoom In") ? _zoomSpeedMouse :
+			Input.IsActionJustPressed("Zoom Out") ? -_zoomSpeedMouse : 0f;
 	}
 
 	/// <summary>
