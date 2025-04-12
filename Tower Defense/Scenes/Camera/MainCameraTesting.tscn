@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://d1wy47midp34c"]
+
+[ext_resource type="PackedScene" uid="uid://3ljy8rj0ddvp" path="res://Scenes/Camera/MainCamera.tscn" id="1_2lsk8"]
+[ext_resource type="Texture2D" uid="uid://b2n3epfliedej" path="res://Assets/baracks_card.png" id="2_mx6ou"]
+
+[node name="MainCameraTesting" type="Node2D"]
+
+[node name="MainCamera" parent="." instance=ExtResource("1_2lsk8")]
+
+[node name="BaracksCardTopLeft" type="Sprite2D" parent="."]
+position = Vector2(-64, -64)
+texture = ExtResource("2_mx6ou")
+
+[node name="BaracksCardTopRight" type="Sprite2D" parent="."]
+position = Vector2(64, -64)
+texture = ExtResource("2_mx6ou")
+
+[node name="BaracksCardBottomLeft" type="Sprite2D" parent="."]
+position = Vector2(-64, 64)
+texture = ExtResource("2_mx6ou")
+
+[node name="BaracksCardBottomRight" type="Sprite2D" parent="."]
+position = Vector2(64, 64)
+texture = ExtResource("2_mx6ou")
