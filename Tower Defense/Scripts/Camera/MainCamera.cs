@@ -22,7 +22,7 @@ public partial class MainCamera : Camera2D
 	/// <summary>
 	/// Speed at which to zoom
 	/// </summary>
-	[Export] private float _zoomSpeed = 15f;
+	[Export] private float _zoomSpeed = 25f;
 	
 	/// <summary>
 	/// Minimum allowed zoom
@@ -38,6 +38,11 @@ public partial class MainCamera : Camera2D
 	/// Duration the zoom Tween takes to complete
 	/// </summary>
 	[Export] private float _zoomTweenDuration = 0.1f;
+
+	/// <summary>
+	/// Default zoom to reset to
+	/// </summary>
+	private Vector2 _defaultZoom;
 	
 	/// <summary>
 	/// Tween used for smooth zooming
@@ -50,7 +55,16 @@ public partial class MainCamera : Camera2D
 		PositionSmoothingEnabled = true;
 		PositionSmoothingSpeed = _movementSmoothing;
 
-		Zoom = new Vector2(_minZoom, _minZoom);
+		_defaultZoom = new Vector2(_minZoom, _minZoom);
+		Zoom = _defaultZoom;
+	}
+
+	public override void _Input(InputEvent ev)
+	{
+		if (!ev.IsActionPressed("Reset Camera")) return;
+		
+		Position = Vector2.Zero;
+		_setZoom(_defaultZoom);
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -82,13 +96,18 @@ public partial class MainCamera : Camera2D
 		if (zoom == 0) return;
 		var newZoom = Mathf.Clamp(Zoom.X + zoom * deltaFloat, _minZoom, _maxZoom);
 		
+		_setZoom(new Vector2(newZoom, newZoom));
+
+		#endregion
+	}
+
+	private void _setZoom(Vector2 newZoom)
+	{
 		_zoomTween?.Kill();
 		_zoomTween = CreateTween()
 			.SetEase(Tween.EaseType.Out)
 			.SetTrans(Tween.TransitionType.Quad);
-		_zoomTween.TweenProperty(this, "zoom", new Vector2(newZoom, newZoom), _zoomTweenDuration);
+		_zoomTween.TweenProperty(this, "zoom", newZoom, _zoomTweenDuration);
 		_zoomTween.Play();
-
-		#endregion
 	}
 }
