@@ -14,9 +14,16 @@ public partial class MainCamera : Camera2D
 	/// </summary>
 	[Export] private float _runMultiplier = 2f;
 
+	/// <summary>
+	/// Movement smoothing value applied to the camera
+	/// </summary>
+	[Export] private float _movementSmoothing = 15f;
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		PositionSmoothingEnabled = true;
+		PositionSmoothingSpeed = _movementSmoothing;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
