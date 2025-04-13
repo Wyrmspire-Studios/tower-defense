@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://d1wy47midp34c"]
 
 [ext_resource type="PackedScene" uid="uid://3ljy8rj0ddvp" path="res://Scenes/Camera/MainCamera.tscn" id="1_2lsk8"]
-[ext_resource type="Texture2D" uid="uid://b2n3epfliedej" path="res://Assets/baracks_card.png" id="2_mx6ou"]
+[ext_resource type="Texture2D" uid="uid://c8piek2gp7duq" path="res://Assets/Towers/Baracks/baracks_card.png" id="2_mx6ou"]
 
 [node name="MainCameraTesting" type="Node2D"]
 
