@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dgxrytfjo3wcx"
-path="res://.godot/imported/card_background.png-f9e4574c650b581437c65325b5c9a8af.ctex"
+uid="uid://dp77k5g4tlvx4"
+path="res://.godot/imported/Stone_wall.png-3b32630e7fa3815fdf045d4652e07ebe.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/card_background.png"
-dest_files=["res://.godot/imported/card_background.png-f9e4574c650b581437c65325b5c9a8af.ctex"]
+source_file="res://Assets/Textures/Stone Wall/Stone_wall.png"
+dest_files=["res://.godot/imported/Stone_wall.png-3b32630e7fa3815fdf045d4652e07ebe.ctex"]
 
 [params]
 
