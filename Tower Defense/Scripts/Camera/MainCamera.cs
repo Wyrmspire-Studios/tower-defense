@@ -86,18 +86,35 @@ public partial class MainCamera : Camera2D
 	/// <remarks>
 	/// <list>
 	///		<item>
-	///			Enables or disables <see cref="MainCamera._isDragging"/> depending on received event.
+	///			Handles drag inputs.
 	///		</item>
 	///		<item>
-	///			If <see cref="MainCamera._isDragging"/> and the event is mouse motion, updates the <see cref="MainCamera"/> position.
-	///		</item>
-	///		<item>
-	///			Resets the camera <see cref="Node2D.Position" /> and <see cref="Camera2D.Zoom"/> if <c>Reset Camera</c> was pressed.
+	///			Handles reset camera inputs.
 	///		</item>
 	/// </list>
 	/// </remarks>
 	/// <param name="ev"><see cref="InputEvent"/> that got fired.</param>
 	public override void _UnhandledInput(InputEvent ev)
+	{
+		_handleDragInput(ev);
+		_handleResetInput(ev);
+	}
+
+	/// <summary>
+	/// <b>Handles drag start and end and dragging the <see cref="MainCamera"/></b>
+	/// </summary>
+	/// <remarks>
+	///	<list>
+	///		<item>
+	///			Enables or disables <see cref="MainCamera._isDragging"/> depending on received event.
+	///		</item>
+	///		<item>
+	///			If <see cref="MainCamera._isDragging"/> and the event is mouse motion, updates the <see cref="MainCamera"/> position.
+	///		</item>
+	///	</list>
+	/// </remarks>
+	/// <param name="ev"><see cref="InputEvent"/> that got fired.</param>
+	private void _handleDragInput(InputEvent ev)
 	{
 		if (ev.IsActionPressed("Drag Camera")) _isDragging = true;
 		if (ev.IsActionReleased("Drag Camera")) _isDragging = false;
@@ -106,7 +123,21 @@ public partial class MainCamera : Camera2D
 		{
 			Position += mouseMotion.ScreenRelative * -1;
 		}
-		
+	}
+
+	/// <summary>
+	/// Handles resetting the camera position and zoom.
+	/// </summary>
+	/// <remarks>
+	/// <list>
+	///		<item>
+	///			Resets the camera <see cref="Node2D.Position" /> and <see cref="Camera2D.Zoom"/> if <c>Reset Camera</c> was pressed.
+	///		</item>
+	/// </list>
+	/// </remarks>
+	/// <param name="ev"><see cref="InputEvent"/> that got fired.</param>
+	private void _handleResetInput(InputEvent ev)
+	{
 		if (!ev.IsActionPressed("Reset Camera")) return;
 		
 		Position = Vector2.Zero;
