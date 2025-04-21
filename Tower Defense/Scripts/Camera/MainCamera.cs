@@ -36,12 +36,12 @@ public partial class MainCamera : Camera2D
 	/// <summary>
 	/// Minimum allowed <see cref="Camera2D.Zoom"/>.
 	/// </summary>
-	[Export] private float _minZoom = 1f;
+	[Export] private float _minZoom = 3f;
 	
 	/// <summary>
 	/// Maximum allowed <see cref="Camera2D.Zoom"/>.
 	/// </summary>
-	[Export] private float _maxZoom = 3f;
+	[Export] private float _maxZoom = 5f;
 
 	/// <summary>
 	/// Duration the <see cref="Camera2D.Zoom">Zoom </see><see cref="Tween"/> takes to complete.
