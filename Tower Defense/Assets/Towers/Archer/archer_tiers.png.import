@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d18yo4rgdei6r"
-path="res://.godot/imported/Archer_tower_card.png-0e8e40dc24bf8d05e1037144a96be00b.ctex"
+uid="uid://bavsl4piqgroi"
+path="res://.godot/imported/archer_tiers.png-b293fa0149765561da578890313e0e62.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Towers/Archer/Archer_tower_card.png"
-dest_files=["res://.godot/imported/Archer_tower_card.png-0e8e40dc24bf8d05e1037144a96be00b.ctex"]
+source_file="res://Assets/Towers/Archer/archer_tiers.png"
+dest_files=["res://.godot/imported/archer_tiers.png-b293fa0149765561da578890313e0e62.ctex"]
 
 [params]
 

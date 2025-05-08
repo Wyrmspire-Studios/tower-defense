@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c8piek2gp7duq"
-path="res://.godot/imported/baracks_card.png-ab0c70b566f587d7110deddd5d28c5cc.ctex"
+uid="uid://bvtlbab86aouo"
+path="res://.godot/imported/arrow.png-b03c78b36c5a7bf5c9375a12feff1e95.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Towers/Baracks/baracks_card.png"
-dest_files=["res://.godot/imported/baracks_card.png-ab0c70b566f587d7110deddd5d28c5cc.ctex"]
+source_file="res://Assets/Towers/Projectiles/arrow.png"
+dest_files=["res://.godot/imported/arrow.png-b03c78b36c5a7bf5c9375a12feff1e95.ctex"]
 
 [params]
 
