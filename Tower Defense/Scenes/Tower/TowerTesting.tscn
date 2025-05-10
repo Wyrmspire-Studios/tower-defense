@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://bptctcmxc4seb"]
+[gd_scene load_steps=7 format=3 uid="uid://bptctcmxc4seb"]
 
 [ext_resource type="PackedScene" uid="uid://3ljy8rj0ddvp" path="res://Scenes/Camera/MainCamera.tscn" id="1_nql7l"]
 [ext_resource type="PackedScene" uid="uid://bsfyhtppcn62d" path="res://Scenes/Tower/Tower.tscn" id="2_adg88"]
-[ext_resource type="PackedScene" uid="uid://cqmi671o22n7u" path="res://Scenes/Tower/Tower Texture.tscn" id="3_qkkx5"]
+[ext_resource type="PackedScene" uid="uid://cqmi671o22n7u" path="res://Scenes/Tower/TowerTexture.tscn" id="3_qkkx5"]
 [ext_resource type="Texture2D" uid="uid://bavsl4piqgroi" path="res://Assets/Towers/Archer/archer_tiers.png" id="4_d0ipd"]
+[ext_resource type="PackedScene" uid="uid://donkerclnu72e" path="res://Scenes/Tower/TowerRange.tscn" id="5_qkkx5"]
+[ext_resource type="PackedScene" uid="uid://qylnuw5jnah" path="res://Scenes/Tower/TowerPlaceholderEnemy.tscn" id="6_d0ipd"]
 
 [node name="TowerTesting" type="Node2D"]
 
@@ -11,5 +13,12 @@
 
 [node name="Tower" parent="." instance=ExtResource("2_adg88")]
 
-[node name="Tower Texture" parent="Tower" instance=ExtResource("3_qkkx5")]
+[node name="TowerTexture" parent="Tower" instance=ExtResource("3_qkkx5")]
 TowerTierTexture = ExtResource("4_d0ipd")
+
+[node name="TowerRange" parent="Tower" instance=ExtResource("5_qkkx5")]
+TowerRangeOffset = Vector2(0, -16)
+TowerRangeRadius = 64.0
+
+[node name="TowerPlaceholderEnemy" parent="." instance=ExtResource("6_d0ipd")]
+position = Vector2(-300, 0)

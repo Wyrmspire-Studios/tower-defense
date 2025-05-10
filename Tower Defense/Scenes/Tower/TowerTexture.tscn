@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" uid="uid://mgtej7wsosv8" path="res://Scripts/Tower/TowerTexture.cs" id="1_ciucf"]
 
-[node name="Tower Texture" type="Sprite2D"]
+[node name="TowerTexture" type="Sprite2D"]
 script = ExtResource("1_ciucf")
