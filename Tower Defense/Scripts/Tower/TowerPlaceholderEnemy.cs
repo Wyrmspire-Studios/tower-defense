@@ -1,17 +1,16 @@
 using Godot;
-using System;
 
 namespace WyrmspireStudios;
 public partial class TowerPlaceholderEnemy : AnimatableBody2D
 {
-	private string _id = Guid.NewGuid().ToString();
-	[Export] private int _health = 100;
+	[Export] private float _health = 100f;
 	
-	public int GetHealth()
+	public float GetHealth()
 	{
 		return _health;
 	}
-	public void ReduceHealth(int amount)
+	
+	public void ReduceHealth(float amount)
 	{
 		_health -= amount;
 		if (_health <= 0) QueueFree();

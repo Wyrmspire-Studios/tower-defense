@@ -1,7 +1,0 @@
-[gd_resource type="Resource" script_class="TowerTextureData" load_steps=2 format=3 uid="uid://b5ea678r8x0a3"]
-
-[ext_resource type="Script" uid="uid://dgjmv0isbuyig" path="res://Scripts/Tower/TowerTextureData.cs" id="2_4sqef"]
-
-[resource]
-script = ExtResource("2_4sqef")
-metadata/_custom_type_script = "uid://dgjmv0isbuyig"

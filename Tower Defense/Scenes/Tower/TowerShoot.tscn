@@ -2,10 +2,15 @@
 
 [ext_resource type="Script" uid="uid://behnp3acm0xin" path="res://Scripts/Tower/TowerShoot.cs" id="1_v0khb"]
 
-[node name="TowerShoot" type="Node2D" node_paths=PackedStringArray("_recalculateTargetTimer")]
+[node name="TowerShoot" type="Node2D" node_paths=PackedStringArray("_recalculateTargetTimer", "_shootTargetTimer")]
 script = ExtResource("1_v0khb")
 _recalculateTargetTimer = NodePath("RecalculateTarget")
+_shootTargetTimer = NodePath("ShootTarget")
 
 [node name="RecalculateTarget" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[node name="ShootTarget" type="Timer" parent="."]
 wait_time = 0.1
 autostart = true

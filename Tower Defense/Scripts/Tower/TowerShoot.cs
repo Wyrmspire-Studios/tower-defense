@@ -6,9 +6,17 @@ using System.Linq;
 namespace WyrmspireStudios;
 public partial class TowerShoot : Node2D
 {
-	[Export] private TowerTargeting _towerTargeting = TowerTargeting.First;
-	[Export] private Timer _recalculateTargetTimer;
+	[ExportGroup("Shooting")]
+	[Export] private float _shootInterval;
 	
+	[ExportGroup("Projectile")]
+	[Export] private PackedScene _projectileScene;
+	
+	[ExportGroup("Internal")]
+	[Export] private Timer _recalculateTargetTimer;
+	[Export] private Timer _shootTargetTimer;
+	
+	private TowerTargeting _towerTargeting = TowerTargeting.First;
 	private readonly List<TowerPlaceholderEnemy> _enemiesInRange = [];
 	private TowerPlaceholderEnemy _currentTarget;
 	
@@ -20,10 +28,13 @@ public partial class TowerShoot : Node2D
 		_tower = GetParent<Tower>();
 		_tower.TowerShoot = this;
 
+		_shootTargetTimer.WaitTime = _shootInterval;
+
 		_tower.TowerRange.EnemyEnteredRange += OnEnemyEnteredRange;
 		_tower.TowerRange.EnemyExitedRange += OnEnemyExitedRange;
 
 		_recalculateTargetTimer.Timeout += OnRecalculateTarget;
+		_shootTargetTimer.Timeout += OnShootTarget;
 	}
 
 	private void OnEnemyEnteredRange(TowerPlaceholderEnemy enemy)
@@ -52,5 +63,15 @@ public partial class TowerShoot : Node2D
 			TowerTargeting.LeastHealth => _enemiesInRange.OrderBy(enemy => enemy.GetHealth()).First(),
 			_ => throw new ArgumentOutOfRangeException()
 		};
+	}
+
+	private void OnShootTarget()
+	{
+		if (_currentTarget == null) return;
+		
+		var projectile = _projectileScene.Instantiate<TowerProjectile>();
+		projectile.SetTarget(_currentTarget.GlobalPosition);
+		
+		AddChild(projectile);
 	}
 }

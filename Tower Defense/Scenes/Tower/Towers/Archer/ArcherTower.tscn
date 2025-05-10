@@ -1,0 +1,21 @@
+[gd_scene load_steps=7 format=3 uid="uid://c8ogc0ac8w6yd"]
+
+[ext_resource type="PackedScene" uid="uid://bsfyhtppcn62d" path="res://Scenes/Tower/Tower.tscn" id="1_8c8yk"]
+[ext_resource type="PackedScene" uid="uid://cqmi671o22n7u" path="res://Scenes/Tower/TowerTexture.tscn" id="2_t3f8j"]
+[ext_resource type="Texture2D" uid="uid://bavsl4piqgroi" path="res://Assets/Towers/Archer/archer_tiers.png" id="3_wpant"]
+[ext_resource type="PackedScene" uid="uid://donkerclnu72e" path="res://Scenes/Tower/TowerRange.tscn" id="4_ve55o"]
+[ext_resource type="PackedScene" uid="uid://ccghtmcob6l0j" path="res://Scenes/Tower/TowerShoot.tscn" id="5_cq3kq"]
+[ext_resource type="PackedScene" uid="uid://bh72fmwu83hn3" path="res://Scenes/Tower/Towers/Archer/ArcherProjectile.tscn" id="6_hk5xl"]
+
+[node name="ArcherTower" instance=ExtResource("1_8c8yk")]
+
+[node name="TowerTexture" parent="." index="0" instance=ExtResource("2_t3f8j")]
+TowerTierTexture = ExtResource("3_wpant")
+
+[node name="TowerRange" parent="." index="1" instance=ExtResource("4_ve55o")]
+TowerRangeOffset = Vector2(0, -16)
+TowerRangeRadius = 128.0
+
+[node name="TowerShoot" parent="." index="2" instance=ExtResource("5_cq3kq")]
+_shootInterval = 0.1
+_projectileScene = ExtResource("6_hk5xl")

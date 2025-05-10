@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 namespace WyrmspireStudios;
 public partial class TowerRange : Node2D
@@ -7,7 +6,7 @@ public partial class TowerRange : Node2D
 	[Export] public Vector2 TowerRangeOffset;
 	[Export] public float TowerRangeRadius;
 	
-	[ExportGroup("Tower Range Instance Exports")]
+	[ExportGroup("Internal")]
 	[Export] private Area2D _towerRangeArea;
 	[Export] private CollisionShape2D _towerRangeShape;
 

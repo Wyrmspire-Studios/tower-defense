@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://bh72fmwu83hn3"]
+
+[ext_resource type="PackedScene" uid="uid://dk7m0i4eu31n2" path="res://Scenes/Tower/TowerProjectile.tscn" id="1_mba0w"]
+[ext_resource type="Texture2D" uid="uid://bvtlbab86aouo" path="res://Assets/Towers/Projectiles/arrow.png" id="2_om1x0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5tx12"]
+size = Vector2(19, 7)
+
+[node name="ArcherProjectile" instance=ExtResource("1_mba0w")]
+_projectileLifeTime = 3.0
+_projectileSpeed = 1024.0
+_projectileDamage = 50.0
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("RectangleShape2D_5tx12")
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_om1x0")

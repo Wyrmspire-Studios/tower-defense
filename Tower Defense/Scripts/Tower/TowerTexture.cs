@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 namespace WyrmspireStudios;
 public partial class TowerTexture : Sprite2D
