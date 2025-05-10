@@ -1,6 +1,7 @@
 using Godot;
 using System;
 
+namespace WyrmspireStudios;
 public partial class TowerTexture : Sprite2D
 {
 	private const int TowerTextureWidth = 32;
@@ -14,6 +15,7 @@ public partial class TowerTexture : Sprite2D
 	public override void _Ready()
 	{
 		_tower = GetParent<Tower>();
+		_tower.TowerTexture = this;
 
 		Texture = TowerTierTexture;
 		Centered = false;

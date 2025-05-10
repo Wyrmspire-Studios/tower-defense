@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://bptctcmxc4seb"]
+[gd_scene load_steps=8 format=3 uid="uid://bptctcmxc4seb"]
 
 [ext_resource type="PackedScene" uid="uid://3ljy8rj0ddvp" path="res://Scenes/Camera/MainCamera.tscn" id="1_nql7l"]
 [ext_resource type="PackedScene" uid="uid://bsfyhtppcn62d" path="res://Scenes/Tower/Tower.tscn" id="2_adg88"]
 [ext_resource type="PackedScene" uid="uid://cqmi671o22n7u" path="res://Scenes/Tower/TowerTexture.tscn" id="3_qkkx5"]
 [ext_resource type="Texture2D" uid="uid://bavsl4piqgroi" path="res://Assets/Towers/Archer/archer_tiers.png" id="4_d0ipd"]
 [ext_resource type="PackedScene" uid="uid://donkerclnu72e" path="res://Scenes/Tower/TowerRange.tscn" id="5_qkkx5"]
+[ext_resource type="PackedScene" uid="uid://ccghtmcob6l0j" path="res://Scenes/Tower/TowerShoot.tscn" id="6_8sl55"]
 [ext_resource type="PackedScene" uid="uid://qylnuw5jnah" path="res://Scenes/Tower/TowerPlaceholderEnemy.tscn" id="6_d0ipd"]
 
 [node name="TowerTesting" type="Node2D"]
@@ -18,7 +19,24 @@ TowerTierTexture = ExtResource("4_d0ipd")
 
 [node name="TowerRange" parent="Tower" instance=ExtResource("5_qkkx5")]
 TowerRangeOffset = Vector2(0, -16)
-TowerRangeRadius = 64.0
+TowerRangeRadius = 128.0
 
-[node name="TowerPlaceholderEnemy" parent="." instance=ExtResource("6_d0ipd")]
+[node name="TowerShoot" parent="Tower" instance=ExtResource("6_8sl55")]
+
+[node name="Red Enemy 100 HP" parent="." instance=ExtResource("6_d0ipd")]
 position = Vector2(-300, 0)
+
+[node name="Green Enemy 80 HP" parent="." instance=ExtResource("6_d0ipd")]
+modulate = Color(0.0833333, 1, 0, 1)
+position = Vector2(-350, 0)
+_health = 80
+
+[node name="Blue Enemy 60 HP" parent="." instance=ExtResource("6_d0ipd")]
+modulate = Color(0, 0.666667, 1, 1)
+position = Vector2(-400, 0)
+_health = 60
+
+[node name="Yellow Enemy 40 HP" parent="." instance=ExtResource("6_d0ipd")]
+modulate = Color(1, 0.9, 0, 1)
+position = Vector2(-450, 0)
+_health = 40

@@ -1,6 +1,7 @@
 using Godot;
 using System;
 
+namespace WyrmspireStudios;
 public partial class TowerRange : Node2D
 {
 	[Export] public Vector2 TowerRangeOffset;
@@ -15,20 +16,25 @@ public partial class TowerRange : Node2D
 	
 	[Signal]
 	public delegate void EnemyExitedRangeEventHandler(TowerPlaceholderEnemy enemy);
-	
-	
+
+	private Tower _tower;
 	private CircleShape2D _towerRangeCircle;
 	private bool _towerRangeVisible;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		_tower = GetParent<Tower>();
+		_tower.TowerRange = this;
+		
 		_towerRangeCircle = new CircleShape2D();
 		_towerRangeCircle.Radius = TowerRangeRadius;
 		_towerRangeShape.Shape = _towerRangeCircle;
 
 		_towerRangeArea.BodyEntered += OnBodyEntered;
 		_towerRangeArea.BodyExited += OnBodyExited;
+		
+		ToggleRangeVisibility();
 	}
 
 	public override void _Draw()
