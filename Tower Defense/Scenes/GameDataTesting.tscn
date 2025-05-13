@@ -1,0 +1,48 @@
+[gd_scene load_steps=2 format=3 uid="uid://1g1fyq8jxjbp"]
+
+[ext_resource type="Script" uid="uid://phw3c4yf7f4n" path="res://Scripts/GameDataTesting.cs" id="1_b16qg"]
+
+[node name="GameDataTesting" type="GridContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 3
+script = ExtResource("1_b16qg")
+
+[node name="HealthLabel" type="Label" parent="."]
+layout_mode = 2
+text = "Health: 100"
+
+[node name="GoldLabel" type="Label" parent="."]
+layout_mode = 2
+text = "Gold: 0"
+
+[node name="ShardsLabel" type="Label" parent="."]
+layout_mode = 2
+text = "Shards: 0"
+
+[node name="AddHealthButton" type="Button" parent="."]
+layout_mode = 2
+text = "Add Health"
+
+[node name="AddGoldButton" type="Button" parent="."]
+layout_mode = 2
+text = "Add Gold"
+
+[node name="AddShardsButton" type="Button" parent="."]
+layout_mode = 2
+text = "Add Shards"
+
+[node name="RemoveHealthButton" type="Button" parent="."]
+layout_mode = 2
+text = "Remove Health"
+
+[node name="RemoveGoldButton" type="Button" parent="."]
+layout_mode = 2
+text = "Remove Gold"
+
+[node name="RemoveShardsButton" type="Button" parent="."]
+layout_mode = 2
+text = "Remove Shards"
