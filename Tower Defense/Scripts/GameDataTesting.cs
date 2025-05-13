@@ -10,57 +10,41 @@ public partial class GameDataTesting : GridContainer
 	public override void _Ready()
 	{
 		_healthLabel = GetNode<Label>("HealthLabel");
-		var addHealthButton = GetNode<Button>("AddHealthButton");
-		addHealthButton.Pressed += AddHealthButton_OnPressed;
-		var removeHealthButton = GetNode<Button>("RemoveHealthButton");
-		removeHealthButton.Pressed += RemoveHealthButton_OnPressed;
-		
+		GameData.HealthChanged += UpdateHealthLabel;
 		_goldLabel = GetNode<Label>("GoldLabel");
-		var addGoldButton = GetNode<Button>("AddGoldButton");
-		addGoldButton.Pressed += AddGoldButton_OnPressed;
-		var removeGoldButton = GetNode<Button>("RemoveGoldButton");
-		removeGoldButton.Pressed += RemoveGoldButton_OnPressed;
-		
+		GameData.GoldChanged += UpdateGoldLabel;
 		_shardsLabel = GetNode<Label>("ShardsLabel");
+		GameData.ShardsChanged += UpdateShardsLabel;
+		
+		var addHealthButton = GetNode<Button>("AddHealthButton");
+		addHealthButton.Pressed += () => GameData.AddHealth(1);
+		var removeHealthButton = GetNode<Button>("RemoveHealthButton");
+		removeHealthButton.Pressed += () => GameData.RemoveHealth(1);
+
+		var addGoldButton = GetNode<Button>("AddGoldButton");
+		addGoldButton.Pressed += () => GameData.AddGold(1);
+		var removeGoldButton = GetNode<Button>("RemoveGoldButton");
+		removeGoldButton.Pressed += () => GameData.RemoveGold(1);
+
 		var addShardsButton = GetNode<Button>("AddShardsButton");
-		addShardsButton.Pressed += AddShardsButton_OnPressed;
+		addShardsButton.Pressed += () => GameData.AddShards(1);
 		var removeShardsButton = GetNode<Button>("RemoveShardsButton");
-		removeShardsButton.Pressed += RemoveShardsButton_OnPressed;
+		removeShardsButton.Pressed += () => GameData.RemoveShards(1);
 	}
 
-	private void AddHealthButton_OnPressed()
+	private void UpdateHealthLabel(int oldValue, int newValue)
 	{
-		GameData.AddHealth(1);
-		_healthLabel.Text = $"Health: {GameData.Health}";
+		_healthLabel.Text = $"Health: {newValue}";
 	}
 	
-	private void RemoveHealthButton_OnPressed()
+	private void UpdateGoldLabel(int oldValue, int newValue)
 	{
-		GameData.RemoveHealth(1);
-		_healthLabel.Text = $"Health: {GameData.Health}";
+		_goldLabel.Text = $"Health: {newValue}";
 	}
 	
-	private void AddGoldButton_OnPressed()
+	private void UpdateShardsLabel(int oldValue, int newValue)
 	{
-		GameData.AddGold(1);
-		_goldLabel.Text = $"Gold: {GameData.Gold}";
+		_shardsLabel.Text = $"Shards: {newValue}";
 	}
 	
-	private void RemoveGoldButton_OnPressed()
-	{
-		GameData.RemoveGold(1);
-		_goldLabel.Text = $"Gold: {GameData.Gold}";
-	}
-	
-	private void AddShardsButton_OnPressed()
-	{
-		GameData.AddShards(1);
-		_shardsLabel.Text = $"Shards: {GameData.Shards}";
-	}
-
-	private void RemoveShardsButton_OnPressed()
-	{
-		GameData.RemoveShards(1);
-		_shardsLabel.Text = $"Shards: {GameData.Shards}";
-	}
 }
