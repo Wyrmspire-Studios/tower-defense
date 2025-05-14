@@ -46,3 +46,15 @@ text = "Remove Gold"
 [node name="RemoveShardsButton" type="Button" parent="."]
 layout_mode = 2
 text = "Remove Shards"
+
+[node name="ResetHealthButton" type="Button" parent="."]
+layout_mode = 2
+text = "Reset Health"
+
+[node name="ResetGoldButton" type="Button" parent="."]
+layout_mode = 2
+text = "Reset Gold"
+
+[node name="ResetShardsButton" type="Button" parent="."]
+layout_mode = 2
+text = "Reset Shards"
