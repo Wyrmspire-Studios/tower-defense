@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Tower Defense"
-run/main_scene="res://Scenes/Root.tscn"
+run/main_scene="uid://cxi6p703esrp2"
 config/features=PackedStringArray("4.4", "C#", "Forward Plus")
 
 [autoload]
@@ -19,9 +19,22 @@ config/features=PackedStringArray("4.4", "C#", "Forward Plus")
 GamepadFix="*res://Scripts/Gamepad/GamepadFix.cs"
 InputType="*res://Scripts/Input/InputType.cs"
 
+[display]
+
+window/size/viewport_width=640
+window/size/viewport_height=360
+window/size/mode=4
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
+window/stretch/scale_mode="integer"
+
 [dotnet]
 
 project/assembly_name="Tower Defense"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/label_font_auto_sizer/plugin.cfg")
 
 [input]
 
