@@ -4,21 +4,18 @@
 [ext_resource type="Script" uid="uid://crxcmfxexn77e" path="res://Scenes/UI/CustomTexturedButton.cs" id="3_5lj48"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ahkfo"]
-font_size = 1
+font_size = 0
 
-[node name="CustomTexturedButton" type="NinePatchRect"]
+[node name="CustomTexturedButton" type="Button"]
 custom_minimum_size = Vector2(1, 1)
+offset_right = 6.0
+offset_bottom = 6.0
 size_flags_vertical = 3
-mouse_filter = 0
+mouse_filter = 1
 theme = ExtResource("2_5lj48")
-patch_margin_left = 3
-patch_margin_top = 3
-patch_margin_right = 3
-patch_margin_bottom = 3
 script = ExtResource("3_5lj48")
-FontSize = 1
 
-[node name="Button" type="Button" parent="."]
+[node name="Background" type="NinePatchRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -27,8 +24,12 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
 mouse_filter = 1
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
 
-[node name="Label" type="Label" parent="Button"]
+[node name="Label" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
