@@ -7,10 +7,12 @@ public static class GameData
     public static event ValueChangeHandler HealthChanged;
     public static event ValueChangeHandler GoldChanged;
     public static event ValueChangeHandler ShardsChanged;
+    public static event ValueChangeHandler EnemyDeath;
 
     private static int Health { get; set; } = 100;
     private static int Gold { get; set; }
     private static int Shards { get; set; }
+    private static int EnemyDeaths { get; set; }
 
     public static int GetHealth()
     {
@@ -88,5 +90,12 @@ public static class GameData
         var oldShards = Shards;
         Shards -= amount;
         ShardsChanged?.Invoke(oldShards, Shards);
+    }
+
+    public static void AddEnemyDeath()
+    {
+        var oldEnemyDeaths = EnemyDeaths;
+        EnemyDeaths += 1;
+        EnemyDeath?.Invoke(oldEnemyDeaths, EnemyDeaths);
     }
 }
