@@ -1,12 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://cxi6p703esrp2"]
+[gd_scene load_steps=8 format=3 uid="uid://cxi6p703esrp2"]
 
 [ext_resource type="LabelSettings" uid="uid://nb3rrbkxluc2" path="res://Scenes/UI/MainMenu/TitleLabelSettings.tres" id="1_7rqq1"]
 [ext_resource type="Script" uid="uid://jsyuw28bftyi" path="res://Scenes/UI/MainMenu/MainMenu.cs" id="1_ehq06"]
+[ext_resource type="PackedScene" uid="uid://buqf13wh7siy1" path="res://Scenes/Card/CardTesting.tscn" id="2_67d64"]
 [ext_resource type="Texture2D" uid="uid://cw5fhku302i7" path="res://Assets/Cards/Rare.png" id="2_gwdte"]
 [ext_resource type="PackedScene" uid="uid://cmwgnmd04bnh1" path="res://Scenes/UI/CustomTexturedButton.tscn" id="4_tc2ed"]
 [ext_resource type="Texture2D" uid="uid://dqs2k0syflfob" path="res://Assets/Cards/Common.png" id="5_67d64"]
+[ext_resource type="Texture2D" uid="uid://gmfs4otstruc" path="res://Assets/Cards/Legendary.png" id="6_tc2ed"]
 
-[node name="MainMenu" type="Control"]
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("TestingSelection")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,8 +16,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ehq06")
+PlayScene = ExtResource("2_67d64")
+CustomTexturedButton = ExtResource("4_tc2ed")
+TestingSelection = NodePath("TestingSelection")
 
-[node name="NinePatchRect" type="NinePatchRect" parent="."]
+[node name="Background" type="NinePatchRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -46,7 +51,7 @@ label_settings = ExtResource("1_7rqq1")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ButtonsContainer" type="VBoxContainer" parent="."]
+[node name="ButtonContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -61,34 +66,73 @@ grow_horizontal = 2
 grow_vertical = 0
 alignment = 1
 
-[node name="TestingButton" parent="ButtonsContainer" instance=ExtResource("4_tc2ed")]
+[node name="TestingButton" parent="ButtonContainer" instance=ExtResource("4_tc2ed")]
 layout_mode = 2
-texture = ExtResource("5_67d64")
 BaseTexture = ExtResource("5_67d64")
 HoverTexture = ExtResource("2_gwdte")
+PressedTexture = ExtResource("6_tc2ed")
 ButtonLabel = "Testing"
 FontSize = 16
 
-[node name="PlayButton" parent="ButtonsContainer" instance=ExtResource("4_tc2ed")]
+[node name="PlayButton" parent="ButtonContainer" instance=ExtResource("4_tc2ed")]
 layout_mode = 2
-texture = ExtResource("5_67d64")
 BaseTexture = ExtResource("5_67d64")
 HoverTexture = ExtResource("2_gwdte")
+PressedTexture = ExtResource("6_tc2ed")
 ButtonLabel = "Play"
 FontSize = 16
 
-[node name="SettingsButton" parent="ButtonsContainer" instance=ExtResource("4_tc2ed")]
+[node name="SettingsButton" parent="ButtonContainer" instance=ExtResource("4_tc2ed")]
 layout_mode = 2
-texture = ExtResource("5_67d64")
 BaseTexture = ExtResource("5_67d64")
 HoverTexture = ExtResource("2_gwdte")
+PressedTexture = ExtResource("6_tc2ed")
 ButtonLabel = "Settings"
 FontSize = 16
 
-[node name="ExitButton" parent="ButtonsContainer" instance=ExtResource("4_tc2ed")]
+[node name="ExitButton" parent="ButtonContainer" instance=ExtResource("4_tc2ed")]
 layout_mode = 2
-texture = ExtResource("5_67d64")
 BaseTexture = ExtResource("5_67d64")
 HoverTexture = ExtResource("2_gwdte")
+PressedTexture = ExtResource("6_tc2ed")
 ButtonLabel = "Exit"
 FontSize = 16
+
+[node name="TestingSelection" type="NinePatchRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -102.0
+offset_top = -102.0
+offset_right = 102.0
+offset_bottom = 102.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("2_gwdte")
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TestingSelection"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = -2.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ButtonContainer" type="VBoxContainer" parent="TestingSelection/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3

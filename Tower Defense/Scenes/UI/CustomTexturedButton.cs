@@ -1,10 +1,9 @@
 using Godot;
-using System;
 
 namespace WyrmspireStudios;
 
 [Tool]
-public partial class CustomTexturedButton : NinePatchRect
+public partial class CustomTexturedButton : Button
 {
 	[Export]
 	public Texture2D BaseTexture
@@ -24,6 +23,17 @@ public partial class CustomTexturedButton : NinePatchRect
 		set 
 		{
 			_hoverTexture = value;
+			_Ready();
+		}
+	}
+
+	[Export]
+	public Texture2D PressedTexture
+	{
+		get => _pressedTexture;
+		set
+		{
+			_pressedTexture = value;
 			_Ready();
 		}
 	}
@@ -52,27 +62,73 @@ public partial class CustomTexturedButton : NinePatchRect
 	
 	private Texture2D _baseTexture;
 	private Texture2D _hoverTexture;
+	private Texture2D _pressedTexture;
 	private string _buttonLabel;
 	private int _fontSize;
-
+	
+	private NinePatchRect _background;
+	private bool _signalsConnected = false;
 	public override void _Ready()
 	{
-		Texture = _baseTexture;
-		var label = GetNodeOrNull<Label>("Button/Label");
+		_background = GetNodeOrNull<NinePatchRect>("Background");
+		if(_background == null) return;
+		_background.Texture = _baseTexture;
+
+		if (!_signalsConnected)
+		{
+			ButtonDown += OnButtonDown;
+			ButtonUp += OnButtonUp;
+			MouseEntered += OnMouseEntered;
+			MouseExited += OnMouseExited;
+			_signalsConnected = true;
+		}
+		
+		var label = GetNodeOrNull<Label>("Label");
 		if (label == null) return;
 		var labelSettings = new LabelSettings();
 		labelSettings.FontSize = _fontSize;
 		label.Text = _buttonLabel;
 		label.LabelSettings = labelSettings;
 	}
-
-	public override void _Notification(int what)
+	
+	private void OnButtonDown()
 	{
-		Texture = (long)what switch
-		{
-			NotificationMouseEnter => _hoverTexture,
-			NotificationMouseExit => _baseTexture,
-			_ => Texture
-		};
+		_background.Texture = _pressedTexture;
 	}
+
+	private void OnButtonUp()
+	{
+		_background.Texture = GetRect().HasPoint(GetLocalMousePosition()) ? _baseTexture : _hoverTexture;
+	}
+
+	private void OnMouseEntered()
+	{
+		if (!IsPressed())
+			_background.Texture = _hoverTexture;
+	}
+
+	private void OnMouseExited()
+	{
+		if (!IsPressed())
+			_background.Texture = _baseTexture;
+	}
+	
+	// public override void _Process(double delta)
+	// {
+	// 	var backgroundTexture = _baseTexture;
+	//
+	// 	if (IsPressed())
+	// 	{
+	// 		backgroundTexture = _pressedTexture;
+	// 	}
+	// 	else if (IsHovered())
+	// 	{
+	// 		backgroundTexture = _hoverTexture;
+	// 	}
+	//
+	// 	if (_background.Texture != backgroundTexture)
+	// 	{
+	// 		_background.Texture = backgroundTexture;
+	// 	}
+	// }
 }
