@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=4 uid="uid://sf23vekjdxcg"]
+[gd_scene load_steps=5 format=4 uid="uid://sf23vekjdxcg"]
 
 [ext_resource type="TileSet" uid="uid://ca5trjipj4joi" path="res://Resources/Tilesets/Basic.tres" id="1_f52bf"]
+[ext_resource type="PackedScene" uid="uid://bsf2n0ohxdja0" path="res://Scenes/Enemies/Slime.tscn" id="2_f52bf"]
+[ext_resource type="PackedScene" uid="uid://3ljy8rj0ddvp" path="res://Scenes/Camera/MainCamera.tscn" id="3_ram82"]
 
 [sub_resource type="Curve2D" id="Curve2D_7x3de"]
 _data = {
@@ -24,3 +26,8 @@ tile_set = ExtResource("1_f52bf")
 
 [node name="Path2D" type="Path2D" parent="."]
 curve = SubResource("Curve2D_7x3de")
+
+[node name="Slime" parent="Path2D" instance=ExtResource("2_f52bf")]
+position = Vector2(227, 391)
+
+[node name="MainCamera" parent="." instance=ExtResource("3_ram82")]

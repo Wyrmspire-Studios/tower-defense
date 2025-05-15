@@ -3,7 +3,7 @@ using System;
 
 public partial class Slime : PathFollow2D
 {
-	private int _speed = 100;
+	[Export] private int _speed = 100;
 	[Export] private int _health = 100;
 	[Export] private int _coinsDropped = 1;
 	
@@ -16,5 +16,10 @@ public partial class Slime : PathFollow2D
 	public override void _Process(double delta)
 	{
 		SetProgress((float)(GetProgress() + _speed * delta));
+	}
+
+	public void TakeDamage(int damage)
+	{
+		_health -= damage;
 	}
 }

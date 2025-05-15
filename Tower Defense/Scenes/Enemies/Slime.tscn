@@ -7,14 +7,16 @@
 size = Vector2(14, 9)
 
 [node name="Slime" type="PathFollow2D"]
+rotates = false
 loop = false
 script = ExtResource("1_kexyb")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+position = Vector2(0, -7)
 texture = ExtResource("2_s88bi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(0, 3.5)
+position = Vector2(0, -3.5)
 shape = SubResource("RectangleShape2D_ua82p")
