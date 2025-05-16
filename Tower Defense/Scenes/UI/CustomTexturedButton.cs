@@ -2,7 +2,7 @@ using Godot;
 
 namespace WyrmspireStudios;
 
-[Tool]
+[Tool] [GlobalClass]
 public partial class CustomTexturedButton : Button
 {
 	[Export]
