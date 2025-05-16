@@ -1,6 +1,6 @@
 using Godot;
 
-namespace WyrmspireStudios;
+namespace WyrmspireStudios.AutoLoad;
 public partial class InputType : Node
 {
 	public static bool IsKeyboardAndMouse { get; private set; }

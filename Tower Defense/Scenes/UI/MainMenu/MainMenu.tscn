@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://cxi6p703esrp2"]
+[gd_scene load_steps=8 format=3 uid="uid://cxi6p703esrp2"]
 
 [ext_resource type="LabelSettings" uid="uid://nb3rrbkxluc2" path="res://Scenes/UI/MainMenu/TitleLabelSettings.tres" id="1_7rqq1"]
 [ext_resource type="Script" uid="uid://jsyuw28bftyi" path="res://Scenes/UI/MainMenu/MainMenu.cs" id="1_ehq06"]
+[ext_resource type="PackedScene" uid="uid://buqf13wh7siy1" path="res://Scenes/Card/CardTesting.tscn" id="2_67d64"]
 [ext_resource type="Texture2D" uid="uid://cw5fhku302i7" path="res://Assets/Cards/Rare.png" id="2_gwdte"]
 [ext_resource type="PackedScene" uid="uid://cmwgnmd04bnh1" path="res://Scenes/UI/CustomTexturedButton.tscn" id="4_tc2ed"]
 [ext_resource type="Texture2D" uid="uid://dqs2k0syflfob" path="res://Assets/Cards/Common.png" id="5_67d64"]
@@ -15,6 +16,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ehq06")
+PlayScene = ExtResource("2_67d64")
 TestingSelection = NodePath("TestingSelection")
 
 [node name="Background" type="NinePatchRect" parent="."]
@@ -69,7 +71,6 @@ BaseTexture = ExtResource("5_67d64")
 HoverTexture = ExtResource("2_gwdte")
 PressedTexture = ExtResource("6_tc2ed")
 ButtonLabel = "Testing"
-FontSize = 16
 
 [node name="PlayButton" parent="ButtonContainer" instance=ExtResource("4_tc2ed")]
 layout_mode = 2
@@ -77,7 +78,6 @@ BaseTexture = ExtResource("5_67d64")
 HoverTexture = ExtResource("2_gwdte")
 PressedTexture = ExtResource("6_tc2ed")
 ButtonLabel = "Play"
-FontSize = 16
 
 [node name="SettingsButton" parent="ButtonContainer" instance=ExtResource("4_tc2ed")]
 layout_mode = 2
@@ -85,7 +85,6 @@ BaseTexture = ExtResource("5_67d64")
 HoverTexture = ExtResource("2_gwdte")
 PressedTexture = ExtResource("6_tc2ed")
 ButtonLabel = "Settings"
-FontSize = 16
 
 [node name="ExitButton" parent="ButtonContainer" instance=ExtResource("4_tc2ed")]
 layout_mode = 2
@@ -93,7 +92,6 @@ BaseTexture = ExtResource("5_67d64")
 HoverTexture = ExtResource("2_gwdte")
 PressedTexture = ExtResource("6_tc2ed")
 ButtonLabel = "Exit"
-FontSize = 16
 
 [node name="TestingSelection" type="NinePatchRect" parent="."]
 visible = false
@@ -141,7 +139,6 @@ BaseTexture = ExtResource("5_67d64")
 HoverTexture = ExtResource("2_gwdte")
 PressedTexture = ExtResource("6_tc2ed")
 ButtonLabel = "Testing"
-FontSize = 16
 
 [node name="PlayButton" parent="TestingSelection/ScrollContainer/ButtonContainer" instance=ExtResource("4_tc2ed")]
 custom_minimum_size = Vector2(1, 50)
@@ -150,7 +147,6 @@ BaseTexture = ExtResource("5_67d64")
 HoverTexture = ExtResource("2_gwdte")
 PressedTexture = ExtResource("6_tc2ed")
 ButtonLabel = "Play"
-FontSize = 16
 
 [node name="SettingsButton" parent="TestingSelection/ScrollContainer/ButtonContainer" instance=ExtResource("4_tc2ed")]
 custom_minimum_size = Vector2(1, 50)
@@ -159,7 +155,6 @@ BaseTexture = ExtResource("5_67d64")
 HoverTexture = ExtResource("2_gwdte")
 PressedTexture = ExtResource("6_tc2ed")
 ButtonLabel = "Settings"
-FontSize = 16
 
 [node name="ExitButton" parent="TestingSelection/ScrollContainer/ButtonContainer" instance=ExtResource("4_tc2ed")]
 custom_minimum_size = Vector2(1, 50)
@@ -168,7 +163,6 @@ BaseTexture = ExtResource("5_67d64")
 HoverTexture = ExtResource("2_gwdte")
 PressedTexture = ExtResource("6_tc2ed")
 ButtonLabel = "Exit"
-FontSize = 16
 
 [node name="TestingButton2" parent="TestingSelection/ScrollContainer/ButtonContainer" instance=ExtResource("4_tc2ed")]
 custom_minimum_size = Vector2(1, 50)
@@ -177,7 +171,6 @@ BaseTexture = ExtResource("5_67d64")
 HoverTexture = ExtResource("2_gwdte")
 PressedTexture = ExtResource("6_tc2ed")
 ButtonLabel = "Testing"
-FontSize = 16
 
 [node name="PlayButton2" parent="TestingSelection/ScrollContainer/ButtonContainer" instance=ExtResource("4_tc2ed")]
 custom_minimum_size = Vector2(1, 50)
@@ -186,7 +179,6 @@ BaseTexture = ExtResource("5_67d64")
 HoverTexture = ExtResource("2_gwdte")
 PressedTexture = ExtResource("6_tc2ed")
 ButtonLabel = "Play"
-FontSize = 16
 
 [node name="SettingsButton2" parent="TestingSelection/ScrollContainer/ButtonContainer" instance=ExtResource("4_tc2ed")]
 custom_minimum_size = Vector2(1, 50)
@@ -195,7 +187,6 @@ BaseTexture = ExtResource("5_67d64")
 HoverTexture = ExtResource("2_gwdte")
 PressedTexture = ExtResource("6_tc2ed")
 ButtonLabel = "Settings"
-FontSize = 16
 
 [node name="ExitButton2" parent="TestingSelection/ScrollContainer/ButtonContainer" instance=ExtResource("4_tc2ed")]
 custom_minimum_size = Vector2(1, 50)
@@ -204,4 +195,3 @@ BaseTexture = ExtResource("5_67d64")
 HoverTexture = ExtResource("2_gwdte")
 PressedTexture = ExtResource("6_tc2ed")
 ButtonLabel = "Exit"
-FontSize = 16

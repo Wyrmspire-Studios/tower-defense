@@ -1,5 +1,6 @@
 using Godot;
-using System;
+
+namespace WyrmspireStudios.AutoLoad;
 
 public partial class GamepadFix : Node
 {

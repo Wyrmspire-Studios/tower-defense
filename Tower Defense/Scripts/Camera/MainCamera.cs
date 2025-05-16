@@ -1,4 +1,5 @@
 using Godot;
+using WyrmspireStudios.AutoLoad;
 
 namespace WyrmspireStudios;
 public partial class MainCamera : Camera2D
