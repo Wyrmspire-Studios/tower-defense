@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://buqf13wh7siy1"]
 
-[ext_resource type="PackedScene" uid="uid://bksr4kilkosp0" path="res://Scenes/Card.tscn" id="1_s2axn"]
+[ext_resource type="PackedScene" uid="uid://bksr4kilkosp0" path="res://Scenes/Card/Card.tscn" id="1_s2axn"]
 
 [node name="CardTesting" type="Node2D"]
 position = Vector2(10, 18)

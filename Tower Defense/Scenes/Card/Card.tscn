@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://bksr4kilkosp0"]
 
 [ext_resource type="Script" uid="uid://beolouq3mhbn8" path="res://Scripts/Card.cs" id="1_dh2ae"]
-[ext_resource type="Texture2D" uid="uid://dgxrytfjo3wcx" path="res://Assets/card_background.png" id="2_80dyc"]
-[ext_resource type="Texture2D" uid="uid://b2n3epfliedej" path="res://Assets/baracks_card.png" id="3_ms6aj"]
+[ext_resource type="Texture2D" uid="uid://dqs2k0syflfob" path="res://Assets/Cards/Common.png" id="2_h8wm0"]
+[ext_resource type="Texture2D" uid="uid://c8piek2gp7duq" path="res://Assets/Towers/Baracks/baracks_card.png" id="3_3m7nw"]
 
 [node name="Card" type="Control" node_paths=PackedStringArray("_highlight")]
 layout_mode = 3
@@ -27,7 +27,7 @@ offset_left = -24.0
 offset_top = -32.0
 offset_right = 24.0
 offset_bottom = 32.0
-texture = ExtResource("2_80dyc")
+texture = ExtResource("2_h8wm0")
 
 [node name="Tower" type="TextureRect" parent="Background"]
 layout_mode = 1
@@ -42,5 +42,5 @@ offset_right = 17.0
 offset_bottom = 23.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_ms6aj")
+texture = ExtResource("3_3m7nw")
 expand_mode = 1
