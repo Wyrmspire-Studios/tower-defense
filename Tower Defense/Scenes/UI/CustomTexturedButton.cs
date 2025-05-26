@@ -71,7 +71,16 @@ public partial class CustomTexturedButton : Button
 	public override void _Ready()
 	{
 		_background = GetNodeOrNull<NinePatchRect>("Background");
-		if(_background == null) return;
+		if (_background == null)
+		{
+			_background = new NinePatchRect();
+			_background.PatchMarginLeft = 3;
+			_background.PatchMarginTop = 3;
+			_background.PatchMarginRight = 3;
+			_background.PatchMarginBottom = 3;
+			_background.SetAnchorsPreset(LayoutPreset.FullRect);
+			AddChild(_background);
+		}
 		_background.Texture = _baseTexture;
 
 		if (!_signalsConnected)
@@ -84,7 +93,11 @@ public partial class CustomTexturedButton : Button
 		}
 		
 		var label = GetNodeOrNull<Label>("Label");
-		if (label == null) return;
+		if (label == null)
+		{
+			label = new Label();
+			AddChild(label);
+		};
 		var labelSettings = new LabelSettings();
 		labelSettings.FontSize = _fontSize;
 		label.Text = _buttonLabel;
