@@ -5,3 +5,4 @@
 [node name="MainCamera" type="Camera2D"]
 zoom = Vector2(3, 3)
 script = ExtResource("1_aa4pq")
+_minZoom = 1.0

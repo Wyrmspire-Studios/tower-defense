@@ -2,7 +2,7 @@
 
 [ext_resource type="LabelSettings" uid="uid://nb3rrbkxluc2" path="res://Scenes/UI/MainMenu/TitleLabelSettings.tres" id="1_7rqq1"]
 [ext_resource type="Script" uid="uid://jsyuw28bftyi" path="res://Scenes/UI/MainMenu/MainMenu.cs" id="1_ehq06"]
-[ext_resource type="PackedScene" uid="uid://buqf13wh7siy1" path="res://Scenes/Card/CardTesting.tscn" id="2_67d64"]
+[ext_resource type="PackedScene" uid="uid://sf23vekjdxcg" path="res://Scenes/Maps/MapTest.tscn" id="2_67d64"]
 [ext_resource type="Texture2D" uid="uid://cw5fhku302i7" path="res://Assets/Cards/Rare.png" id="2_gwdte"]
 [ext_resource type="PackedScene" uid="uid://cmwgnmd04bnh1" path="res://Scenes/UI/CustomTexturedButton.tscn" id="4_tc2ed"]
 [ext_resource type="Texture2D" uid="uid://dqs2k0syflfob" path="res://Assets/Cards/Common.png" id="5_67d64"]
