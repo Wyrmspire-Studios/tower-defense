@@ -55,7 +55,7 @@ public partial class CustomTexturedButton : Button
 		get => _fontSize;
 		set
 		{
-			_fontSize = value;
+			_fontSize = value > 0 ? value : 8;
 			_Ready();
 		}
 	}
@@ -99,7 +99,7 @@ public partial class CustomTexturedButton : Button
 			AddChild(label);
 		};
 		var labelSettings = new LabelSettings();
-		labelSettings.FontSize = _fontSize;
+		labelSettings.FontSize = _fontSize > 0 ? _fontSize : 8;
 		label.Text = _buttonLabel;
 		label.LabelSettings = labelSettings;
 	}

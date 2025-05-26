@@ -16,8 +16,8 @@ config/features=PackedStringArray("4.4", "C#", "Forward Plus")
 
 [autoload]
 
-GamepadFix="*res://Scripts/AutoLoad/GamepadFix.cs"
 InputType="*res://Scripts/AutoLoad/InputType.cs"
+GamepadFix="*res://Scripts/AutoLoad/GamepadFix.cs"
 PauseMenu="*res://Scenes/UI/PauseMenu/PauseMenu.tscn"
 
 [display]

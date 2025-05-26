@@ -57,7 +57,7 @@ public partial class MainMenu : Control
         get => _fontSize;
         set
         {
-            _fontSize = value;
+            _fontSize = value > 0 ? value : 8;
             _Ready();
         }
     }
