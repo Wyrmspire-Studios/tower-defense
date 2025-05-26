@@ -1,29 +1,106 @@
 using Godot;
 using System;
+using System.Collections;
 using Godot.Collections;
 
 namespace WyrmspireStudios;
 
+[Tool]
 public partial class MainMenu : Control
 {
-    [Export] public Array<PackedScene> TestingScenes;
+    [Export] public Dictionary<string, PackedScene> TestingScenes;
     [Export] public PackedScene PlayScene;
     [Export] public PackedScene OptionsScene;
-    
-    [Export] public PackedScene CustomTexturedButton;
+
     [Export] public NinePatchRect TestingSelection;
+    [Export] public VBoxContainer TestingButtonContainer;
+    
+    [ExportGroup("CustomTexturedButton")]
+    [Export] public PackedScene CustomTexturedButton;
+    
+    [Export]
+    public Texture2D BaseTexture
+    {
+        get => _baseTexture;
+        set
+        {
+            _baseTexture = value;
+            _Ready();
+        }
+    }
+
+    [Export]
+    public Texture2D HoverTexture
+    {
+        get => _hoverTexture;
+        set 
+        {
+            _hoverTexture = value;
+            _Ready();
+        }
+    }
+    
+    [Export]
+    public Texture2D PressedTexture
+    {
+        get => _pressedTexture;
+        set
+        {
+            _pressedTexture = value;
+            _Ready();
+        }
+    }
+
+    [Export]
+    public int FontSize
+    {
+        get => _fontSize;
+        set
+        {
+            _fontSize = value;
+            _Ready();
+        }
+    }
+    
+    private Texture2D _baseTexture;
+    private Texture2D _hoverTexture;
+    private Texture2D _pressedTexture;
+    private int _fontSize;
+    
     public override void _Ready()
     {
-        var buttonContainer = GetNode<VBoxContainer>("ButtonContainer");
-        var testingButton = buttonContainer.GetNode<Button>("TestingButton");
+        var buttonContainer = GetNodeOrNull("ButtonContainer");
+        
+        if (buttonContainer == null) return;
+        
+        var testingButton = buttonContainer.GetNode<CustomTexturedButton>("TestingButton");
+        setTexturesOnCustomTexturedButton(testingButton);
+        testingButton.FontSize = _fontSize;
         testingButton.Pressed += TestingButton_OnPressed;
-        var playButton = buttonContainer.GetNode<Button>("PlayButton");
+        
+        var playButton = buttonContainer.GetNode<CustomTexturedButton>("PlayButton");
+        setTexturesOnCustomTexturedButton(playButton);
+        playButton.FontSize = _fontSize;
         playButton.Pressed += () => GetTree().ChangeSceneToPacked(PlayScene);
-        var settingsButton = buttonContainer.GetNode<Button>("SettingsButton");
-        var exitButton = buttonContainer.GetNode<Button>("ExitButton");
+        
+        var settingsButton = buttonContainer.GetNode<CustomTexturedButton>("SettingsButton");
+        setTexturesOnCustomTexturedButton(settingsButton);
+        settingsButton.FontSize = _fontSize;
+        
+        var exitButton = buttonContainer.GetNode<CustomTexturedButton>("ExitButton");
+        setTexturesOnCustomTexturedButton(exitButton);
+        exitButton.FontSize = _fontSize;
         exitButton.Pressed += () => GetTree().Quit();
         
         CreateTestingSelection();
+    }
+
+    private void setTexturesOnCustomTexturedButton(CustomTexturedButton customTexturedButton)
+    {
+        if (customTexturedButton == null) return;
+        customTexturedButton.BaseTexture = _baseTexture;
+        customTexturedButton.HoverTexture = _hoverTexture;
+        customTexturedButton.PressedTexture = _pressedTexture;
     }
 
     public override void _Input(InputEvent @event)
@@ -49,7 +126,13 @@ public partial class MainMenu : Control
     {
         foreach (var scene in TestingScenes)
         {
-            
+            var button = CustomTexturedButton.Instantiate<CustomTexturedButton>();
+            setTexturesOnCustomTexturedButton(button);
+            button.CustomMinimumSize = new Vector2(0, 50);
+            button.FontSize = _fontSize;
+            button.ButtonLabel = scene.Key;
+            button.Pressed += () => GetTree().ChangeSceneToPacked(scene.Value);
+            TestingButtonContainer.AddChild(button);
         }
     }
 }

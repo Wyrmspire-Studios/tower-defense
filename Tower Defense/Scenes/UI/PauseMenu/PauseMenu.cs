@@ -43,7 +43,6 @@ public partial class PauseMenu : Control
 			{
 				Visible = !Visible;
 				Engine.TimeScale = Visible ? 0 : 1;
-				GD.Print(GetTree().GetCurrentScene().Name);
 			}
 		}
 	}

@@ -1,14 +1,17 @@
-[gd_scene load_steps=8 format=3 uid="uid://cxi6p703esrp2"]
+[gd_scene load_steps=11 format=3 uid="uid://cxi6p703esrp2"]
 
 [ext_resource type="LabelSettings" uid="uid://nb3rrbkxluc2" path="res://Scenes/UI/MainMenu/TitleLabelSettings.tres" id="1_7rqq1"]
 [ext_resource type="Script" uid="uid://jsyuw28bftyi" path="res://Scenes/UI/MainMenu/MainMenu.cs" id="1_ehq06"]
-[ext_resource type="PackedScene" uid="uid://sf23vekjdxcg" path="res://Scenes/Maps/MapTest.tscn" id="2_67d64"]
+[ext_resource type="PackedScene" uid="uid://buqf13wh7siy1" path="res://Scenes/Card/CardTesting.tscn" id="2_67d64"]
 [ext_resource type="Texture2D" uid="uid://cw5fhku302i7" path="res://Assets/Cards/Rare.png" id="2_gwdte"]
+[ext_resource type="PackedScene" uid="uid://1g1fyq8jxjbp" path="res://Scenes/GameDataTesting.tscn" id="2_tbwd8"]
+[ext_resource type="PackedScene" uid="uid://d1wy47midp34c" path="res://Scenes/Camera/MainCameraTesting.tscn" id="3_geava"]
 [ext_resource type="PackedScene" uid="uid://cmwgnmd04bnh1" path="res://Scenes/UI/CustomTexturedButton.tscn" id="4_tc2ed"]
 [ext_resource type="Texture2D" uid="uid://dqs2k0syflfob" path="res://Assets/Cards/Common.png" id="5_67d64"]
+[ext_resource type="PackedScene" uid="uid://sf23vekjdxcg" path="res://Scenes/Maps/MapTest.tscn" id="5_vwuc7"]
 [ext_resource type="Texture2D" uid="uid://gmfs4otstruc" path="res://Assets/Cards/Legendary.png" id="6_tc2ed"]
 
-[node name="MainMenu" type="Control" node_paths=PackedStringArray("TestingSelection")]
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("TestingSelection", "TestingButtonContainer")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -16,8 +19,20 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ehq06")
-PlayScene = ExtResource("2_67d64")
+TestingScenes = Dictionary[String, PackedScene]({
+"Camera testing": ExtResource("3_geava"),
+"Card testing": ExtResource("2_67d64"),
+"GameData testing": ExtResource("2_tbwd8"),
+"Map testing": ExtResource("5_vwuc7")
+})
+PlayScene = ExtResource("5_vwuc7")
 TestingSelection = NodePath("TestingSelection")
+TestingButtonContainer = NodePath("TestingSelection/ScrollContainer/ButtonContainer")
+CustomTexturedButton = ExtResource("4_tc2ed")
+BaseTexture = ExtResource("5_67d64")
+HoverTexture = ExtResource("2_gwdte")
+PressedTexture = ExtResource("6_tc2ed")
+FontSize = 16
 
 [node name="Background" type="NinePatchRect" parent="."]
 layout_mode = 1
@@ -130,68 +145,3 @@ grow_vertical = 2
 [node name="ButtonContainer" type="VBoxContainer" parent="TestingSelection/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="TestingButton" parent="TestingSelection/ScrollContainer/ButtonContainer" instance=ExtResource("4_tc2ed")]
-custom_minimum_size = Vector2(1, 50)
-layout_mode = 2
-BaseTexture = ExtResource("5_67d64")
-HoverTexture = ExtResource("2_gwdte")
-PressedTexture = ExtResource("6_tc2ed")
-ButtonLabel = "Testing"
-
-[node name="PlayButton" parent="TestingSelection/ScrollContainer/ButtonContainer" instance=ExtResource("4_tc2ed")]
-custom_minimum_size = Vector2(1, 50)
-layout_mode = 2
-BaseTexture = ExtResource("5_67d64")
-HoverTexture = ExtResource("2_gwdte")
-PressedTexture = ExtResource("6_tc2ed")
-ButtonLabel = "Play"
-
-[node name="SettingsButton" parent="TestingSelection/ScrollContainer/ButtonContainer" instance=ExtResource("4_tc2ed")]
-custom_minimum_size = Vector2(1, 50)
-layout_mode = 2
-BaseTexture = ExtResource("5_67d64")
-HoverTexture = ExtResource("2_gwdte")
-PressedTexture = ExtResource("6_tc2ed")
-ButtonLabel = "Settings"
-
-[node name="ExitButton" parent="TestingSelection/ScrollContainer/ButtonContainer" instance=ExtResource("4_tc2ed")]
-custom_minimum_size = Vector2(1, 50)
-layout_mode = 2
-BaseTexture = ExtResource("5_67d64")
-HoverTexture = ExtResource("2_gwdte")
-PressedTexture = ExtResource("6_tc2ed")
-ButtonLabel = "Exit"
-
-[node name="TestingButton2" parent="TestingSelection/ScrollContainer/ButtonContainer" instance=ExtResource("4_tc2ed")]
-custom_minimum_size = Vector2(1, 50)
-layout_mode = 2
-BaseTexture = ExtResource("5_67d64")
-HoverTexture = ExtResource("2_gwdte")
-PressedTexture = ExtResource("6_tc2ed")
-ButtonLabel = "Testing"
-
-[node name="PlayButton2" parent="TestingSelection/ScrollContainer/ButtonContainer" instance=ExtResource("4_tc2ed")]
-custom_minimum_size = Vector2(1, 50)
-layout_mode = 2
-BaseTexture = ExtResource("5_67d64")
-HoverTexture = ExtResource("2_gwdte")
-PressedTexture = ExtResource("6_tc2ed")
-ButtonLabel = "Play"
-
-[node name="SettingsButton2" parent="TestingSelection/ScrollContainer/ButtonContainer" instance=ExtResource("4_tc2ed")]
-custom_minimum_size = Vector2(1, 50)
-layout_mode = 2
-BaseTexture = ExtResource("5_67d64")
-HoverTexture = ExtResource("2_gwdte")
-PressedTexture = ExtResource("6_tc2ed")
-ButtonLabel = "Settings"
-
-[node name="ExitButton2" parent="TestingSelection/ScrollContainer/ButtonContainer" instance=ExtResource("4_tc2ed")]
-custom_minimum_size = Vector2(1, 50)
-layout_mode = 2
-BaseTexture = ExtResource("5_67d64")
-HoverTexture = ExtResource("2_gwdte")
-PressedTexture = ExtResource("6_tc2ed")
-ButtonLabel = "Exit"
