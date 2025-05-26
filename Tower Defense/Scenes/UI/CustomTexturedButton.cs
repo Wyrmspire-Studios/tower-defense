@@ -125,23 +125,4 @@ public partial class CustomTexturedButton : Button
 		if (!IsPressed())
 			_background.Texture = _baseTexture;
 	}
-	
-	// public override void _Process(double delta)
-	// {
-	// 	var backgroundTexture = _baseTexture;
-	//
-	// 	if (IsPressed())
-	// 	{
-	// 		backgroundTexture = _pressedTexture;
-	// 	}
-	// 	else if (IsHovered())
-	// 	{
-	// 		backgroundTexture = _hoverTexture;
-	// 	}
-	//
-	// 	if (_background.Texture != backgroundTexture)
-	// 	{
-	// 		_background.Texture = backgroundTexture;
-	// 	}
-	// }
 }

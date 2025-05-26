@@ -17,27 +17,72 @@ public partial class GameDataTesting : GridContainer
 		GameData.ShardsChanged += UpdateShardsLabel;
 		
 		var addHealthButton = GetNode<Button>("AddHealthButton");
-		addHealthButton.Pressed += () => GameData.AddHealth(1);
+		addHealthButton.Pressed += AddHealthButton;
 		var removeHealthButton = GetNode<Button>("RemoveHealthButton");
-		removeHealthButton.Pressed += () => GameData.RemoveHealth(1);
+		removeHealthButton.Pressed += RemoveHealthButton;
 		var resetHealthButton = GetNode<Button>("ResetHealthButton");
-		resetHealthButton.Pressed += () => GameData.SetHealth(100);
-
+		resetHealthButton.Pressed += ResetHealthButton;
+		
 		var addGoldButton = GetNode<Button>("AddGoldButton");
-		addGoldButton.Pressed += () => GameData.AddGold(1);
+		addGoldButton.Pressed += AddGoldButton;
 		var removeGoldButton = GetNode<Button>("RemoveGoldButton");
-		removeGoldButton.Pressed += () => GameData.RemoveGold(1);
+		removeGoldButton.Pressed += RemoveGoldButton;
 		var resetGoldButton = GetNode<Button>("ResetGoldButton");
-		resetGoldButton.Pressed += () => GameData.SetGold(0);
-
+		resetGoldButton.Pressed += ResetGoldButton;
+		
 		var addShardsButton = GetNode<Button>("AddShardsButton");
-		addShardsButton.Pressed += () => GameData.AddShards(1);
+		addShardsButton.Pressed += AddShardsButton;
 		var removeShardsButton = GetNode<Button>("RemoveShardsButton");
-		removeShardsButton.Pressed += () => GameData.RemoveShards(1);
+		removeShardsButton.Pressed += RemoveShardsButton;
 		var resetShardsButton = GetNode<Button>("ResetShardsButton");
-		resetShardsButton.Pressed += () => GameData.SetShards(0);
+		resetShardsButton.Pressed += ResetShardsButton;
 	}
 
+	private static void AddHealthButton()
+	{
+		GameData.AddHealth(1);
+	}
+	
+	private static void RemoveHealthButton()
+	{
+		GameData.RemoveHealth(1);
+	}
+	
+	private static void ResetHealthButton()
+	{
+		GameData.SetHealth(0);
+	}
+	
+	private static void AddGoldButton()
+	{
+		GameData.AddGold(1);
+	}
+	
+	private static void RemoveGoldButton()
+	{
+		GameData.RemoveGold(1);
+	}
+	
+	private static void ResetGoldButton()
+	{
+		GameData.SetGold(0);
+	}
+	
+	private static void AddShardsButton()
+	{
+		GameData.AddShards(1);
+	}
+	
+	private static void RemoveShardsButton()
+	{
+		GameData.RemoveShards(1);
+	}
+	
+	private static void ResetShardsButton()
+	{
+		GameData.SetShards(0);
+	}
+	
 	private void UpdateHealthLabel(int oldValue, int newValue)
 	{
 		_healthLabel.Text = $"Health: {newValue}";
@@ -52,5 +97,4 @@ public partial class GameDataTesting : GridContainer
 	{
 		_shardsLabel.Text = $"Shards: {newValue}";
 	}
-	
 }

@@ -14,10 +14,10 @@ public partial class MainMenu : Control
 
     [Export] public NinePatchRect TestingSelection;
     [Export] public VBoxContainer TestingButtonContainer;
-    
-    [ExportGroup("CustomTexturedButton")]
-    [Export] public PackedScene CustomTexturedButton;
-    
+
+    [ExportGroup("CustomTexturedButton")] [Export]
+    public PackedScene CustomTexturedButton;
+
     [Export]
     public Texture2D BaseTexture
     {
@@ -33,13 +33,13 @@ public partial class MainMenu : Control
     public Texture2D HoverTexture
     {
         get => _hoverTexture;
-        set 
+        set
         {
             _hoverTexture = value;
             _Ready();
         }
     }
-    
+
     [Export]
     public Texture2D PressedTexture
     {
@@ -61,41 +61,66 @@ public partial class MainMenu : Control
             _Ready();
         }
     }
-    
+
     private Texture2D _baseTexture;
     private Texture2D _hoverTexture;
     private Texture2D _pressedTexture;
     private int _fontSize;
-    
+
     public override void _Ready()
     {
         var buttonContainer = GetNodeOrNull("ButtonContainer");
-        
+
         if (buttonContainer == null) return;
-        
+
         var testingButton = buttonContainer.GetNode<CustomTexturedButton>("TestingButton");
-        setTexturesOnCustomTexturedButton(testingButton);
+        SetTexturesOnCustomTexturedButton(testingButton);
         testingButton.FontSize = _fontSize;
         testingButton.Pressed += TestingButton_OnPressed;
-        
+
         var playButton = buttonContainer.GetNode<CustomTexturedButton>("PlayButton");
-        setTexturesOnCustomTexturedButton(playButton);
+        SetTexturesOnCustomTexturedButton(playButton);
         playButton.FontSize = _fontSize;
-        playButton.Pressed += () => GetTree().ChangeSceneToPacked(PlayScene);
-        
+        playButton.Pressed += PlayButton_OnPressed;
+
         var settingsButton = buttonContainer.GetNode<CustomTexturedButton>("SettingsButton");
-        setTexturesOnCustomTexturedButton(settingsButton);
+        SetTexturesOnCustomTexturedButton(settingsButton);
         settingsButton.FontSize = _fontSize;
-        
+        settingsButton.Pressed += SettingsButton_OnPressed;
+
         var exitButton = buttonContainer.GetNode<CustomTexturedButton>("ExitButton");
-        setTexturesOnCustomTexturedButton(exitButton);
+        SetTexturesOnCustomTexturedButton(exitButton);
         exitButton.FontSize = _fontSize;
-        exitButton.Pressed += () => GetTree().Quit();
-        
+        exitButton.Pressed += ExitButton_OnPressed;
+
         CreateTestingSelection();
     }
 
-    private void setTexturesOnCustomTexturedButton(CustomTexturedButton customTexturedButton)
+    private void TestingButton_OnPressed()
+    {
+        if (!TestingSelection.Visible)
+        {
+            TestingSelection.Show();
+        }
+    }
+
+    private void PlayButton_OnPressed()
+    {
+        GetTree().ChangeSceneToPacked(PlayScene);
+    }
+
+    private void SettingsButton_OnPressed()
+    {
+        GetTree().ChangeSceneToPacked(OptionsScene);
+    }
+
+    private void ExitButton_OnPressed()
+    {
+        GetTree().Quit();
+    }
+
+
+    private void SetTexturesOnCustomTexturedButton(CustomTexturedButton customTexturedButton)
     {
         if (customTexturedButton == null) return;
         customTexturedButton.BaseTexture = _baseTexture;
@@ -113,25 +138,21 @@ public partial class MainMenu : Control
             }
         }
     }
-    
-    private void TestingButton_OnPressed()
-    {
-        if (!TestingSelection.Visible)
-        {
-            TestingSelection.Show();
-        }
-    }
-    
+
+
     private void CreateTestingSelection()
     {
+        if (TestingScenes == null) {
+            return; 
+        }
         foreach (var scene in TestingScenes)
         {
             var button = CustomTexturedButton.Instantiate<CustomTexturedButton>();
-            setTexturesOnCustomTexturedButton(button);
+            SetTexturesOnCustomTexturedButton(button);
             button.CustomMinimumSize = new Vector2(0, 50);
             button.FontSize = _fontSize;
             button.ButtonLabel = scene.Key;
-            button.Pressed += () => GetTree().ChangeSceneToPacked(scene.Value);
+            button.Pressed += () => { GetTree().ChangeSceneToPacked(scene.Value); };
             TestingButtonContainer.AddChild(button);
         }
     }
