@@ -42,14 +42,14 @@ public partial class EnemySpawner : Node2D
     {
         for (int enemyIndex = 0; enemyIndex < enemyGroup.EnemyCount; enemyIndex++)
         {
-            SpawnEnemy(enemyGroup.EnemyToSpawn);
-            await ToSignal(GetTree().CreateTimer(enemyGroup.SpawnIntervalSeconds + enemyGroup.EnemyToSpawn.DelayUntilNextEnemy), "timeout");
+            SpawnEnemy(enemyGroup.EnemyToSpawn, enemyGroup.PathIdToSpawnOn);
+            await ToSignal(GetTree().CreateTimer(enemyGroup.SpawnIntervalSeconds), "timeout");
         }
     }
     
-    private void SpawnEnemy(Enemy enemyResource)
+    private void SpawnEnemy(PackedScene enemyScene, int pathIdToSpawnOn)
     {
-        var enemy = (PathFollow2D)enemyResource.EnemyScene.Instantiate();
-        SpawnPoints[enemyResource.PathIdToSpawnOn].AddChild(enemy);
+        var enemy = (PathFollow2D)enemyScene.Instantiate();
+        SpawnPoints[pathIdToSpawnOn].AddChild(enemy);
     }
 }
