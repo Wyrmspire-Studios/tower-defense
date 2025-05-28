@@ -3,7 +3,7 @@
 [ext_resource type="TileSet" uid="uid://cd4ua0io1w7rr" path="res://Resources/TileSets/Ground.tres" id="1_n4m4m"]
 [ext_resource type="TileSet" uid="uid://cykwlxq4lnmvy" path="res://Resources/TileSets/Paths.tres" id="2_omh06"]
 [ext_resource type="TileSet" uid="uid://d27v6hmjqo8c8" path="res://Resources/TileSets/Props.tres" id="3_yfdxy"]
-[ext_resource type="PackedScene" uid="uid://bsf2n0ohxdja0" path="res://Scenes/Enemies/Slime/Slime.tscn" id="4_y21oo"]
+[ext_resource type="PackedScene" uid="uid://bsf2n0ohxdja0" path="res://Scenes/Components/EnemySpawner/Enemies/Slime/Slime.tscn" id="4_y21oo"]
 
 [sub_resource type="Curve2D" id="Curve2D_7fg68"]
 _data = {
