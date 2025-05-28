@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://3ljy8rj0ddvp"]
-
-[ext_resource type="Script" uid="uid://b16vhfn0kuvfy" path="res://Scripts/Camera/MainCamera.cs" id="1_aa4pq"]
-
-[node name="MainCamera" type="Camera2D"]
-zoom = Vector2(3, 3)
-script = ExtResource("1_aa4pq")
-_minZoom = 1.0

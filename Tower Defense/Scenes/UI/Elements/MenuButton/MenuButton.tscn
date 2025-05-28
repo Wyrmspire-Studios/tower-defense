@@ -1,0 +1,70 @@
+[gd_scene load_steps=15 format=3 uid="uid://co00wol6ol0yp"]
+
+[ext_resource type="Script" uid="uid://d02hhbjq18xws" path="res://Scenes/UI/Elements/MenuButton/MenuButton.cs" id="1_c7j8o"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c7j8o"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fu2ug"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cylhw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hgw6l"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pn23v"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_udhny"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w2y8v"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6nvg3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l715s"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4ecu3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4ufmu"]
+
+[sub_resource type="Theme" id="Theme_fu2ug"]
+Button/styles/disabled = SubResource("StyleBoxEmpty_c7j8o")
+Button/styles/disabled_mirrored = SubResource("StyleBoxEmpty_fu2ug")
+Button/styles/focus = SubResource("StyleBoxEmpty_cylhw")
+Button/styles/hover = SubResource("StyleBoxEmpty_hgw6l")
+Button/styles/hover_mirrored = SubResource("StyleBoxEmpty_pn23v")
+Button/styles/hover_pressed = SubResource("StyleBoxEmpty_udhny")
+Button/styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_w2y8v")
+Button/styles/normal = SubResource("StyleBoxEmpty_6nvg3")
+Button/styles/normal_mirrored = SubResource("StyleBoxEmpty_l715s")
+Button/styles/pressed = SubResource("StyleBoxEmpty_4ecu3")
+Button/styles/pressed_mirrored = SubResource("StyleBoxEmpty_4ufmu")
+
+[sub_resource type="LabelSettings" id="LabelSettings_oken3"]
+
+[node name="MenuButton" type="Button"]
+offset_right = 150.0
+offset_bottom = 50.0
+theme = SubResource("Theme_fu2ug")
+script = ExtResource("1_c7j8o")
+
+[node name="Background" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Label"
+label_settings = SubResource("LabelSettings_oken3")
+horizontal_alignment = 1
+vertical_alignment = 1

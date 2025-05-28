@@ -1,151 +1,450 @@
-[gd_scene load_steps=12 format=3 uid="uid://cxi6p703esrp2"]
+[gd_scene load_steps=27 format=3 uid="uid://loofwjkv30nw"]
 
-[ext_resource type="LabelSettings" uid="uid://nb3rrbkxluc2" path="res://Scenes/UI/MainMenu/TitleLabelSettings.tres" id="1_7rqq1"]
-[ext_resource type="Script" uid="uid://jsyuw28bftyi" path="res://Scenes/UI/MainMenu/MainMenu.cs" id="1_ehq06"]
-[ext_resource type="PackedScene" uid="uid://buqf13wh7siy1" path="res://Scenes/Card/CardTesting.tscn" id="2_67d64"]
-[ext_resource type="Texture2D" uid="uid://cw5fhku302i7" path="res://Assets/Cards/Rare.png" id="2_gwdte"]
-[ext_resource type="PackedScene" uid="uid://1g1fyq8jxjbp" path="res://Scenes/GameDataTesting.tscn" id="2_tbwd8"]
-[ext_resource type="PackedScene" uid="uid://d1wy47midp34c" path="res://Scenes/Camera/MainCameraTesting.tscn" id="3_geava"]
-[ext_resource type="PackedScene" uid="uid://cmwgnmd04bnh1" path="res://Scenes/UI/CustomTexturedButton.tscn" id="4_tc2ed"]
-[ext_resource type="Texture2D" uid="uid://dqs2k0syflfob" path="res://Assets/Cards/Common.png" id="5_67d64"]
-[ext_resource type="PackedScene" uid="uid://sf23vekjdxcg" path="res://Scenes/Maps/MapTest.tscn" id="5_vwuc7"]
-[ext_resource type="PackedScene" uid="uid://8svsvugmmftb" path="res://Scenes/UI/Settings/Settings.tscn" id="6_geava"]
-[ext_resource type="Texture2D" uid="uid://gmfs4otstruc" path="res://Assets/Cards/Legendary.png" id="6_tc2ed"]
+[ext_resource type="PackedScene" uid="uid://bvl7tqhygriej" path="res://Scenes/UI/Elements/MenuButtonGroupController/MenuButtonGroupController.tscn" id="1_8x0bb"]
+[ext_resource type="Script" uid="uid://dpv1tde35onc2" path="res://Scenes/UI/MainMenu/MainMenu.cs" id="1_67d64"]
+[ext_resource type="PackedScene" uid="uid://co00wol6ol0yp" path="res://Scenes/UI/Elements/MenuButton/MenuButton.tscn" id="2_8x0bb"]
+[ext_resource type="Texture2D" uid="uid://b3xj1u0bxi7l1" path="res://Assets/buttons.png" id="2_nahvw"]
+[ext_resource type="PackedScene" uid="uid://co4vvln87bywk" path="res://Scenes/Maps/TutorialMap/TutorialMap.tscn" id="3_tc2ed"]
+[ext_resource type="PackedScene" uid="uid://dvopx0b1owuig" path="res://Scenes/UI/MainMenu/BackgroundMap.tscn" id="4_67d64"]
+[ext_resource type="Texture2D" uid="uid://dhqgm044nr5rg" path="res://Assets/Cards/Rare.png" id="8_jhcbk"]
+[ext_resource type="Script" uid="uid://dmjgu34vhsev4" path="res://Scenes/UI/MainMenu/Statistics.cs" id="9_32jca"]
 
-[node name="MainMenu" type="Control" node_paths=PackedStringArray("TestingSelection", "TestingButtonContainer")]
+[sub_resource type="AtlasTexture" id="AtlasTexture_4elqj"]
+atlas = ExtResource("2_nahvw")
+region = Rect2(1, 33, 62, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ri767"]
+atlas = ExtResource("2_nahvw")
+region = Rect2(65, 33, 62, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a712v"]
+atlas = ExtResource("2_nahvw")
+region = Rect2(129, 33, 62, 30)
+
+[sub_resource type="Animation" id="Animation_6swpd"]
+resource_name = "Hide"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_u8hla"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tbwd8"]
+_data = {
+&"Hide": SubResource("Animation_6swpd"),
+&"RESET": SubResource("Animation_u8hla")
+}
+
+[sub_resource type="Animation" id="Animation_jhcbk"]
+resource_name = "HideTitle"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_32jca"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_srm2j"]
+resource_name = "ShowTitle"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_eoxer"]
+_data = {
+&"HideTitle": SubResource("Animation_jhcbk"),
+&"RESET": SubResource("Animation_32jca"),
+&"ShowTitle": SubResource("Animation_srm2j")
+}
+
+[sub_resource type="Animation" id="Animation_a712v"]
+resource_name = "HideDefaultButtonSelection"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [200.0, 250.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_1dhmk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [200.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_wdl18"]
+resource_name = "ShowDefaultButtonSelection"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [250.0, 200.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jhcbk"]
+_data = {
+&"HideDefaultButtonSelection": SubResource("Animation_a712v"),
+&"RESET": SubResource("Animation_1dhmk"),
+&"ShowDefaultButtonSelection": SubResource("Animation_wdl18")
+}
+
+[sub_resource type="Animation" id="Animation_migmm"]
+resource_name = "HideStatistics"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(640, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../StatisticsMenuButton:Label")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.675),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": ["<- Main menu", "Statistics ->"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../StatisticsMenuButton:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.675),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(4, 4), Vector2(436, 4)]
+}
+
+[sub_resource type="Animation" id="Animation_jt3i8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(640, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../StatisticsMenuButton:Label")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Statistics ->"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../StatisticsMenuButton:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(436, 4)]
+}
+
+[sub_resource type="Animation" id="Animation_eoxer"]
+resource_name = "ShowStatistics"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(640, 0), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../StatisticsMenuButton:Label")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.325),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": ["Statistics ->", "<- Main menu"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../StatisticsMenuButton:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.325, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(436, 4), Vector2(4, 4)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q33u5"]
+_data = {
+&"HideStatistics": SubResource("Animation_migmm"),
+&"RESET": SubResource("Animation_jt3i8"),
+&"ShowStatistics": SubResource("Animation_eoxer")
+}
+
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("DefaultButtonSelection")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_ehq06")
-TestingScenes = Dictionary[String, PackedScene]({
-"Camera testing": ExtResource("3_geava"),
-"Card testing": ExtResource("2_67d64"),
-"GameData testing": ExtResource("2_tbwd8"),
-"Map testing": ExtResource("5_vwuc7")
-})
-PlayScene = ExtResource("5_vwuc7")
-OptionsScene = ExtResource("6_geava")
-TestingSelection = NodePath("TestingSelection")
-TestingButtonContainer = NodePath("TestingSelection/ScrollContainer/ButtonContainer")
-CustomTexturedButton = ExtResource("4_tc2ed")
-BaseTexture = ExtResource("5_67d64")
-HoverTexture = ExtResource("2_gwdte")
-PressedTexture = ExtResource("6_tc2ed")
-FontSize = 16
+script = ExtResource("1_67d64")
+TutorialMap = ExtResource("3_tc2ed")
+DefaultButtonSelection = NodePath("CanvasLayer/Control/DefaultButtonSelection")
 
-[node name="Background" type="NinePatchRect" parent="."]
-layout_mode = 1
+[node name="MenuButtonGroupController" parent="." instance=ExtResource("1_8x0bb")]
+BaseTexture = SubResource("AtlasTexture_4elqj")
+HoverTexture = SubResource("AtlasTexture_ri767")
+PressedTexture = SubResource("AtlasTexture_a712v")
+
+[node name="BackgroundMap" parent="." instance=ExtResource("4_67d64")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UIAnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
+libraries = {
+&"": SubResource("AnimationLibrary_tbwd8")
+}
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -480.0
-offset_bottom = -270.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(4, 4)
-texture = ExtResource("2_gwdte")
-patch_margin_left = 3
-patch_margin_top = 3
-patch_margin_right = 3
-patch_margin_bottom = 3
 
-[node name="TitleLabel" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -181.5
-offset_right = 181.5
-offset_bottom = 175.0
-grow_horizontal = 2
-size_flags_horizontal = 4
-text = "Game"
-label_settings = ExtResource("1_7rqq1")
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="Title" type="TextureRect" parent="CanvasLayer/Control"]
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="ButtonContainer" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -129.0
-offset_top = -200.0
-offset_right = 129.0
-offset_bottom = -31.0
-grow_horizontal = 2
-grow_vertical = 0
-alignment = 1
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Control/Title"]
+libraries = {
+&"": SubResource("AnimationLibrary_eoxer")
+}
 
-[node name="TestingButton" parent="ButtonContainer" instance=ExtResource("4_tc2ed")]
-layout_mode = 2
-BaseTexture = ExtResource("5_67d64")
-HoverTexture = ExtResource("2_gwdte")
-PressedTexture = ExtResource("6_tc2ed")
-ButtonLabel = "Testing"
-
-[node name="PlayButton" parent="ButtonContainer" instance=ExtResource("4_tc2ed")]
-layout_mode = 2
-BaseTexture = ExtResource("5_67d64")
-HoverTexture = ExtResource("2_gwdte")
-PressedTexture = ExtResource("6_tc2ed")
-ButtonLabel = "Play"
-
-[node name="SettingsButton" parent="ButtonContainer" instance=ExtResource("4_tc2ed")]
-layout_mode = 2
-BaseTexture = ExtResource("5_67d64")
-HoverTexture = ExtResource("2_gwdte")
-PressedTexture = ExtResource("6_tc2ed")
-ButtonLabel = "Settings"
-
-[node name="ExitButton" parent="ButtonContainer" instance=ExtResource("4_tc2ed")]
-layout_mode = 2
-BaseTexture = ExtResource("5_67d64")
-HoverTexture = ExtResource("2_gwdte")
-PressedTexture = ExtResource("6_tc2ed")
-ButtonLabel = "Exit"
-
-[node name="TestingSelection" type="NinePatchRect" parent="."]
-visible = false
-z_index = 1
+[node name="DefaultButtonSelection" type="VBoxContainer" parent="CanvasLayer/Control"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -102.0
-offset_top = -102.0
-offset_right = 102.0
-offset_bottom = 102.0
+offset_left = -150.0
+offset_top = 20.0
+offset_right = 150.0
+offset_bottom = 148.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-mouse_filter = 0
-texture = ExtResource("2_gwdte")
-patch_margin_left = 3
-patch_margin_top = 3
-patch_margin_right = 3
-patch_margin_bottom = 3
 
-[node name="ScrollContainer" type="ScrollContainer" parent="TestingSelection"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Control/DefaultButtonSelection"]
+libraries = {
+&"": SubResource("AnimationLibrary_jhcbk")
+}
+
+[node name="PlayMenuButton" parent="CanvasLayer/Control/DefaultButtonSelection" instance=ExtResource("2_8x0bb")]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+Label = "Play"
+BaseTexture = SubResource("AtlasTexture_4elqj")
+HoverTexture = SubResource("AtlasTexture_ri767")
+PressedTexture = SubResource("AtlasTexture_a712v")
+
+[node name="SettingsMenuButton" parent="CanvasLayer/Control/DefaultButtonSelection" instance=ExtResource("2_8x0bb")]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+Label = "Settings"
+BaseTexture = SubResource("AtlasTexture_4elqj")
+HoverTexture = SubResource("AtlasTexture_ri767")
+PressedTexture = SubResource("AtlasTexture_a712v")
+
+[node name="ExitMenuButton" parent="CanvasLayer/Control/DefaultButtonSelection" instance=ExtResource("2_8x0bb")]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+Label = "Exit"
+BaseTexture = SubResource("AtlasTexture_4elqj")
+HoverTexture = SubResource("AtlasTexture_ri767")
+PressedTexture = SubResource("AtlasTexture_a712v")
+
+[node name="Statistics" type="NinePatchRect" parent="CanvasLayer/Control" node_paths=PackedStringArray("StatisticsMenuButton")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 2.0
-offset_top = 2.0
-offset_right = -2.0
-offset_bottom = -2.0
+offset_left = 640.0
+offset_right = 640.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("8_jhcbk")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+script = ExtResource("9_32jca")
+StatisticsMenuButton = NodePath("../StatisticsMenuButton")
 
-[node name="ButtonContainer" type="VBoxContainer" parent="TestingSelection/ScrollContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Control/Statistics"]
+libraries = {
+&"": SubResource("AnimationLibrary_q33u5")
+}
+
+[node name="StatisticsMenuButton" parent="CanvasLayer/Control" instance=ExtResource("2_8x0bb")]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -204.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = 44.0
+grow_horizontal = 0
+Label = "Statistics ->"
+BaseTexture = SubResource("AtlasTexture_4elqj")
+HoverTexture = SubResource("AtlasTexture_ri767")
+PressedTexture = SubResource("AtlasTexture_a712v")

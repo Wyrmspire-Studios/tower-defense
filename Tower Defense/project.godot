@@ -11,14 +11,14 @@ config_version=5
 [application]
 
 config/name="Tower Defense"
-run/main_scene="uid://cxi6p703esrp2"
+run/main_scene="uid://loofwjkv30nw"
 config/features=PackedStringArray("4.4", "C#", "Forward Plus")
 
 [autoload]
 
+PauseMenu="*res://Scenes/UI/PauseMenu/PauseMenu.tscn"
 InputType="*res://Scripts/AutoLoad/InputType.cs"
 GamepadFix="*res://Scripts/AutoLoad/GamepadFix.cs"
-PauseMenu="*res://Scenes/UI/PauseMenu/PauseMenu.tscn"
 
 [display]
 
