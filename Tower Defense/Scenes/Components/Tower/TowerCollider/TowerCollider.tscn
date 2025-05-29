@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dpga2m10aic2g"]
+
+[ext_resource type="Script" uid="uid://dwv148ab7ff55" path="res://Scenes/Components/Tower/TowerCollider/TowerCollider.cs" id="1_kb7ub"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7srar"]
+size = Vector2(32, 32)
+
+[node name="TowerCollider" type="Area2D" node_paths=PackedStringArray("_collisionShape")]
+script = ExtResource("1_kb7ub")
+_collisionShape = NodePath("CollisionShape2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(16, 16)
+shape = SubResource("RectangleShape2D_7srar")
