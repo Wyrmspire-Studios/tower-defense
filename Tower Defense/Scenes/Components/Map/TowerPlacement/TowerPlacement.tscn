@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://bo54w4efanqvm"]
+
+[ext_resource type="Script" uid="uid://kmlvbwasict5" path="res://Scenes/Components/Map/TowerPlacement/TowerPlacement.cs" id="1_wiy7i"]
+[ext_resource type="Script" uid="uid://3hd417sr2mlg" path="res://Scenes/Components/Map/TowerPlacement/Occupied.cs" id="1_xyn6f"]
+[ext_resource type="TileSet" uid="uid://rmii3s34epr2" path="res://Resources/TileSets/Occupied.tres" id="2_ja2rd"]
+[ext_resource type="PackedScene" uid="uid://cw85vx4te13q3" path="res://Scenes/Components/Map/TowerPlacement/PlacementSmoke.tscn" id="2_lpg02"]
+
+[node name="TowerPlacement" type="Node2D" node_paths=PackedStringArray("_placedTowers", "_occupied")]
+script = ExtResource("1_wiy7i")
+_placementSmokeScene = ExtResource("2_lpg02")
+_placedTowers = NodePath("PlacedTowers")
+_occupied = NodePath("Occupied")
+
+[node name="Occupied" type="TileMapLayer" parent="."]
+modulate = Color(1, 1, 1, 0.501961)
+tile_set = ExtResource("2_ja2rd")
+script = ExtResource("1_xyn6f")
+
+[node name="PlacedTowers" type="Node2D" parent="."]
+y_sort_enabled = true

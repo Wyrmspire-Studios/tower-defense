@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bacfy5sx4mace"]
+
+[ext_resource type="Script" uid="uid://b5uoqhvss1c8n" path="res://Scenes/Components/Tower/TowerShooting/TowerProjectileShooting/TowerProjectileShooting.cs" id="1_l7qvb"]
+
+[node name="TowerProjectileShooting" type="Node2D" node_paths=PackedStringArray("_shootTimer")]
+script = ExtResource("1_l7qvb")
+_shootTimer = NodePath("Shoot")
+
+[node name="Shoot" type="Timer" parent="."]
+autostart = true

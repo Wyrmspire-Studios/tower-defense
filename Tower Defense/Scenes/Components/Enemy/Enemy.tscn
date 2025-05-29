@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwrunk0piod8b"]
+
+[ext_resource type="Script" uid="uid://c4aplteb5c2ut" path="res://Components/Enemy/Enemy.cs" id="1_jgxvh"]
+[ext_resource type="PackedScene" uid="uid://bjd7dxu7416o2" path="res://Components/Enemy/Enemy Sprite/EnemySprite.tscn" id="2_w0w4i"]
+
+[node name="Enemy" type="PathFollow2D"]
+rotates = false
+loop = false
+script = ExtResource("1_jgxvh")
+
+[node name="Enemy Sprite" parent="." node_paths=PackedStringArray("_enemy") instance=ExtResource("2_w0w4i")]
+_enemy = NodePath("..")
+
+[node name="Enemy Collision" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy Collision"]

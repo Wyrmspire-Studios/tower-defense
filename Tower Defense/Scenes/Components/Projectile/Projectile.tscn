@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://dx8a8cbwf2bqm"]
+
+[ext_resource type="Script" uid="uid://dyhyuq8qswsq" path="res://Scenes/Components/Projectile/Projectile.cs" id="1_he5sv"]
+
+[node name="Projectile" type="Area2D"]
+z_index = 2
+script = ExtResource("1_he5sv")
+
+[node name="ProjectileShape" type="CollisionShape2D" parent="."]
+
+[node name="ProjectileSprite" type="Sprite2D" parent="."]
+rotation = 3.14159

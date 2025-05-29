@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://kkigwnoscoqc"]
+
+[ext_resource type="Script" uid="uid://dc3anuaopue8p" path="res://Scenes/Components/Tower/TowerTargeting/TowerTargeting.cs" id="1_pofck"]
+
+[node name="TowerTargeting" type="Area2D" node_paths=PackedStringArray("_rangeCollisionShape", "_recalculateTargetTimer")]
+script = ExtResource("1_pofck")
+_rangeCollisionShape = NodePath("TowerRangeShape")
+_recalculateTargetTimer = NodePath("RecalculateTarget")
+
+[node name="TowerRangeShape" type="CollisionShape2D" parent="."]
+
+[node name="RecalculateTarget" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true

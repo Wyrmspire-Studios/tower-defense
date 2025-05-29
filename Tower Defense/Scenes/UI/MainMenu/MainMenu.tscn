@@ -337,7 +337,8 @@ script = ExtResource("1_67d64")
 TutorialMap = ExtResource("3_tc2ed")
 DefaultButtonSelection = NodePath("CanvasLayer/Control/DefaultButtonSelection")
 
-[node name="MenuButtonGroupController" parent="." instance=ExtResource("1_8x0bb")]
+[node name="MenuButtonGroupController" parent="." node_paths=PackedStringArray("MenuButtons") instance=ExtResource("1_8x0bb")]
+MenuButtons = [NodePath("../CanvasLayer/Control/DefaultButtonSelection/PlayMenuButton"), NodePath("../CanvasLayer/Control/DefaultButtonSelection/SettingsMenuButton"), NodePath("../CanvasLayer/Control/DefaultButtonSelection/ExitMenuButton"), NodePath("../CanvasLayer/Control/StatisticsMenuButton")]
 BaseTexture = SubResource("AtlasTexture_4elqj")
 HoverTexture = SubResource("AtlasTexture_ri767")
 PressedTexture = SubResource("AtlasTexture_a712v")
@@ -360,6 +361,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Title" type="TextureRect" parent="CanvasLayer/Control"]
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 

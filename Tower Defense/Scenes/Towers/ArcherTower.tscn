@@ -1,0 +1,21 @@
+[gd_scene load_steps=6 format=3 uid="uid://dnofluey7d5by"]
+
+[ext_resource type="PackedScene" uid="uid://cun4fy4ugaiqy" path="res://Scenes/Components/Tower/RangedTower/RangedProjectileTower/RangedProjectileTower.tscn" id="1_qvbhq"]
+[ext_resource type="Script" uid="uid://dbotq8d0svawv" path="res://Scenes/Components/Tower/RangedTower/RangedProjectileTower/RangedProjectileTowerInfo.cs" id="2_bslfe"]
+[ext_resource type="Texture2D" uid="uid://bl5p72ai2rw55" path="res://Assets/Towers/ArcherTiers.png" id="2_cclwp"]
+[ext_resource type="PackedScene" uid="uid://boyv7fyb2wued" path="res://Scenes/Towers/ArcherTowerProjectile.tscn" id="2_sj0ai"]
+
+[sub_resource type="Resource" id="Resource_cclwp"]
+resource_local_to_scene = true
+script = ExtResource("2_bslfe")
+ProjectileScene = ExtResource("2_sj0ai")
+ProjectileSpawnOffset = Vector2(16, 16)
+Range = 64
+RangeOffset = Vector2(16, 16)
+TargetingMode = 2
+TowerTier = 0
+TowerTierTexture = ExtResource("2_cclwp")
+metadata/_custom_type_script = "uid://dbotq8d0svawv"
+
+[node name="ArcherTower" instance=ExtResource("1_qvbhq")]
+RangedProjectileTowerInfo = SubResource("Resource_cclwp")

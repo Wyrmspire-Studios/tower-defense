@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://cun4fy4ugaiqy"]
+
+[ext_resource type="PackedScene" uid="uid://c20554dlnp7eg" path="res://Scenes/Components/Tower/RangedTower/RangedTower.tscn" id="1_8du8w"]
+[ext_resource type="Script" uid="uid://b12myu3kmy8ys" path="res://Scenes/Components/Tower/RangedTower/RangedProjectileTower/RangedProjectileTower.cs" id="2_jlugo"]
+[ext_resource type="PackedScene" uid="uid://bacfy5sx4mace" path="res://Scenes/Components/Tower/TowerShooting/TowerProjectileShooting/TowerProjectileShooting.tscn" id="3_jlugo"]
+
+[node name="RangedProjectileTower" instance=ExtResource("1_8du8w")]
+script = ExtResource("2_jlugo")
+RangedProjectileTowerInfo = null
+
+[node name="TowerProjectileShooting" parent="." index="2" instance=ExtResource("3_jlugo")]
