@@ -19,6 +19,8 @@ public partial class TowerProjectileShooting : Node2D
 
 	private void _shoot()
 	{
+		if (!Tower.RangedProjectileTowerInfo.Active) return;
+		
 		var currentTarget = Tower.TowerTargeting.GetCurrentTarget();
 		if (currentTarget == null) return;
 		

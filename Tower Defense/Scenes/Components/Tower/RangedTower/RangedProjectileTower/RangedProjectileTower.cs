@@ -30,4 +30,16 @@ public partial class RangedProjectileTower : RangedTower
 		RangedTowerInfo = RangedProjectileTowerInfo;
 		TowerInfo = RangedProjectileTowerInfo;
 	}
+
+	public override void OnStartPlacing()
+	{
+		base.OnStartPlacing();
+		RangedProjectileTowerInfo.Active = false;
+	}
+
+	public override void OnPlaceTower()
+	{
+		base.OnPlaceTower();
+		RangedProjectileTowerInfo.Active = true;
+	}
 }

@@ -49,14 +49,12 @@ public partial class TowerTargeting : Area2D
 	{
 		var otherParent = other.GetParent();
 		if (otherParent is Enemy enemy) _enemiesInRange.Add(enemy);
-		GD.Print(_enemiesInRange.Count);
 	}
 
 	private void _onAreaExited(Area2D other)
 	{
 		var otherParent = other.GetParent();
 		if (otherParent is Enemy enemy) _enemiesInRange.Remove(enemy);
-		GD.Print(_enemiesInRange.Count);
 	}
 
 	private void _recalculateTarget()
