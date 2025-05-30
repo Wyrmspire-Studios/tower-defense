@@ -1,70 +1,13 @@
-namespace WyrmspireStudios;
+using WyrmspireStudios.Events;
+
+namespace WyrmspireStudios.Data;
 
 public static class GameData
 {
-    public delegate void ValueChangeHandler(int oldValue, int newValue);
-
-    public static event ValueChangeHandler HealthChanged;
-    public static event ValueChangeHandler GoldChanged;
-    public static event ValueChangeHandler ShardsChanged;
-    public static event ValueChangeHandler EnemyDeath;
-
-    private static int Health { get; set; } = 100;
-    private static int Gold { get; set; }
     private static int Shards { get; set; }
     private static int EnemyDeaths { get; set; }
-
-    public static int GetHealth()
-    {
-        return Health;
-    }
-
-    public static void SetHealth(int amount)
-    {
-        var oldHealth = Health;
-        Health = amount;
-        HealthChanged?.Invoke(oldHealth, Health);
-    }
     
-    public static void AddHealth(int amount)
-    {
-        var oldHealth = Health;
-        Health += amount;
-        HealthChanged?.Invoke(oldHealth, Health);
-    }
-
-    public static void RemoveHealth(int amount)
-    {
-        var oldHealth = Health;
-        Health -= amount;
-        HealthChanged?.Invoke(oldHealth, Health);
-    }
-
-    public static int GetGold()
-    {
-        return Gold;
-    }
-
-    public static void SetGold(int amount)
-    {
-        var oldGold = Gold;
-        Gold = amount;
-        GoldChanged?.Invoke(oldGold, Gold);
-    }
-    
-    public static void AddGold(int amount)
-    {
-        var oldGold = Gold;
-        Gold += amount;
-        GoldChanged?.Invoke(oldGold, Gold);
-    }
-
-    public static void RemoveGold(int amount)
-    {
-        var oldGold = Gold;
-        Gold -= amount;
-        GoldChanged?.Invoke(oldGold, Gold);
-    }
+    public static event EventHandlers.ValueChangeHandler ShardsChanged;
     
     public static int GetShards()
     {
@@ -78,6 +21,11 @@ public static class GameData
         ShardsChanged?.Invoke(oldShards, Shards);
     }
 
+    private static void ResetShards()
+    {
+        Shards = 0;
+    }
+    
     public static void AddShards(int amount)
     {
         var oldShards = Shards;
@@ -96,6 +44,22 @@ public static class GameData
     {
         var oldEnemyDeaths = EnemyDeaths;
         EnemyDeaths += 1;
-        EnemyDeath?.Invoke(oldEnemyDeaths, EnemyDeaths);
+    }
+    
+    private static void ResetEnemyDeaths()
+    {
+        EnemyDeaths = 0;
+    }
+
+    private static void ResetEvents()
+    {
+        ShardsChanged = null;
+    }
+
+    public static void ResetGameData()
+    {
+        ResetShards();
+        ResetEnemyDeaths();
+        ResetEvents();
     }
 }

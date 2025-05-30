@@ -1,12 +1,13 @@
 using Godot;
 using System;
+using WyrmspireStudios.Data;
 
 public partial class Enemy : PathFollow2D
 {
 	[Export] private EnemyInfo _enemyInfo;
 	private EnemyInfo _currentEnemyInfo;
 
-	private float _health;
+	private int _health;
 
 	public override void _Ready()
 	{
@@ -21,9 +22,9 @@ public partial class Enemy : PathFollow2D
 		if (ProgressRatio >= 1) OnDamagePlayer();
 	}
 	
-	public float GetHealth() => _health;
+	public int GetHealth() => _health;
 
-	public void TakeDamage(float damage)
+	public void TakeDamage(int damage)
 	{
 		_health -= damage;
 		if (_health <= 0) OnDeath();
@@ -31,11 +32,14 @@ public partial class Enemy : PathFollow2D
 
 	private void OnDeath()
 	{
+		LevelData.AddEnemyDeath();
+		LevelData.AddGold(_currentEnemyInfo.GoldDrop);
 		QueueFree();
 	}
 
 	private void OnDamagePlayer()
 	{
+		LevelData.RemoveHealth(_currentEnemyInfo.Damage * _currentEnemyInfo.Health / GetHealth());
 		QueueFree();
 	}
 }

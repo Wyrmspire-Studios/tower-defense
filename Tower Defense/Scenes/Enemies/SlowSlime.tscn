@@ -1,14 +1,15 @@
 [gd_scene load_steps=11 format=3 uid="uid://d0bbbmoraofao"]
 
-[ext_resource type="PackedScene" uid="uid://cwrunk0piod8b" path="res://Components/Enemy/Enemy.tscn" id="1_jvx6n"]
-[ext_resource type="Script" uid="uid://bu5ms6gagi6m" path="res://Components/Enemy/EnemyInfo.cs" id="2_43rr6"]
+[ext_resource type="PackedScene" uid="uid://cwrunk0piod8b" path="res://Scenes/Components/Enemy/Enemy.tscn" id="1_jvx6n"]
+[ext_resource type="Script" uid="uid://bu5ms6gagi6m" path="res://Scenes/Components/Enemy/EnemyInfo.cs" id="2_43rr6"]
 [ext_resource type="Texture2D" uid="uid://bppem7pax5wdk" path="res://Assets/Enemies/Slime/SlimeMovement.png" id="2_kexyb"]
 
 [sub_resource type="Resource" id="Resource_wjyqe"]
 script = ExtResource("2_43rr6")
-Speed = 32.0
-Health = 50.0
-Damage = 2.0
+Speed = 32
+Health = 30
+Damage = 2
+GoldDrop = 7
 metadata/_custom_type_script = "uid://bu5ms6gagi6m"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kexyb"]

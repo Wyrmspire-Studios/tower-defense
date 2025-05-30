@@ -33,10 +33,14 @@ public partial class MainMenu : Control
 
     private void OnPlayButtonPressed()
     {
+        var root = GetTree().GetRoot();
+        var tutorialMap = TutorialMap.Instantiate();
         _uiAnimationPlayer.Play("Hide");
         GetTree().CreateTimer(0.5).Timeout += () =>
         {
-            GetTree().ChangeSceneToPacked(TutorialMap);
+            root.AddChild(tutorialMap);
+            GetTree().CurrentScene = tutorialMap;
+            root.RemoveChild(this);
         };
     }
     

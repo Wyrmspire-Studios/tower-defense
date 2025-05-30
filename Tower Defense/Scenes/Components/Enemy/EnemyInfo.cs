@@ -4,7 +4,8 @@ using System;
 [GlobalClass]
 public partial class EnemyInfo : Resource
 {
-	[Export] public float Speed;
-	[Export] public float Health;
-	[Export] public float Damage;
+	[Export] public int Speed;
+	[Export] public int Health;
+	[Export] public int Damage;
+	[Export] public int GoldDrop;
 }

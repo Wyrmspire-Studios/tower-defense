@@ -1,0 +1,192 @@
+[gd_scene load_steps=11 format=3 uid="uid://y1tl75a87wmt"]
+
+[ext_resource type="Theme" uid="uid://dl3phl78tl4u3" path="res://Scenes/Components/Map/MapUI/MapUIPanelTheme.tres" id="1_c6my3"]
+[ext_resource type="Script" uid="uid://bddk78tin8110" path="res://Scenes/Components/Map/MapUI/MapUi.cs" id="1_n7h4j"]
+[ext_resource type="Texture2D" uid="uid://d2cjrito6dthd" path="res://Assets/window.png" id="1_yl1al"]
+[ext_resource type="Script" uid="uid://byaifws2jofn6" path="res://Scenes/Components/Map/MapUI/WavePanel.cs" id="3_md2gh"]
+[ext_resource type="Script" uid="uid://cbf8qtfeu48d3" path="res://Scenes/Components/Map/MapUI/StatusPanel.cs" id="5_285sl"]
+
+[sub_resource type="Animation" id="Animation_c6my3"]
+resource_name = "ShowUI"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.637281, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_n7h4j"]
+resource_name = "HideUI"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.450625, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_aeojl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_md2gh"]
+_data = {
+&"HideUI": SubResource("Animation_n7h4j"),
+&"RESET": SubResource("Animation_aeojl"),
+&"ShowUI": SubResource("Animation_c6my3")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_osesm"]
+
+[node name="MapUi" type="CanvasLayer"]
+
+[node name="MapUI" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_n7h4j")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MapUI"]
+libraries = {
+&"": SubResource("AnimationLibrary_md2gh")
+}
+
+[node name="WavePanel" type="PanelContainer" parent="MapUI"]
+custom_minimum_size = Vector2(126, 0)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -37.5
+offset_right = 37.5
+offset_bottom = 40.0
+grow_horizontal = 2
+theme = ExtResource("1_c6my3")
+script = ExtResource("3_md2gh")
+
+[node name="Background" type="NinePatchRect" parent="MapUI/WavePanel"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("1_yl1al")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="MapUI/WavePanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="WaveLabel" type="Label" parent="MapUI/WavePanel/MarginContainer"]
+custom_minimum_size = Vector2(106, 23)
+layout_mode = 2
+text = "Wave: XX / XX"
+label_settings = SubResource("LabelSettings_osesm")
+horizontal_alignment = 1
+
+[node name="StatusPanel" type="PanelContainer" parent="MapUI"]
+custom_minimum_size = Vector2(115, 0)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -115.0
+offset_bottom = 70.0
+grow_horizontal = 0
+theme = ExtResource("1_c6my3")
+script = ExtResource("5_285sl")
+
+[node name="Background" type="NinePatchRect" parent="MapUI/StatusPanel"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("1_yl1al")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="MapUI/StatusPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MapUI/StatusPanel/MarginContainer"]
+layout_mode = 2
+
+[node name="HealthLabel" type="Label" parent="MapUI/StatusPanel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 23)
+layout_mode = 2
+text = "Health: XXX"
+label_settings = SubResource("LabelSettings_osesm")
+
+[node name="GoldLabel" type="Label" parent="MapUI/StatusPanel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 23)
+layout_mode = 2
+text = "Gold: XXXXX"
+label_settings = SubResource("LabelSettings_osesm")

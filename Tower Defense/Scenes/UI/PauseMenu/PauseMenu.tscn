@@ -3,23 +3,24 @@
 [ext_resource type="PackedScene" uid="uid://co00wol6ol0yp" path="res://Scenes/UI/Elements/MenuButton/MenuButton.tscn" id="1_0nva5"]
 [ext_resource type="Script" uid="uid://bh54slri6ouy8" path="res://Scenes/UI/PauseMenu/PauseMenu.cs" id="1_cshyb"]
 [ext_resource type="PackedScene" uid="uid://loofwjkv30nw" path="res://Scenes/UI/MainMenu/MainMenu.tscn" id="2_7jjt0"]
-[ext_resource type="Texture2D" uid="uid://dcc3alldfr5qe" path="res://Assets/Cards/Common.png" id="2_cshyb"]
 [ext_resource type="PackedScene" uid="uid://bvl7tqhygriej" path="res://Scenes/UI/Elements/MenuButtonGroupController/MenuButtonGroupController.tscn" id="3_7jjt0"]
 [ext_resource type="Texture2D" uid="uid://b3xj1u0bxi7l1" path="res://Assets/buttons.png" id="4_jb1ys"]
+[ext_resource type="Texture2D" uid="uid://d2cjrito6dthd" path="res://Assets/window.png" id="5_7jjt0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gu04h"]
 atlas = ExtResource("4_jb1ys")
-region = Rect2(1, 65, 62, 30)
+region = Rect2(1, 33, 62, 30)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_urd3f"]
 atlas = ExtResource("4_jb1ys")
-region = Rect2(65, 65, 62, 30)
+region = Rect2(65, 33, 62, 30)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ho1h4"]
 atlas = ExtResource("4_jb1ys")
-region = Rect2(129, 65, 62, 30)
+region = Rect2(129, 33, 62, 30)
 
 [node name="PauseMenu" type="CanvasLayer"]
+layer = 2
 
 [node name="PauseMenu" type="Control" parent="." node_paths=PackedStringArray("ButtonContainer")]
 layout_mode = 3
@@ -58,14 +59,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -90.0
-offset_top = -49.0
-offset_right = 120.0
-offset_bottom = 87.0
+offset_left = -105.0
+offset_top = -68.0
+offset_right = 105.0
+offset_bottom = 68.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
-texture = ExtResource("2_cshyb")
+texture = ExtResource("5_7jjt0")
 patch_margin_left = 8
 patch_margin_top = 8
 patch_margin_right = 8

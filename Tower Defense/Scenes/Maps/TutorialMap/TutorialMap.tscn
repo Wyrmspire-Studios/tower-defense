@@ -1,5 +1,6 @@
-[gd_scene load_steps=19 format=4 uid="uid://co4vvln87bywk"]
+[gd_scene load_steps=20 format=4 uid="uid://co4vvln87bywk"]
 
+[ext_resource type="PackedScene" uid="uid://y1tl75a87wmt" path="res://Scenes/Components/Map/MapUI/MapUI.tscn" id="1_ah1jo"]
 [ext_resource type="PackedScene" uid="uid://bfaw150aps460" path="res://Scenes/Components/Map/MapTiles/MapTiles.tscn" id="1_mik4u"]
 [ext_resource type="PackedScene" uid="uid://cco4fc4yif78y" path="res://Scenes/Components/EnemySpawner/EnemySpawner.tscn" id="1_tw565"]
 [ext_resource type="PackedScene" uid="uid://bo54w4efanqvm" path="res://Scenes/Components/Map/TowerPlacement/TowerPlacement.tscn" id="2_7fg68"]
@@ -83,6 +84,8 @@ _data = {
 point_count = 14
 
 [node name="TutorialMap" type="Node2D"]
+
+[node name="MapUi" parent="." instance=ExtResource("1_ah1jo")]
 
 [node name="MapTiles" parent="." instance=ExtResource("1_mik4u")]
 

@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using Godot;
 using Godot.Collections;
+using WyrmspireStudios.Data;
 
 namespace WyrmspireStudios;
 
@@ -8,32 +9,32 @@ public partial class EnemySpawner : Node2D
 {
     [Export] public Array<Path2D> SpawnPoints;
     [Export] public Array<EnemyWave> Waves;
-    private int _waveIndex = 0;
-
     public override void _Ready()
     {
+        LevelData.ResetCurrentWave();
+        LevelData.SetMaxWave(Waves.Count);
         _ = SpawnWave();
     }
 
     private async Task SpawnWave()
     {
-        if (_waveIndex >= Waves.Count)
-        {
-            GD.Print("All waves completed.");
-            return;
-        }
+        int currentWave = LevelData.GetCurrentWave();
 
-        EnemyWave wave = Waves[_waveIndex];
-        foreach (var group in Waves[_waveIndex].EnemyGroups)
+        EnemyWave wave = Waves[currentWave];
+        foreach (var group in Waves[currentWave].EnemyGroups)
         {
             _ = SpawnGroup(group);
             await ToSignal(GetTree().CreateTimer(group.DelayUntilNextGroup), "timeout");
         }
 
-        if (_waveIndex < Waves.Count)
+        if (currentWave >= LevelData.GetMaxWave() - 1)
+        {
+            GD.Print("Waves finished.");
+        }
+        else
         {
             await ToSignal(GetTree().CreateTimer(wave.DelayUntilNextWave), "timeout");
-            _waveIndex++;
+            LevelData.NextWave();
             await SpawnWave();
         }
     }

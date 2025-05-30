@@ -5,5 +5,5 @@ using System;
 public partial class ProjectileInfo : Resource
 {
 	[Export] public float Speed;
-	[Export] public float Damage;
+	[Export] public int Damage;
 }

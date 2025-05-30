@@ -1,6 +1,6 @@
 using Godot;
-using System;
-using WyrmspireStudios;
+
+using WyrmspireStudios.Data;
 
 public partial class GameDataTesting : GridContainer
 {
@@ -10,9 +10,9 @@ public partial class GameDataTesting : GridContainer
 	public override void _Ready()
 	{
 		_healthLabel = GetNode<Label>("HealthLabel");
-		GameData.HealthChanged += UpdateHealthLabel;
+		LevelData.HealthChanged += UpdateHealthLabel;
 		_goldLabel = GetNode<Label>("GoldLabel");
-		GameData.GoldChanged += UpdateGoldLabel;
+		LevelData.GoldChanged += UpdateGoldLabel;
 		_shardsLabel = GetNode<Label>("ShardsLabel");
 		GameData.ShardsChanged += UpdateShardsLabel;
 		
@@ -40,32 +40,32 @@ public partial class GameDataTesting : GridContainer
 
 	private static void AddHealthButton()
 	{
-		GameData.AddHealth(1);
+		LevelData.AddHealth(1);
 	}
 	
 	private static void RemoveHealthButton()
 	{
-		GameData.RemoveHealth(1);
+		LevelData.RemoveHealth(1);
 	}
 	
 	private static void ResetHealthButton()
 	{
-		GameData.SetHealth(0);
+		LevelData.SetHealth(0);
 	}
 	
 	private static void AddGoldButton()
 	{
-		GameData.AddGold(1);
+		LevelData.AddGold(1);
 	}
 	
 	private static void RemoveGoldButton()
 	{
-		GameData.RemoveGold(1);
+		LevelData.RemoveGold(1);
 	}
 	
 	private static void ResetGoldButton()
 	{
-		GameData.SetGold(0);
+		LevelData.SetGold(100);
 	}
 	
 	private static void AddShardsButton()

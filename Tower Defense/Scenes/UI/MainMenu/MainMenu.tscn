@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://loofwjkv30nw"]
+[gd_scene load_steps=28 format=3 uid="uid://loofwjkv30nw"]
 
 [ext_resource type="PackedScene" uid="uid://bvl7tqhygriej" path="res://Scenes/UI/Elements/MenuButtonGroupController/MenuButtonGroupController.tscn" id="1_8x0bb"]
 [ext_resource type="Script" uid="uid://dpv1tde35onc2" path="res://Scenes/UI/MainMenu/MainMenu.cs" id="1_67d64"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b3xj1u0bxi7l1" path="res://Assets/buttons.png" id="2_nahvw"]
 [ext_resource type="PackedScene" uid="uid://co4vvln87bywk" path="res://Scenes/Maps/TutorialMap/TutorialMap.tscn" id="3_tc2ed"]
 [ext_resource type="PackedScene" uid="uid://dvopx0b1owuig" path="res://Scenes/UI/MainMenu/BackgroundMap.tscn" id="4_67d64"]
+[ext_resource type="Texture2D" uid="uid://cosb8wvxuxjln" path="res://Assets/logo-pixelart-2.png" id="6_u8hla"]
 [ext_resource type="Texture2D" uid="uid://dhqgm044nr5rg" path="res://Assets/Cards/Rare.png" id="8_jhcbk"]
 [ext_resource type="Script" uid="uid://dmjgu34vhsev4" path="res://Scenes/UI/MainMenu/Statistics.cs" id="9_32jca"]
 
@@ -361,9 +362,16 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Title" type="TextureRect" parent="CanvasLayer/Control"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -96.0
+offset_right = 32.0
+offset_bottom = 128.0
+grow_horizontal = 2
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("6_u8hla")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Control/Title"]
 libraries = {
@@ -436,6 +444,7 @@ libraries = {
 }
 
 [node name="StatisticsMenuButton" parent="CanvasLayer/Control" instance=ExtResource("2_8x0bb")]
+visible = false
 custom_minimum_size = Vector2(200, 40)
 layout_mode = 1
 anchors_preset = 1
