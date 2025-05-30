@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using WyrmspireStudios;
+using WyrmspireStudios.Data;
 
 public partial class TowerActions : NinePatchRect
 {
@@ -27,8 +28,8 @@ public partial class TowerActions : NinePatchRect
 		_currentCost = 50; // TODO: CHANGE TO COST OF ROLLING A NEW CARD
 		_upgradeCost = Tower.TowerInfo.BaseUpgradeCost;
 		
-		GameData.GoldChanged += _recheckUpgradeAvailable;
-		_recheckUpgradeAvailable(0, GameData.GetGold());
+		LevelData.GoldChanged += _recheckUpgradeAvailable;
+		_recheckUpgradeAvailable(0, LevelData.GetGold());
 	}
 
 	public override void _ExitTree()
@@ -37,7 +38,7 @@ public partial class TowerActions : NinePatchRect
 		Tower.TowerCollider.TowerClickedOutside -= _onTowerClickedOutside;
 		_sellTowerButton.Pressed -= _onSellTower;
 		_upgradeTowerButton.Pressed -= _onUpgradeTower;
-		GameData.GoldChanged -= _recheckUpgradeAvailable;
+		LevelData.GoldChanged -= _recheckUpgradeAvailable;
 	}
 
 	public void ToggleVisibility()
@@ -65,7 +66,7 @@ public partial class TowerActions : NinePatchRect
 
 	private void _onSellTower()
 	{
-		GameData.AddGold(Mathf.FloorToInt(_currentCost * 0.5));
+		LevelData.AddGold(Mathf.FloorToInt(_currentCost * 0.5));
 		Tower.OnSellTower();
 	}
 
@@ -76,7 +77,7 @@ public partial class TowerActions : NinePatchRect
 		Tower.TowerInfo.TowerTier = Tower.TowerInfo.TowerTier.Next();
 		Tower.OnUpgradeTower(Tower.TowerInfo.TowerTier);
 		
-		GameData.RemoveGold(_upgradeCost);
+		LevelData.RemoveGold(_upgradeCost);
 		
 		_currentCost += _upgradeCost;
 		_upgradeCost = Mathf.FloorToInt(_upgradeCost * 1.5);
