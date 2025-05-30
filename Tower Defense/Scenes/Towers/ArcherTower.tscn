@@ -1,14 +1,58 @@
-[gd_scene load_steps=6 format=3 uid="uid://dnofluey7d5by"]
+[gd_scene load_steps=13 format=3 uid="uid://dnofluey7d5by"]
 
 [ext_resource type="PackedScene" uid="uid://cun4fy4ugaiqy" path="res://Scenes/Components/Tower/RangedTower/RangedProjectileTower/RangedProjectileTower.tscn" id="1_qvbhq"]
 [ext_resource type="Script" uid="uid://dbotq8d0svawv" path="res://Scenes/Components/Tower/RangedTower/RangedProjectileTower/RangedProjectileTowerInfo.cs" id="2_bslfe"]
 [ext_resource type="Texture2D" uid="uid://bl5p72ai2rw55" path="res://Assets/Towers/ArcherTiers.png" id="2_cclwp"]
+[ext_resource type="Script" uid="uid://dgxcvi7oo50ep" path="res://Scenes/Components/Projectile/ProjectileInfo.cs" id="2_ecyao"]
 [ext_resource type="PackedScene" uid="uid://boyv7fyb2wued" path="res://Scenes/Towers/ArcherTowerProjectile.tscn" id="2_sj0ai"]
+[ext_resource type="Script" uid="uid://bh3qr8sm03xg8" path="res://Scenes/Components/Tower/TowerEnhancement/TowerEnhancement.cs" id="4_xr062"]
 
-[sub_resource type="Resource" id="Resource_sj0ai"]
-resource_local_to_scene = true
+[sub_resource type="Resource" id="Resource_ecyao"]
+script = ExtResource("2_ecyao")
+Speed = 0
+Damage = 0
+metadata/_custom_type_script = "uid://dgxcvi7oo50ep"
+
+[sub_resource type="Resource" id="Resource_6lhha"]
+script = ExtResource("4_xr062")
+NewProjectileDamage = 10
+NewProjectileSpeed = 32
+NewProjectileSpawnOffset = Vector2(inf, inf)
+NewRange = 64
+NewRangeOffset = Vector2(inf, inf)
+metadata/_custom_type_script = "uid://bh3qr8sm03xg8"
+
+[sub_resource type="Resource" id="Resource_j52qd"]
+script = ExtResource("4_xr062")
+NewProjectileDamage = 10
+NewProjectileSpeed = 64
+NewProjectileSpawnOffset = Vector2(inf, inf)
+NewRange = 96
+NewRangeOffset = Vector2(inf, inf)
+metadata/_custom_type_script = "uid://bh3qr8sm03xg8"
+
+[sub_resource type="Resource" id="Resource_v20se"]
+script = ExtResource("4_xr062")
+NewProjectileDamage = 10
+NewProjectileSpeed = 96
+NewProjectileSpawnOffset = Vector2(inf, inf)
+NewRange = 128
+NewRangeOffset = Vector2(inf, inf)
+metadata/_custom_type_script = "uid://bh3qr8sm03xg8"
+
+[sub_resource type="Resource" id="Resource_f080p"]
+script = ExtResource("4_xr062")
+NewProjectileDamage = 10
+NewProjectileSpeed = 128
+NewProjectileSpawnOffset = Vector2(inf, inf)
+NewRange = 160
+NewRangeOffset = Vector2(inf, inf)
+metadata/_custom_type_script = "uid://bh3qr8sm03xg8"
+
+[sub_resource type="Resource" id="Resource_xr062"]
 script = ExtResource("2_bslfe")
 ProjectileScene = ExtResource("2_sj0ai")
+BaseProjectileInfo = SubResource("Resource_ecyao")
 ProjectileSpawnOffset = Vector2(16, 16)
 Range = 64
 RangeOffset = Vector2(16, 16)
@@ -17,7 +61,8 @@ Active = true
 TowerTier = 0
 TowerTierTexture = ExtResource("2_cclwp")
 BaseUpgradeCost = 100
+TowerTierEnhancements = Array[Object]([SubResource("Resource_6lhha"), SubResource("Resource_j52qd"), SubResource("Resource_v20se"), SubResource("Resource_f080p")])
 metadata/_custom_type_script = "uid://dbotq8d0svawv"
 
 [node name="ArcherTower" instance=ExtResource("1_qvbhq")]
-RangedProjectileTowerInfo = SubResource("Resource_sj0ai")
+_baseRangedProjectileTowerInfo = SubResource("Resource_xr062")

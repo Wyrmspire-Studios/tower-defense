@@ -17,7 +17,7 @@ public partial class Occupied : TileMapLayer
 
 	public void RemoveTile(Vector2I tile)
 	{
-		SetCell(tile);
+		SetCellsTerrainConnect([tile], 0, -1);
 	}
 	
 	public bool IsTileOccupied(Vector2I tile)

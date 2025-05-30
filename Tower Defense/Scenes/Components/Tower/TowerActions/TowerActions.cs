@@ -18,7 +18,8 @@ public partial class TowerActions : NinePatchRect
 	{
 		Tower = tower;
 
-		Tower.TowerCollider.InputEvent += _onColliderInputEvent;
+		Tower.TowerCollider.TowerClickedInside += _onTowerClickedInside;
+		Tower.TowerCollider.TowerClickedOutside += _onTowerClickedOutside;
 
 		_sellTowerButton.Pressed += _onSellTower;
 		_upgradeTowerButton.Pressed += _onUpgradeTower;
@@ -32,22 +33,11 @@ public partial class TowerActions : NinePatchRect
 
 	public override void _ExitTree()
 	{
-		Tower.TowerCollider.InputEvent -= _onColliderInputEvent;
+		Tower.TowerCollider.TowerClickedInside -= _onTowerClickedInside;
+		Tower.TowerCollider.TowerClickedOutside -= _onTowerClickedOutside;
 		_sellTowerButton.Pressed -= _onSellTower;
 		_upgradeTowerButton.Pressed -= _onUpgradeTower;
 		GameData.GoldChanged -= _recheckUpgradeAvailable;
-	}
-
-	public override void _Input(InputEvent ev)
-	{
-		if (!Visible) return;
-		if (ev is not InputEventMouseButton { Pressed: true } mouseEvent) return;
-
-		var colliderRect = Tower.TowerCollider.GetColliderRect();
-		if (!GetGlobalRect().HasPoint(mouseEvent.GlobalPosition) && !colliderRect.HasPoint(mouseEvent.GlobalPosition))
-		{
-			ToggleVisibility();
-		}
 	}
 
 	public void ToggleVisibility()
@@ -55,18 +45,21 @@ public partial class TowerActions : NinePatchRect
 		Visible = !Visible;
 	}
 
-	private void _onColliderInputEvent(Node viewport, InputEvent ev, long shapeId)
+	private void _onTowerClickedInside(InputEventMouseButton ev)
 	{
-		if (ev is not InputEventMouseButton { Pressed: true }) return;
-		if (!Tower.TowerInfo.Active) return;
+		ToggleVisibility();
+	}
+
+	private void _onTowerClickedOutside(InputEventMouseButton ev)
+	{
+		if (!Visible) return;
+		if (GetGlobalRect().HasPoint(ev.GlobalPosition)) return;
 		ToggleVisibility();
 	}
 
 	private void _recheckUpgradeAvailable(int oldGold, int newGold)
 	{
-		GD.Print("Old:", oldGold, "New:", newGold);
-		_canUpgrade = newGold >= _upgradeCost;
-		GD.Print("Upgrade Cost:", _upgradeCost, "Can Upgrade:", _canUpgrade);
+		_canUpgrade = Tower.TowerInfo.TowerTier != TowerTier.Four && newGold >= _upgradeCost;
 		_upgradeTowerButton.Disabled = !_canUpgrade;
 	}
 

@@ -33,4 +33,16 @@ public static class TowerTierExtensions
 			_ => throw new ArgumentOutOfRangeException(nameof(towerTier), towerTier, null)
 		};
 	}
+
+	public static int ToIndex(this TowerTier towerTier)
+	{
+		return towerTier switch
+		{
+			TowerTier.One => 0,
+			TowerTier.Two => 1,
+			TowerTier.Three => 2,
+			TowerTier.Four => 3,
+			_ => throw new ArgumentOutOfRangeException(nameof(towerTier), towerTier, null)
+		};
+	}
 }

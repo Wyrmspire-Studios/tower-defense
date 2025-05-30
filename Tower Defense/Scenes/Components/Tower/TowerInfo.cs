@@ -9,4 +9,5 @@ public partial class TowerInfo : Resource
 	[Export] public TowerTier TowerTier;
 	[Export] public Texture2D TowerTierTexture;
 	[Export] public int BaseUpgradeCost;
+	[Export] public TowerEnhancement[] TowerTierEnhancements;
 }

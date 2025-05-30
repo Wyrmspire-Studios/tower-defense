@@ -1,21 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://boyv7fyb2wued"]
+[gd_scene load_steps=4 format=3 uid="uid://boyv7fyb2wued"]
 
 [ext_resource type="PackedScene" uid="uid://dx8a8cbwf2bqm" path="res://Scenes/Components/Projectile/Projectile.tscn" id="1_pdvvc"]
-[ext_resource type="Script" uid="uid://dgxcvi7oo50ep" path="res://Scenes/Components/Projectile/ProjectileInfo.cs" id="2_6m4sk"]
 [ext_resource type="Texture2D" uid="uid://j4w8w755geom" path="res://Assets/Towers/Arrow.png" id="3_6m4sk"]
-
-[sub_resource type="Resource" id="Resource_vav4l"]
-resource_local_to_scene = true
-script = ExtResource("2_6m4sk")
-Speed = 128.0
-Damage = 5.0
-metadata/_custom_type_script = "uid://dgxcvi7oo50ep"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6m4sk"]
 size = Vector2(20, 8)
 
 [node name="Archer Tower Projectile" instance=ExtResource("1_pdvvc")]
-ProjectileInfo = SubResource("Resource_vav4l")
 
 [node name="ProjectileShape" parent="." index="0"]
 shape = SubResource("RectangleShape2D_6m4sk")
