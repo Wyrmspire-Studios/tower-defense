@@ -59,6 +59,7 @@ public partial class TowerPlacement : Node2D
 		
 		var mouseTile = _getMouseTile();
 		_occupied.AddTile(mouseTile);
+		_currentlyPlacing.PlacedAt = mouseTile;
 		_currentlyPlacing.Modulate = NoTint;
 		_currentlyPlacing = null;
 	}

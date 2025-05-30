@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://boyv7fyb2wued" path="res://Scenes/Towers/ArcherTowerProjectile.tscn" id="2_sj0ai"]
 
 [sub_resource type="Resource" id="Resource_sj0ai"]
+resource_local_to_scene = true
 script = ExtResource("2_bslfe")
 ProjectileScene = ExtResource("2_sj0ai")
 ProjectileSpawnOffset = Vector2(16, 16)
@@ -15,6 +16,7 @@ TargetingMode = 0
 Active = true
 TowerTier = 0
 TowerTierTexture = ExtResource("2_cclwp")
+BaseUpgradeCost = 100
 metadata/_custom_type_script = "uid://dbotq8d0svawv"
 
 [node name="ArcherTower" instance=ExtResource("1_qvbhq")]

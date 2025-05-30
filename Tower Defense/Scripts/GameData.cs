@@ -10,7 +10,7 @@ public static class GameData
     public static event ValueChangeHandler EnemyDeath;
 
     private static int Health { get; set; } = 100;
-    private static int Gold { get; set; }
+    private static int Gold { get; set; } = 100;
     private static int Shards { get; set; }
     private static int EnemyDeaths { get; set; }
 
