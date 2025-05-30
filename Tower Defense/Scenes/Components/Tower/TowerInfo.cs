@@ -8,4 +8,6 @@ public partial class TowerInfo : Resource
 	[Export] public bool Active = true;
 	[Export] public TowerTier TowerTier;
 	[Export] public Texture2D TowerTierTexture;
+	[Export] public int BaseUpgradeCost;
+	[Export] public TowerEnhancement[] TowerTierEnhancements;
 }

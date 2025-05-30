@@ -25,6 +25,7 @@ public partial class TowerProjectileShooting : Node2D
 		if (currentTarget == null) return;
 		
 		var projectile = Tower.RangedProjectileTowerInfo.ProjectileScene.Instantiate<Projectile>();
+		projectile.ProjectileInfo = Tower.RangedProjectileTowerInfo.BaseProjectileInfo;
 		projectile.ShotBy = Tower;
 		projectile.Position = Tower.RangedProjectileTowerInfo.ProjectileSpawnOffset;
 		projectile.SetTarget(currentTarget.GlobalPosition - GlobalPosition);

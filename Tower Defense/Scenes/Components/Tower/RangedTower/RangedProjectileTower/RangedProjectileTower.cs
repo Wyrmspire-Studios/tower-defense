@@ -3,20 +3,10 @@ using System;
 
 public partial class RangedProjectileTower : RangedTower
 {
-	[Export] public RangedProjectileTowerInfo RangedProjectileTowerInfo;
+	[Export] private RangedProjectileTowerInfo _baseRangedProjectileTowerInfo;
+	public RangedProjectileTowerInfo RangedProjectileTowerInfo;
 	
 	public TowerProjectileShooting TowerProjectileShooting;
-	
-	public override void _Ready()
-	{
-		_updateTowerInfo(RangedProjectileTowerInfo);
-
-		TowerProjectileShooting = GetNodeOrNull<TowerProjectileShooting>("TowerProjectileShooting");
-		
-		base._Ready();
-		
-		TowerProjectileShooting?.Initialize(this);
-	}
 
 	public virtual void OnEnemyShot(Enemy enemy, Projectile projectile)
 	{
@@ -33,13 +23,53 @@ public partial class RangedProjectileTower : RangedTower
 
 	public override void OnStartPlacing()
 	{
+		_updateTowerInfo((RangedProjectileTowerInfo)_baseRangedProjectileTowerInfo.Duplicate(true));
+		
 		base.OnStartPlacing();
+		
+		TowerProjectileShooting = GetNodeOrNull<TowerProjectileShooting>("TowerProjectileShooting");
+		TowerProjectileShooting?.Initialize(this);
+		
 		RangedProjectileTowerInfo.Active = false;
+		
+		ApplyEnhancements();
 	}
 
 	public override void OnPlaceTower()
 	{
-		base.OnPlaceTower();
 		RangedProjectileTowerInfo.Active = true;
+		base.OnPlaceTower();
+	}
+
+	public override void ApplyEnhancements()
+	{
+		var newTowerData = (RangedProjectileTowerInfo)_baseRangedProjectileTowerInfo.Duplicate(true);
+		newTowerData.TowerTier = RangedProjectileTowerInfo.TowerTier;
+		
+		foreach (var towerEnhancement in TowerEnhancements)
+		{
+			if (towerEnhancement.NewProjectileDamage != -1)
+				newTowerData.BaseProjectileInfo.Damage = towerEnhancement.NewProjectileDamage;
+			
+			if (towerEnhancement.NewProjectileSpeed != -1)
+				newTowerData.BaseProjectileInfo.Speed = towerEnhancement.NewProjectileSpeed;
+			
+			if (towerEnhancement.NewProjectileSpawnOffset != Vector2.Inf)
+				newTowerData.ProjectileSpawnOffset = towerEnhancement.NewProjectileSpawnOffset;
+
+			if (towerEnhancement.NewRange != -1)
+			{
+				newTowerData.Range = towerEnhancement.NewRange;
+				TowerTargeting.UpdateRange();
+			}
+
+			if (towerEnhancement.NewRangeOffset != Vector2.Inf)
+			{
+				newTowerData.RangeOffset = towerEnhancement.NewRangeOffset;
+				TowerTargeting.UpdateRange();
+			}
+		}
+		
+		_updateTowerInfo(newTowerData);
 	}
 }

@@ -20,14 +20,24 @@ public partial class TowerTargeting : Area2D
 	{
 		Tower = tower;
 
-		Position = Tower.RangedTowerInfo.RangeOffset;
-		
-		_rangeShape.Radius = Tower.RangedTowerInfo.Range;
 		_rangeCollisionShape.Shape = _rangeShape;
+		UpdateRange();
 
+		Tower.TowerCollider.TowerClickedInside += _onTowerClickedInside;
+		Tower.TowerCollider.TowerClickedOutside += _onTowerClickedOutside;
+		
 		AreaEntered += _onAreaEntered;
 		AreaExited += _onAreaExited;
 		_recalculateTargetTimer.Timeout += _recalculateTarget;
+	}
+
+	public override void _ExitTree()
+	{
+		Tower.TowerCollider.TowerClickedInside -= _onTowerClickedInside;
+		Tower.TowerCollider.TowerClickedOutside -= _onTowerClickedOutside;
+		AreaEntered -= _onAreaEntered;
+		AreaExited -= _onAreaExited;
+		_recalculateTargetTimer.Timeout -= _recalculateTarget;
 	}
 
 	public override void _Draw()
@@ -42,6 +52,13 @@ public partial class TowerTargeting : Area2D
 	public void ToggleRangeVisible()
 	{
 		_rangeVisible = !_rangeVisible;
+		QueueRedraw();
+	}
+
+	public void UpdateRange()
+	{
+		_rangeShape.Radius = Tower.RangedTowerInfo.Range;
+		Position = Tower.RangedTowerInfo.RangeOffset;
 		QueueRedraw();
 	}
 
@@ -69,5 +86,17 @@ public partial class TowerTargeting : Area2D
 				TowerTargetingMode.LeastHealth => _enemiesInRange.OrderBy(enemy => enemy.GetHealth()).First(),
 				_ => throw new ArgumentOutOfRangeException()
 			};
+	}
+
+	private void _onTowerClickedInside(InputEventMouseButton ev)
+	{
+		ToggleRangeVisible();
+	}
+
+	private void _onTowerClickedOutside(InputEventMouseButton ev)
+	{
+		if (!_rangeVisible) return;
+		if (Tower.TowerActions.GetGlobalRect().HasPoint(ev.GlobalPosition)) return;
+		ToggleRangeVisible();
 	}
 }

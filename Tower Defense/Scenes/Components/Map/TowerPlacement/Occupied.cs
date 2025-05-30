@@ -6,6 +6,8 @@ public partial class Occupied : TileMapLayer
 	public override void _Ready()
 	{
 		HideTileMap();
+		
+		Tower.TowerSold += RemoveTile;
 	}
 
 	public void AddTile(Vector2I tile)
@@ -15,7 +17,7 @@ public partial class Occupied : TileMapLayer
 
 	public void RemoveTile(Vector2I tile)
 	{
-		SetCell(tile);
+		SetCellsTerrainConnect([tile], 0, -1);
 	}
 	
 	public bool IsTileOccupied(Vector2I tile)

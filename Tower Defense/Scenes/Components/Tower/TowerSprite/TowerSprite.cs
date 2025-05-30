@@ -20,6 +20,14 @@ public partial class TowerSprite : Sprite2D
 		SetSpriteToTier(Tower.TowerInfo.TowerTier);
 	}
 
+	public void ShowSmoke()
+	{
+		var placementSmoke = _placementSmokeScene.Instantiate<AnimatedSprite2D>();
+		placementSmoke.GlobalPosition = Tower.GlobalPosition;
+		placementSmoke.AnimationFinished += placementSmoke.QueueFree; 
+		GetTree().GetRoot().AddChild(placementSmoke);
+	}
+
 	public void SetSpriteToTier(TowerTier towerTier)
 	{
 		var spriteOffset = towerTier.ToSpriteOffset();
@@ -30,9 +38,6 @@ public partial class TowerSprite : Sprite2D
 	public void UpgradeSpriteToTier(TowerTier towerTier)
 	{
 		SetSpriteToTier(towerTier);
-				
-		var placementSmoke = _placementSmokeScene.Instantiate<AnimatedSprite2D>();
-		placementSmoke.AnimationFinished += placementSmoke.QueueFree;
-		AddChild(placementSmoke);
+		ShowSmoke();
 	}
 }
