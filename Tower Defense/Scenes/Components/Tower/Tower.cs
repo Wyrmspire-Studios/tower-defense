@@ -17,17 +17,23 @@ public partial class Tower : Node2D
 
 	public virtual void OnStartPlacing()
 	{
-		TowerSprite = GetNodeOrNull<TowerSprite>("TowerSprite");
-		TowerCollider = GetNodeOrNull<TowerCollider>("TowerCollider");
-		TowerUi = GetNodeOrNull<TowerUI>("TowerUI");
+		TowerSprite = GetNode<TowerSprite>("TowerSprite");
+		TowerCollider = GetNode<TowerCollider>("TowerCollider");
+		TowerUi = GetNode<TowerUI>("TowerUI");
 		
-		TowerSprite?.Initialize(this);
-		TowerCollider?.Initialize(this);
-		TowerUi?.Initialize(this);
+		TowerSprite.Initialize(this);
+		TowerCollider.Initialize(this);
+		TowerUi.Initialize(this);
 		
 		TowerEnhancements.Add(TowerInfo.TowerTierEnhancements[TowerTier.One.ToIndex()]);
+
+		EnableStatsUi(TowerUi.TowerStats);
 	}
-	public virtual void OnPlaceTower() {}
+
+	public virtual void OnPlaceTower()
+	{
+	}
+	
 	public virtual void OnUpgradeTower(TowerTier upgradedTo)
 	{
 		TowerSprite.UpgradeSpriteToTier(upgradedTo);
@@ -42,4 +48,6 @@ public partial class Tower : Node2D
 		QueueFree();
 	}
 	public virtual void ApplyEnhancements() {}
+	public virtual void EnableStatsUi(TowerStats towerStats) {}
+	public virtual void UpdateStatsUi(TowerStats towerStats) {}
 }

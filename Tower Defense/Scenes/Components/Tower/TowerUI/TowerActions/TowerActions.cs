@@ -72,9 +72,10 @@ public partial class TowerActions : NinePatchRect
 	public void IncreaseCurrentCost(int increaseBy)
 	{
 		_currentCost += increaseBy;
+		_updateLabels();
 	}
 
-	private void _updateLabels()
+	public void _updateLabels()
 	{
 		if (Tower.TowerInfo.TowerTier == TowerTier.Four) _upgradeLabel.Visible = false;
 		

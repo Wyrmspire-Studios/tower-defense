@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://rxshb5874vij"]
+
+[ext_resource type="Script" uid="uid://dlnuuiqsrlf8g" path="res://Scenes/Components/Tower/TowerUI/TowerStats/TowerStat.cs" id="1_oy117"]
+
+[node name="TowerStat" type="MarginContainer" node_paths=PackedStringArray("_statText")]
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_right = 12
+script = ExtResource("1_oy117")
+_statText = NodePath("HBoxContainer/Label")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+expand_mode = 2
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "123"
+horizontal_alignment = 1

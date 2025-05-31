@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://c4va0wy5tuxen"]
+
+[ext_resource type="PackedScene" uid="uid://rxshb5874vij" path="res://Scenes/Components/Tower/TowerUI/TowerStats/TowerStat.tscn" id="1_jqtgc"]
+[ext_resource type="Texture2D" uid="uid://i0spqmvc61ji" path="res://Assets/Icons/Small.png" id="2_33g3t"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cj0cr"]
+atlas = ExtResource("2_33g3t")
+region = Rect2(0, 0, 16, 16)
+
+[node name="DamageStat" instance=ExtResource("1_jqtgc")]
+
+[node name="TextureRect" parent="HBoxContainer" index="0"]
+texture = SubResource("AtlasTexture_cj0cr")

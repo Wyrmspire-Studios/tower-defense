@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://sln47v6aslo6"]
+[gd_scene load_steps=4 format=3 uid="uid://sln47v6aslo6"]
 
 [ext_resource type="Script" uid="uid://ctfyxqcwoly42" path="res://Scenes/Components/Tower/TowerUI/TowerUI.cs" id="1_fb0nr"]
 [ext_resource type="PackedScene" uid="uid://btd5tpgcepm6y" path="res://Scenes/Components/Tower/TowerUI/TowerActions/TowerActions.tscn" id="2_nkvdy"]
+[ext_resource type="PackedScene" uid="uid://bghpuyynvtrkm" path="res://Scenes/Components/Tower/TowerUI/TowerStats/TowerStats.tscn" id="3_amptn"]
 
-[node name="TowerUI" type="CanvasLayer" node_paths=PackedStringArray("TowerActions")]
+[node name="TowerUI" type="CanvasLayer" node_paths=PackedStringArray("TowerActions", "TowerStats")]
 script = ExtResource("1_fb0nr")
 TowerActions = NodePath("UIContainer/TowerActions")
+TowerStats = NodePath("UIContainer/TowerStats")
 
 [node name="UIContainer" type="Control" parent="."]
 layout_mode = 3
@@ -14,6 +16,20 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="TowerStats" parent="UIContainer" instance=ExtResource("3_amptn")]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -108.0
+offset_top = -82.0
+offset_right = -8.0
+offset_bottom = -66.0
+grow_horizontal = 0
+grow_vertical = 0
 
 [node name="TowerActions" parent="UIContainer" instance=ExtResource("2_nkvdy")]
 layout_mode = 1

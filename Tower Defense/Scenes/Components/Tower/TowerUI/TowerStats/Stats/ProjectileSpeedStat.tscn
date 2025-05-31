@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://b8b0qdfseuryd"]
+
+[ext_resource type="PackedScene" uid="uid://rxshb5874vij" path="res://Scenes/Components/Tower/TowerUI/TowerStats/TowerStat.tscn" id="1_uhewf"]
+[ext_resource type="Texture2D" uid="uid://i0spqmvc61ji" path="res://Assets/Icons/Small.png" id="2_otrsv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wwxvr"]
+atlas = ExtResource("2_otrsv")
+region = Rect2(32, 0, 16, 16)
+
+[node name="ProjectileSpeedStat" instance=ExtResource("1_uhewf")]
+
+[node name="TextureRect" parent="HBoxContainer" index="0"]
+texture = SubResource("AtlasTexture_wwxvr")

@@ -28,8 +28,8 @@ public partial class RangedProjectileTower : RangedTower
 		
 		base.OnStartPlacing();
 		
-		TowerProjectileShooting = GetNodeOrNull<TowerProjectileShooting>("TowerProjectileShooting");
-		TowerProjectileShooting?.Initialize(this);
+		TowerProjectileShooting = GetNode<TowerProjectileShooting>("TowerProjectileShooting");
+		TowerProjectileShooting.Initialize(this);
 		
 		RangedProjectileTowerInfo.Active = false;
 		
@@ -81,5 +81,20 @@ public partial class RangedProjectileTower : RangedTower
 		}
 		
 		_updateTowerInfo(newTowerData);
+		UpdateStatsUi(TowerUi.TowerStats);
+	}
+
+	public override void EnableStatsUi(TowerStats towerStats)
+	{
+		towerStats.EnableDamageStat();
+		towerStats.EnableProjectileSpeedStat();
+		towerStats.EnableRangeStat();
+	}
+
+	public override void UpdateStatsUi(TowerStats towerStats)
+	{
+		towerStats.DamageStatContainer.SetStatText($"{RangedProjectileTowerInfo.BaseProjectileInfo.Damage}");
+		towerStats.ProjectileSpeedStatContainer.SetStatText($"{RangedProjectileTowerInfo.BaseProjectileInfo.Speed}");
+		towerStats.RangeStatContainer.SetStatText($"{RangedProjectileTowerInfo.Range}");
 	}
 }

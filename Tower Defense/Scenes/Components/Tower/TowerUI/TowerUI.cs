@@ -4,6 +4,7 @@ using System;
 public partial class TowerUI : CanvasLayer
 {
 	[Export] public TowerActions TowerActions;
+	[Export] public TowerStats TowerStats;
 
 	private Tower _tower;
 	public void Initialize(Tower tower)
@@ -14,6 +15,7 @@ public partial class TowerUI : CanvasLayer
 		_tower.TowerCollider.TowerClickedOutside += _onTowerClickedOutside;
 		
 		TowerActions.Initialize(_tower);
+		TowerStats.Initialize(_tower);
 	}
 	
 	public void ToggleVisibility()

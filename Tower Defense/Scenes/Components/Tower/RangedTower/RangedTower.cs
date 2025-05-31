@@ -11,8 +11,8 @@ public partial class RangedTower : Tower
 	{
 		base.OnStartPlacing();
 		
-		TowerTargeting = GetNodeOrNull<TowerTargeting>("TowerTargeting");
-		TowerTargeting?.Initialize(this);
-		TowerTargeting?.ToggleRangeVisible();
+		TowerTargeting = GetNode<TowerTargeting>("TowerTargeting");
+		TowerTargeting.Initialize(this);
+		TowerTargeting.ToggleRangeVisible();
 	}
 }
