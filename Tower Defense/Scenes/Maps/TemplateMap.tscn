@@ -9,6 +9,9 @@
 
 [node name="MapUi" parent="." instance=ExtResource("1_q2r42")]
 
+[node name="CardDeck" parent="MapUi/MapUI" index="1" node_paths=PackedStringArray("TowerPlacement")]
+TowerPlacement = NodePath("../../../TowerPlacement")
+
 [node name="MapTiles" parent="." instance=ExtResource("2_y1n2n")]
 
 [node name="TowerPlacement" parent="." instance=ExtResource("3_hqyf3")]
