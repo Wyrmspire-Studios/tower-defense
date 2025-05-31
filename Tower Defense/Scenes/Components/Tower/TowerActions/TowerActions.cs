@@ -25,7 +25,7 @@ public partial class TowerActions : NinePatchRect
 		_sellTowerButton.Pressed += _onSellTower;
 		_upgradeTowerButton.Pressed += _onUpgradeTower;
 
-		_currentCost = 50; // TODO: CHANGE TO COST OF ROLLING A NEW CARD
+		_currentCost = 50;
 		_upgradeCost = Tower.TowerInfo.BaseUpgradeCost;
 		
 		LevelData.GoldChanged += _recheckUpgradeAvailable;
@@ -81,5 +81,10 @@ public partial class TowerActions : NinePatchRect
 		
 		_currentCost += _upgradeCost;
 		_upgradeCost = Mathf.FloorToInt(_upgradeCost * 1.5);
+	}
+
+	public void IncreaseCurrentCost(int increaseBy)
+	{
+		_currentCost += increaseBy;
 	}
 }

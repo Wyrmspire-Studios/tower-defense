@@ -4,6 +4,8 @@ using System;
 [GlobalClass]
 public partial class TowerEnhancement : Resource
 {
+	[Export] public bool Additive;
+	
 	[ExportGroup("Projectile Enhancement")]
 	[Export] public int NewProjectileDamage = -1;
 	[Export] public int NewProjectileSpeed = -1;
