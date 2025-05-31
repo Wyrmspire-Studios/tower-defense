@@ -46,7 +46,6 @@ public partial class TowerBeamShooting : Node2D
 
 	public override void _Process(double delta)
 	{
-		if (_shootingAt == null) return;
 		QueueRedraw();
 	}
 
@@ -73,12 +72,6 @@ public partial class TowerBeamShooting : Node2D
 
 	private void _onTargetChange(Enemy newTarget)
 	{
-		var reset = _shootingAt == null;
 		_shootingAt = newTarget;
-		
-		if (reset && _shootingAt != null)
-		{
-			_onShootDelay();
-		}
 	}
 }
