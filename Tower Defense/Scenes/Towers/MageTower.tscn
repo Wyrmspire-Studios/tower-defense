@@ -1,0 +1,104 @@
+[gd_scene load_steps=11 format=3 uid="uid://bt1efhy4djaqj"]
+
+[ext_resource type="PackedScene" uid="uid://bvwyjtko1pkmm" path="res://Scenes/Components/Tower/RangedTower/RangedBeamTower/RangedBeamTower.tscn" id="1_ff0jh"]
+[ext_resource type="Script" uid="uid://bh3qr8sm03xg8" path="res://Scenes/Components/Tower/TowerEnhancement/TowerEnhancement.cs" id="2_tv50n"]
+[ext_resource type="Texture2D" uid="uid://dtu2yf2wsxval" path="res://Assets/Towers/MageTiers.png" id="3_7wdpo"]
+[ext_resource type="Script" uid="uid://c5basb2horq00" path="res://Scenes/Components/Tower/RangedTower/RangedBeamTower/RangedBeamTowerInfo.cs" id="4_ri38y"]
+
+[sub_resource type="Resource" id="Resource_s5oxu"]
+script = ExtResource("2_tv50n")
+Additive = true
+NewProjectileDamage = 5
+NewProjectileSpeed = -1
+NewProjectileSpawnOffset = Vector2(inf, inf)
+NewProjectileFireDelay = -1.0
+NewBeamDamage = 1
+NewBeamSpawnOffset = Vector2(inf, inf)
+NewBeamFireDelay = -1.0
+NewBeamFireDuration = -1.0
+NewRange = -1
+NewRangeOffset = Vector2(inf, inf)
+metadata/_custom_type_script = "uid://bh3qr8sm03xg8"
+
+[sub_resource type="Resource" id="Resource_dr4e8"]
+script = ExtResource("2_tv50n")
+Additive = false
+NewProjectileDamage = -1
+NewProjectileSpeed = -1
+NewProjectileSpawnOffset = Vector2(inf, inf)
+NewProjectileFireDelay = -1.0
+NewBeamDamage = 2
+NewBeamSpawnOffset = Vector2(16, 1)
+NewBeamFireDelay = 5.0
+NewBeamFireDuration = 5.0
+NewRange = 64
+NewRangeOffset = Vector2(inf, inf)
+metadata/_custom_type_script = "uid://bh3qr8sm03xg8"
+
+[sub_resource type="Resource" id="Resource_oqhm4"]
+script = ExtResource("2_tv50n")
+Additive = false
+NewProjectileDamage = -1
+NewProjectileSpeed = -1
+NewProjectileSpawnOffset = Vector2(inf, inf)
+NewProjectileFireDelay = -1.0
+NewBeamDamage = 4
+NewBeamSpawnOffset = Vector2(16, -5)
+NewBeamFireDelay = 4.0
+NewBeamFireDuration = 6.0
+NewRange = 96
+NewRangeOffset = Vector2(inf, inf)
+metadata/_custom_type_script = "uid://bh3qr8sm03xg8"
+
+[sub_resource type="Resource" id="Resource_bukhr"]
+script = ExtResource("2_tv50n")
+Additive = false
+NewProjectileDamage = -1
+NewProjectileSpeed = -1
+NewProjectileSpawnOffset = Vector2(inf, inf)
+NewProjectileFireDelay = -1.0
+NewBeamDamage = 6
+NewBeamSpawnOffset = Vector2(16, -15)
+NewBeamFireDelay = 3.0
+NewBeamFireDuration = 7.0
+NewRange = 128
+NewRangeOffset = Vector2(inf, inf)
+metadata/_custom_type_script = "uid://bh3qr8sm03xg8"
+
+[sub_resource type="Resource" id="Resource_45hkw"]
+script = ExtResource("2_tv50n")
+Additive = false
+NewProjectileDamage = -1
+NewProjectileSpeed = -1
+NewProjectileSpawnOffset = Vector2(inf, inf)
+NewProjectileFireDelay = -1.0
+NewBeamDamage = 8
+NewBeamSpawnOffset = Vector2(16, -15)
+NewBeamFireDelay = 2.0
+NewBeamFireDuration = 8.0
+NewRange = 160
+NewRangeOffset = Vector2(inf, inf)
+metadata/_custom_type_script = "uid://bh3qr8sm03xg8"
+
+[sub_resource type="Resource" id="Resource_hqfkr"]
+resource_local_to_scene = true
+script = ExtResource("4_ri38y")
+BeamSpawnOffset = Vector2(16, 1)
+FireDelay = 5.0
+FireDuration = 5.0
+Damage = 2
+BackgroundBeamColor = Color(0, 0.305882, 0.74902, 1)
+ForegroundBeamColor = Color(0, 0.639216, 1, 1)
+Range = 64
+RangeOffset = Vector2(16, 16)
+TargetingMode = 0
+Active = true
+TowerTier = 0
+TowerTierTexture = ExtResource("3_7wdpo")
+BaseUpgradeCost = 100
+TowerTierEnhancements = Array[Object]([SubResource("Resource_dr4e8"), SubResource("Resource_oqhm4"), SubResource("Resource_bukhr"), SubResource("Resource_45hkw")])
+GivenEnhancement = SubResource("Resource_s5oxu")
+metadata/_custom_type_script = "uid://c5basb2horq00"
+
+[node name="MageTower" instance=ExtResource("1_ff0jh")]
+_baseRangedBeamTowerInfo = SubResource("Resource_hqfkr")

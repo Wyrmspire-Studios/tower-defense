@@ -47,8 +47,6 @@ public partial class RangedProjectileTower : RangedTower
 		var newTowerData = (RangedProjectileTowerInfo)_baseRangedProjectileTowerInfo.Duplicate(true);
 		newTowerData.TowerTier = RangedProjectileTowerInfo.TowerTier;
 		
-		
-		
 		foreach (var towerEnhancement in TowerEnhancements.OrderBy(enhancement => enhancement.Additive))
 		{
 			if (towerEnhancement.NewProjectileDamage != -1)
@@ -62,6 +60,14 @@ public partial class RangedProjectileTower : RangedTower
 			if (towerEnhancement.NewProjectileSpawnOffset != Vector2.Inf)
 				if (towerEnhancement.Additive) newTowerData.ProjectileSpawnOffset += towerEnhancement.NewProjectileSpawnOffset;
 				else newTowerData.ProjectileSpawnOffset = towerEnhancement.NewProjectileSpawnOffset;
+			
+			if (Math.Abs(towerEnhancement.NewProjectileFireDelay - -1) > 0.001)
+			{
+				if (towerEnhancement.Additive) newTowerData.FireDelay += towerEnhancement.NewProjectileFireDelay;
+				else newTowerData.FireDelay = towerEnhancement.NewProjectileFireDelay;
+				
+				TowerProjectileShooting.UpdateFireDelay();
+			}
 
 			if (towerEnhancement.NewRange != -1)
 			{
@@ -87,6 +93,7 @@ public partial class RangedProjectileTower : RangedTower
 	public override void EnableStatsUi(TowerStats towerStats)
 	{
 		towerStats.EnableDamageStat();
+		towerStats.EnableFireDelayStat();
 		towerStats.EnableProjectileSpeedStat();
 		towerStats.EnableRangeStat();
 	}
@@ -94,7 +101,8 @@ public partial class RangedProjectileTower : RangedTower
 	public override void UpdateStatsUi(TowerStats towerStats)
 	{
 		towerStats.DamageStatContainer.SetStatText($"{RangedProjectileTowerInfo.BaseProjectileInfo.Damage}");
-		towerStats.ProjectileSpeedStatContainer.SetStatText($"{RangedProjectileTowerInfo.BaseProjectileInfo.Speed}");
-		towerStats.RangeStatContainer.SetStatText($"{RangedProjectileTowerInfo.Range}");
+		towerStats.FireDelayStatContainer.SetStatText($"{RangedProjectileTowerInfo.FireDelay}s");
+		towerStats.ProjectileSpeedStatContainer.SetStatText($"{RangedProjectileTowerInfo.BaseProjectileInfo.Speed}/s");
+		towerStats.RangeStatContainer.SetStatText($"{RangedProjectileTowerInfo.Range}m");
 	}
 }

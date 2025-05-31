@@ -4,6 +4,9 @@ using WyrmspireStudios.Data;
 
 public partial class Enemy : PathFollow2D
 {
+	public delegate void EnemyDiedHandler(Enemy enemy);
+	public static event EnemyDiedHandler EnemyDied;
+	
 	[Export] private EnemyInfo _enemyInfo;
 	private EnemyInfo _currentEnemyInfo;
 
@@ -34,12 +37,14 @@ public partial class Enemy : PathFollow2D
 	{
 		LevelData.AddEnemyDeath();
 		LevelData.AddGold(_currentEnemyInfo.GoldDrop);
+		EnemyDied?.Invoke(this);
 		QueueFree();
 	}
 
 	private void OnDamagePlayer()
 	{
 		LevelData.RemoveHealth(_currentEnemyInfo.Damage * _currentEnemyInfo.Health / GetHealth());
+		EnemyDied?.Invoke(this);
 		QueueFree();
 	}
 }

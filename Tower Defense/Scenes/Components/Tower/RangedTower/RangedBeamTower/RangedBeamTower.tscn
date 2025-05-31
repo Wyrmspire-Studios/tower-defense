@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvwyjtko1pkmm"]
+
+[ext_resource type="PackedScene" uid="uid://c20554dlnp7eg" path="res://Scenes/Components/Tower/RangedTower/RangedTower.tscn" id="1_4tmdj"]
+[ext_resource type="PackedScene" uid="uid://42dubgtt4pfc" path="res://Scenes/Components/Tower/TowerShooting/TowerBeamShooting/TowerBeamShooting.tscn" id="2_mkp6n"]
+[ext_resource type="Script" uid="uid://chak4bca6odly" path="res://Scenes/Components/Tower/RangedTower/RangedBeamTower/RangedBeamTower.cs" id="2_nan0r"]
+
+[node name="RangedBeamTower" instance=ExtResource("1_4tmdj")]
+script = ExtResource("2_nan0r")
+_baseRangedBeamTowerInfo = null
+
+[node name="TowerBeamShooting" parent="." index="2" instance=ExtResource("2_mkp6n")]

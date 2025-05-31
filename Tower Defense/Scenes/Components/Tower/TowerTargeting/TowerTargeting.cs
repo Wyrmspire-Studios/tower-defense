@@ -5,6 +5,9 @@ using System.Linq;
 
 public partial class TowerTargeting : Area2D
 {
+	public delegate void OnTargetChange(Enemy enemy);
+	public event OnTargetChange TargetChange;
+	
 	[ExportGroup("Internal")]
 	[Export] private CollisionShape2D _rangeCollisionShape;
 	[Export] private Timer _recalculateTargetTimer;
@@ -29,6 +32,8 @@ public partial class TowerTargeting : Area2D
 		AreaEntered += _onAreaEntered;
 		AreaExited += _onAreaExited;
 		_recalculateTargetTimer.Timeout += _recalculateTarget;
+
+		Enemy.EnemyDied += _onEnemyDied;
 	}
 
 	public override void _ExitTree()
@@ -38,6 +43,7 @@ public partial class TowerTargeting : Area2D
 		AreaEntered -= _onAreaEntered;
 		AreaExited -= _onAreaExited;
 		_recalculateTargetTimer.Timeout -= _recalculateTarget;
+		Enemy.EnemyDied -= _onEnemyDied;
 	}
 
 	public override void _Draw()
@@ -76,9 +82,14 @@ public partial class TowerTargeting : Area2D
 
 	private void _recalculateTarget()
 	{
-		if (_enemiesInRange.Count == 0) _currentTarget = null;
+		if (_enemiesInRange.Count == 0)
+		{
+			_currentTarget = null;
+			TargetChange?.Invoke(_currentTarget);
+		}
 		else
-			_currentTarget = Tower.RangedTowerInfo.TargetingMode switch
+		{
+			var newTarget = Tower.RangedTowerInfo.TargetingMode switch
 			{
 				TowerTargetingMode.First => _enemiesInRange.OrderBy(enemy => enemy.ProgressRatio).Last(),
 				TowerTargetingMode.Last => _enemiesInRange.OrderBy(enemy => enemy.ProgressRatio).First(),
@@ -86,6 +97,10 @@ public partial class TowerTargeting : Area2D
 				TowerTargetingMode.LeastHealth => _enemiesInRange.OrderBy(enemy => enemy.GetHealth()).First(),
 				_ => throw new ArgumentOutOfRangeException()
 			};
+
+			if (newTarget != _currentTarget) TargetChange?.Invoke(newTarget);
+			_currentTarget = newTarget;
+		}
 	}
 
 	private void _onTowerClickedInside(InputEventMouseButton ev)
@@ -98,5 +113,13 @@ public partial class TowerTargeting : Area2D
 		if (!_rangeVisible) return;
 		if (Tower.TowerUi.TowerActions.GetGlobalRect().HasPoint(ev.GlobalPosition)) return;
 		ToggleRangeVisible();
+	}
+
+	private void _onEnemyDied(Enemy enemy)
+	{
+		if (!_enemiesInRange.Contains(enemy)) return;
+		
+		_enemiesInRange.Remove(enemy);
+		_recalculateTarget();
 	}
 }

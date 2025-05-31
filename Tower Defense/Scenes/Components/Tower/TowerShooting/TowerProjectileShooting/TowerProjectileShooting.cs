@@ -8,13 +8,16 @@ public partial class TowerProjectileShooting : Node2D
 	
 	public RangedProjectileTower Tower;
 
-	private Vector2 _target;
-	
 	public void Initialize(RangedProjectileTower tower)
 	{
 		Tower = tower;
 
 		_shootTimer.Timeout += _shoot;
+	}
+
+	public void UpdateFireDelay()
+	{
+		_shootTimer.WaitTime = Tower.RangedProjectileTowerInfo.FireDelay;
 	}
 
 	private void _shoot()
