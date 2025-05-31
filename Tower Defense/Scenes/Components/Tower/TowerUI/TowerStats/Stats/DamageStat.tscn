@@ -11,3 +11,6 @@ region = Rect2(0, 0, 16, 16)
 
 [node name="TextureRect" parent="HBoxContainer" index="0"]
 texture = SubResource("AtlasTexture_cj0cr")
+
+[node name="TextureShadow" parent="HBoxContainer/TextureRect" index="0"]
+texture = SubResource("AtlasTexture_cj0cr")

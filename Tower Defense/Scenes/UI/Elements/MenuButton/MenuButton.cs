@@ -6,6 +6,7 @@ namespace WyrmspireStudios.UI;
 public partial class MenuButton : Button
 {
     private NinePatchRect _background;
+    private NinePatchRect _backgroundShadow;
     private Label _label;
     private bool _eventsConnected;
 
@@ -63,9 +64,11 @@ public partial class MenuButton : Button
     {
         _baseTexture = texture;
         NinePatchRect background = GetNodeOrNull<NinePatchRect>("Background");
-        if (background != null)
+        NinePatchRect backgroundShadow = GetNodeOrNull<NinePatchRect>("Background/BackgroundShadow");
+        if (background != null && backgroundShadow != null)
         {
             background.Texture = _baseTexture;
+            backgroundShadow.Texture = _baseTexture;
         }
     }
 
@@ -98,6 +101,7 @@ public partial class MenuButton : Button
     public override void _Ready()
     {
         _background = GetNode<NinePatchRect>("Background");
+        _backgroundShadow = GetNode<NinePatchRect>("Background/BackgroundShadow");
         _label = GetNode<Label>("Label");
 
         ButtonDown += OnButtonDown;
@@ -120,11 +124,14 @@ public partial class MenuButton : Button
     private void OnButtonDown()
     {
         _background.Texture = _pressedTexture;
+        _backgroundShadow.Texture = _pressedTexture;
     }
 
     private void OnButtonUp()
     {
-        _background.Texture = GetRect().HasPoint(GetLocalMousePosition()) ? _hoverTexture : _baseTexture;
+        var texture = GetRect().HasPoint(GetLocalMousePosition()) ? _hoverTexture : _baseTexture;
+        _background.Texture = texture;
+        _backgroundShadow.Texture = texture;
     }
 
     private void OnMouseEntered()
@@ -132,6 +139,7 @@ public partial class MenuButton : Button
         if (!IsPressed())
         {
             _background.Texture = _hoverTexture;
+            _backgroundShadow.Texture = _hoverTexture;
         }
     }
 
@@ -140,6 +148,7 @@ public partial class MenuButton : Button
         if (!IsPressed())
         {
             _background.Texture = _baseTexture;
+            _backgroundShadow.Texture = _baseTexture;
         }
     }
 }

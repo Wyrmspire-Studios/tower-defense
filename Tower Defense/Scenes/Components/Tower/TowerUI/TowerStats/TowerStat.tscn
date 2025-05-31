@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://rxshb5874vij"]
+[gd_scene load_steps=3 format=3 uid="uid://rxshb5874vij"]
 
 [ext_resource type="Script" uid="uid://dlnuuiqsrlf8g" path="res://Scenes/Components/Tower/TowerUI/TowerStats/TowerStat.cs" id="1_oy117"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_qvtfe"]
+shadow_color = Color(0, 0, 0, 1)
 
 [node name="TowerStat" type="MarginContainer" node_paths=PackedStringArray("_statText")]
 theme_override_constants/margin_left = 16
@@ -16,8 +19,27 @@ layout_mode = 2
 expand_mode = 2
 stretch_mode = 4
 
+[node name="TextureShadow" type="TextureRect" parent="HBoxContainer/TextureRect"]
+self_modulate = Color(0, 0, 0, 1)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 1.0
+offset_top = -8.0
+offset_right = 1.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 2
+stretch_mode = 4
+
 [node name="Label" type="Label" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "123"
+label_settings = SubResource("LabelSettings_qvtfe")
 horizontal_alignment = 1

@@ -12,7 +12,7 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4elqj"]
 atlas = ExtResource("2_nahvw")
-region = Rect2(1, 33, 62, 30)
+region = Rect2(1, 33, 61, 30)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ri767"]
 atlas = ExtResource("2_nahvw")
@@ -338,7 +338,8 @@ script = ExtResource("1_67d64")
 TutorialMap = ExtResource("2_u8hla")
 DefaultButtonSelection = NodePath("CanvasLayer/Control/DefaultButtonSelection")
 
-[node name="MenuButtonGroupController" parent="." instance=ExtResource("1_8x0bb")]
+[node name="MenuButtonGroupController" parent="." node_paths=PackedStringArray("MenuButtons") instance=ExtResource("1_8x0bb")]
+MenuButtons = [NodePath("../CanvasLayer/Control/DefaultButtonSelection/PlayMenuButton"), NodePath("../CanvasLayer/Control/DefaultButtonSelection/SettingsMenuButton"), NodePath("../CanvasLayer/Control/DefaultButtonSelection/ExitMenuButton")]
 BaseTexture = SubResource("AtlasTexture_4elqj")
 HoverTexture = SubResource("AtlasTexture_ri767")
 PressedTexture = SubResource("AtlasTexture_a712v")
@@ -376,6 +377,20 @@ texture = ExtResource("6_u8hla")
 libraries = {
 &"": SubResource("AnimationLibrary_eoxer")
 }
+
+[node name="TitleShadow" type="TextureRect" parent="CanvasLayer/Control/Title"]
+modulate = Color(0, 0, 0, 1)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -62.0
+offset_top = 2.0
+offset_right = 66.0
+offset_bottom = 130.0
+grow_horizontal = 2
+texture = ExtResource("6_u8hla")
 
 [node name="DefaultButtonSelection" type="VBoxContainer" parent="CanvasLayer/Control"]
 layout_mode = 1

@@ -7,3 +7,10 @@
 
 [node name="TextureRect" parent="HBoxContainer" index="0"]
 texture = ExtResource("2_daiv4")
+
+[node name="TextureShadow" parent="HBoxContainer/TextureRect" index="0"]
+offset_left = -8.5
+offset_top = -8.5
+offset_right = 9.5
+offset_bottom = 9.5
+texture = ExtResource("2_daiv4")

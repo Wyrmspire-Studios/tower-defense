@@ -11,3 +11,8 @@ region = Rect2(16, 0, 16, 16)
 
 [node name="TextureRect" parent="HBoxContainer" index="0"]
 texture = SubResource("AtlasTexture_t3rsx")
+
+[node name="TextureShadow" parent="HBoxContainer/TextureRect" index="0"]
+offset_left = -8.0
+offset_right = 10.0
+texture = SubResource("AtlasTexture_t3rsx")

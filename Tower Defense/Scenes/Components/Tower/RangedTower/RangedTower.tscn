@@ -8,6 +8,3 @@
 script = ExtResource("2_j8hdo")
 
 [node name="TowerTargeting" parent="." index="0" instance=ExtResource("3_j8hdo")]
-
-[node name="TowerUI" parent="." index="3"]
-visible = true

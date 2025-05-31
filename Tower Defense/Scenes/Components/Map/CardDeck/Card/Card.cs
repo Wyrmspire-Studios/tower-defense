@@ -26,6 +26,7 @@ public partial class Card : Button
     private NinePatchRect _background;
     private ColorRect _highlight;
     private TextureRect _towerTextureRect;
+    private TextureRect _towerShadowTextureRect;
     private bool _animating;
     private bool _ready = false;
 
@@ -34,8 +35,9 @@ public partial class Card : Button
     public override void _Ready()
     {
         _background = GetNode<NinePatchRect>("Background");
-        _highlight = GetNode<ColorRect>("Highlight");
+        _highlight = GetNode<ColorRect>("Background/Highlight");
         _towerTextureRect = GetNode<TextureRect>("Background/TowerTextureRect");
+        _towerShadowTextureRect = GetNode<TextureRect>("Background/TowerTextureRect/TowerShadow");
         
         var towerInstance = TowerToPlace.Instantiate<Tower>();
         towerInstance.OnStartPlacing(TowerPlacement, true);
@@ -44,6 +46,7 @@ public partial class Card : Button
         atlasTexture.Atlas = towerInstance.TowerInfo.TowerTierTexture;
         atlasTexture.Region = regionRect;
         _towerTextureRect.Texture = atlasTexture;
+        _towerShadowTextureRect.Texture = atlasTexture;
         towerInstance.QueueFree();
 
         ButtonDown += OnButtonDown;
@@ -75,7 +78,7 @@ public partial class Card : Button
             if (!CardDeck.IsInDeck() && !_dragging && _highlighting)
             {
                 _background.Position = Vector2.Zero;
-                _highlight.Position = new(-1, -1);
+                //_highlight.Position = new(-1, -1);
                 _highlighting = false;
                 _highlight.Visible = false;
                 ZIndex = 0;
@@ -138,7 +141,7 @@ public partial class Card : Button
 
         _position = _defaultPosition;
         _background.Position = Vector2.Zero;
-        _highlight.Position = new(-1, -1);
+        //_highlight.Position = new(-1, -1);
 
         if (TowerPlacement.IsPlacing() && !CardDeck.IsInDeck())
         {
@@ -159,7 +162,7 @@ public partial class Card : Button
         if (Locked || _dragging) return;
 
         _background.Position = SelectedPositionOffset;
-        _highlight.Position = SelectedPositionOffset + new Vector2(-1, -1);
+        //_highlight.Position = SelectedPositionOffset + new Vector2(-1, -1);
         _highlighting = true;
         ZIndex = 10;
     }
@@ -169,7 +172,7 @@ public partial class Card : Button
         if (Locked || _dragging) return;
 
         _background.Position = Vector2.Zero;
-        _highlight.Position = new(-1, -1);
+        //_highlight.Position = new(-1, -1);
         _highlighting = false;
         ZIndex = 0;
     }
