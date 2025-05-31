@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://dpv1tde35onc2" path="res://Scenes/UI/MainMenu/MainMenu.cs" id="1_67d64"]
 [ext_resource type="PackedScene" uid="uid://co00wol6ol0yp" path="res://Scenes/UI/Elements/MenuButton/MenuButton.tscn" id="2_8x0bb"]
 [ext_resource type="Texture2D" uid="uid://b3xj1u0bxi7l1" path="res://Assets/buttons.png" id="2_nahvw"]
-[ext_resource type="PackedScene" uid="uid://co4vvln87bywk" path="res://Scenes/Maps/TutorialMap/TutorialMap.tscn" id="3_tc2ed"]
+[ext_resource type="PackedScene" uid="uid://co4vvln87bywk" path="res://Scenes/Maps/TutorialMap/TutorialMap.tscn" id="2_u8hla"]
 [ext_resource type="PackedScene" uid="uid://dvopx0b1owuig" path="res://Scenes/UI/MainMenu/BackgroundMap.tscn" id="4_67d64"]
 [ext_resource type="Texture2D" uid="uid://cosb8wvxuxjln" path="res://Assets/logo-pixelart-2.png" id="6_u8hla"]
 [ext_resource type="Texture2D" uid="uid://dhqgm044nr5rg" path="res://Assets/Cards/Rare.png" id="8_jhcbk"]
@@ -335,7 +335,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_67d64")
-TutorialMap = ExtResource("3_tc2ed")
+TutorialMap = ExtResource("2_u8hla")
 DefaultButtonSelection = NodePath("CanvasLayer/Control/DefaultButtonSelection")
 
 [node name="MenuButtonGroupController" parent="." instance=ExtResource("1_8x0bb")]
