@@ -9,6 +9,7 @@ public partial class RangedBeamTowerInfo : RangedTowerInfo
 	[Export] public float FireDelay = 1f;
 	[Export] public float FireDuration = 1f;
 	[Export] public int Damage = 1;
+	[Export] public float StunDuration;
 	[Export] public Color BackgroundBeamColor = Color.Color8(255, 255, 255);
 	[Export] public Color ForegroundBeamColor = Color.Color8(192, 192, 192);
 }

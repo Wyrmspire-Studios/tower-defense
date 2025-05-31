@@ -18,11 +18,13 @@ public partial class SpawningTower : Tower
 
 		if (unitHealth > enemyHealth)
 		{
+			if (SpawningTowerInfo.UnitStunDuration > 0) enemy.ApplyStun(SpawningTowerInfo.UnitStunDuration);
 			enemy.TakeDamage(enemyHealth);
 			unit.Health -= enemyHealth;
 		}
 		else
 		{
+			if (SpawningTowerInfo.UnitStunDuration > 0) enemy.ApplyStun(SpawningTowerInfo.UnitStunDuration);
 			enemy.TakeDamage(unit.Health);
 			unit.QueueFree();
 			TowerSpawning.SpawnedUnits.Remove(unit.Direction);
@@ -74,13 +76,16 @@ public partial class SpawningTower : Tower
 				else newTowerData.UnitHealth = towerEnhancement.NewUnitHealth;
 			
 			if (towerEnhancement.NewUnitSpawnRate > 0)
-			{
 				if (towerEnhancement.Additive) newTowerData.UnitSpawnRate -= towerEnhancement.NewUnitSpawnRate;
 				else newTowerData.UnitSpawnRate = towerEnhancement.NewUnitSpawnRate;
-			}
+
+			if (towerEnhancement.NewUnitStunDuration > 0)
+				if (towerEnhancement.Additive) newTowerData.UnitStunDuration += towerEnhancement.NewUnitStunDuration;
+				else newTowerData.UnitStunDuration = towerEnhancement.NewUnitStunDuration;
 		}
 		
 		_updateTowerInfo(newTowerData);
+		EnableStatsUi(TowerUi.TowerStats);
 		UpdateStatsUi(TowerUi.TowerStats);
 	}
 	
@@ -103,13 +108,17 @@ public partial class SpawningTower : Tower
 
 	public override void EnableStatsUi(TowerStats towerStats)
 	{
+		base.EnableStatsUi(towerStats);
+		
 		towerStats.EnableHealthStat();
 		towerStats.EnableFireDelayStat();
+		if (SpawningTowerInfo.UnitStunDuration > 0) towerStats.EnableStunStat();
 	}
 
 	public override void UpdateStatsUi(TowerStats towerStats)
 	{
 		towerStats.HealthStatContainer.SetStatText($"{SpawningTowerInfo.UnitHealth}");
 		towerStats.FireDelayStatContainer.SetStatText($"{SpawningTowerInfo.UnitSpawnRate}");
+		towerStats.StunStatContainer?.SetStatText($"{SpawningTowerInfo.UnitStunDuration}s");
 	}
 }

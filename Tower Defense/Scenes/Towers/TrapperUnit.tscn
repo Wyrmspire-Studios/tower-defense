@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://cmukghevq5u5i"]
+
+[ext_resource type="PackedScene" uid="uid://cdonejy0biygm" path="res://Scenes/Components/Unit/Unit.tscn" id="1_ntv4f"]
+[ext_resource type="Texture2D" uid="uid://b3xd1hukwh5c" path="res://Assets/Towers/TrapperUnit.png" id="2_gbc2a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xvcww"]
+size = Vector2(27, 27)
+
+[node name="TrapperUnit" instance=ExtResource("1_ntv4f")]
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2(-1.5, -0.5)
+shape = SubResource("RectangleShape2D_xvcww")
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_gbc2a")

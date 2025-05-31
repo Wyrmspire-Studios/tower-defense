@@ -1,0 +1,126 @@
+[gd_scene load_steps=12 format=3 uid="uid://d3xe4dt5f1nix"]
+
+[ext_resource type="PackedScene" uid="uid://b7n10rivkinq4" path="res://Scenes/Components/Tower/SpawningTower/SpawningTower.tscn" id="1_pb3vk"]
+[ext_resource type="Script" uid="uid://bh3qr8sm03xg8" path="res://Scenes/Components/Tower/TowerEnhancement/TowerEnhancement.cs" id="2_rltuk"]
+[ext_resource type="PackedScene" uid="uid://cmukghevq5u5i" path="res://Scenes/Towers/TrapperUnit.tscn" id="3_rltuk"]
+[ext_resource type="Texture2D" uid="uid://c32ga8f3njdnn" path="res://Assets/Towers/TrapperTiers.png" id="3_snklo"]
+[ext_resource type="Script" uid="uid://chgvjxx83wq4a" path="res://Scenes/Components/Tower/SpawningTower/SpawningTowerInfo.cs" id="4_gewim"]
+
+[sub_resource type="Resource" id="Resource_dyced"]
+script = ExtResource("2_rltuk")
+Additive = true
+NewProjectileDamage = -1
+NewProjectileSpeed = -1
+NewProjectileSpawnOffset = Vector2(inf, inf)
+NewProjectileFireDelay = -1.0
+NewProjectileStunDuration = 0.1
+NewBeamDamage = -1
+NewBeamSpawnOffset = Vector2(inf, inf)
+NewBeamFireDelay = -1.0
+NewBeamFireDuration = -1.0
+NewBeamStunDuration = 0.05
+NewUnitHealth = -1
+NewUnitSpawnRate = -1.0
+NewUnitStunDuration = 0.25
+NewRange = -1
+NewRangeOffset = Vector2(inf, inf)
+metadata/_custom_type_script = "uid://bh3qr8sm03xg8"
+
+[sub_resource type="Resource" id="Resource_4uiaw"]
+script = ExtResource("2_rltuk")
+Additive = false
+NewProjectileDamage = -1
+NewProjectileSpeed = -1
+NewProjectileSpawnOffset = Vector2(inf, inf)
+NewProjectileFireDelay = -1.0
+NewProjectileStunDuration = -1.0
+NewBeamDamage = -1
+NewBeamSpawnOffset = Vector2(inf, inf)
+NewBeamFireDelay = -1.0
+NewBeamFireDuration = -1.0
+NewBeamStunDuration = -1.0
+NewUnitHealth = 2
+NewUnitSpawnRate = 7.5
+NewUnitStunDuration = 1.0
+NewRange = -1
+NewRangeOffset = Vector2(inf, inf)
+metadata/_custom_type_script = "uid://bh3qr8sm03xg8"
+
+[sub_resource type="Resource" id="Resource_3ehmr"]
+script = ExtResource("2_rltuk")
+Additive = false
+NewProjectileDamage = -1
+NewProjectileSpeed = -1
+NewProjectileSpawnOffset = Vector2(inf, inf)
+NewProjectileFireDelay = -1.0
+NewProjectileStunDuration = -1.0
+NewBeamDamage = -1
+NewBeamSpawnOffset = Vector2(inf, inf)
+NewBeamFireDelay = -1.0
+NewBeamFireDuration = -1.0
+NewBeamStunDuration = -1.0
+NewUnitHealth = 4
+NewUnitSpawnRate = 7.0
+NewUnitStunDuration = 1.5
+NewRange = -1
+NewRangeOffset = Vector2(inf, inf)
+metadata/_custom_type_script = "uid://bh3qr8sm03xg8"
+
+[sub_resource type="Resource" id="Resource_xcpdn"]
+script = ExtResource("2_rltuk")
+Additive = false
+NewProjectileDamage = -1
+NewProjectileSpeed = -1
+NewProjectileSpawnOffset = Vector2(inf, inf)
+NewProjectileFireDelay = -1.0
+NewProjectileStunDuration = -1.0
+NewBeamDamage = -1
+NewBeamSpawnOffset = Vector2(inf, inf)
+NewBeamFireDelay = -1.0
+NewBeamFireDuration = -1.0
+NewBeamStunDuration = -1.0
+NewUnitHealth = 6
+NewUnitSpawnRate = 6.5
+NewUnitStunDuration = 2.0
+NewRange = -1
+NewRangeOffset = Vector2(inf, inf)
+metadata/_custom_type_script = "uid://bh3qr8sm03xg8"
+
+[sub_resource type="Resource" id="Resource_mndx4"]
+script = ExtResource("2_rltuk")
+Additive = false
+NewProjectileDamage = -1
+NewProjectileSpeed = -1
+NewProjectileSpawnOffset = Vector2(inf, inf)
+NewProjectileFireDelay = -1.0
+NewProjectileStunDuration = -1.0
+NewBeamDamage = -1
+NewBeamSpawnOffset = Vector2(inf, inf)
+NewBeamFireDelay = -1.0
+NewBeamFireDuration = -1.0
+NewBeamStunDuration = -1.0
+NewUnitHealth = 8
+NewUnitSpawnRate = 6.0
+NewUnitStunDuration = 2.5
+NewRange = -1
+NewRangeOffset = Vector2(inf, inf)
+metadata/_custom_type_script = "uid://bh3qr8sm03xg8"
+
+[sub_resource type="Resource" id="Resource_18dsg"]
+resource_local_to_scene = true
+script = ExtResource("4_gewim")
+SpawnedUnit = ExtResource("3_rltuk")
+UnitHealth = 2
+UnitSpawnRate = 7.5
+UnitStunDuration = 1.0
+Name = "Trapper"
+Active = false
+TowerTier = 0
+TowerTierTexture = ExtResource("3_snklo")
+BaseUpgradeCost = 100
+TowerTierEnhancements = Array[Object]([SubResource("Resource_4uiaw"), SubResource("Resource_3ehmr"), SubResource("Resource_xcpdn"), SubResource("Resource_mndx4")])
+GivenEnhancement = SubResource("Resource_dyced")
+metadata/_custom_type_script = "uid://chgvjxx83wq4a"
+
+[node name="TrapperTower" instance=ExtResource("1_pb3vk")]
+_baseSpawningTowerInfo = SubResource("Resource_18dsg")

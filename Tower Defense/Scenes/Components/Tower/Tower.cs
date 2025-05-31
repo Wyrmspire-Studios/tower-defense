@@ -51,7 +51,11 @@ public partial class Tower : Node2D
 		QueueFree();
 	}
 	public virtual void ApplyEnhancements() {}
-	public virtual void EnableStatsUi(TowerStats towerStats) {}
+
+	public virtual void EnableStatsUi(TowerStats towerStats)
+	{
+		towerStats.ResetToDefaultSize();
+	}
 	public virtual void UpdateStatsUi(TowerStats towerStats) {}
 
 	public virtual CanPlace CheckPlacementRequirements(TowerPlacement towerPlacement, Vector2I tile)

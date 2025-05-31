@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://dligbfbrwfpp6"]
+
+[ext_resource type="PackedScene" uid="uid://rxshb5874vij" path="res://Scenes/Components/Tower/TowerUI/TowerStats/TowerStat.tscn" id="1_x2dqg"]
+[ext_resource type="Texture2D" uid="uid://bbhgxu5dwqw37" path="res://Assets/Icons/Pause.png" id="2_282v6"]
+
+[node name="StunStat" instance=ExtResource("1_x2dqg")]
+
+[node name="TextureRect" parent="HBoxContainer" index="0"]
+texture = ExtResource("2_282v6")
+
+[node name="TextureShadow" parent="HBoxContainer/TextureRect" index="0"]
+texture = ExtResource("2_282v6")

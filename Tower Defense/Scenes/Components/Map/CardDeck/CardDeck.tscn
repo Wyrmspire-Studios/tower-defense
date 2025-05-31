@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bhxcmvil3d6dk"]
+[gd_scene load_steps=12 format=3 uid="uid://bhxcmvil3d6dk"]
 
 [ext_resource type="Texture2D" uid="uid://d2cjrito6dthd" path="res://Assets/window.png" id="1_6ici3"]
 [ext_resource type="Script" uid="uid://doa7l0xhs53vh" path="res://Scenes/Components/Map/CardDeck/CardDeck.cs" id="1_dcp54"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dnofluey7d5by" path="res://Scenes/Towers/ArcherTower.tscn" id="3_u3d5s"]
 [ext_resource type="PackedScene" uid="uid://bt1efhy4djaqj" path="res://Scenes/Towers/MageTower.tscn" id="4_p0h3r"]
 [ext_resource type="PackedScene" uid="uid://b3f8xjxol4l8t" path="res://Scenes/Towers/Barracks.tscn" id="5_p0h3r"]
+[ext_resource type="PackedScene" uid="uid://d3xe4dt5f1nix" path="res://Scenes/Towers/TrapperTower.tscn" id="6_h2p5k"]
 
 [sub_resource type="Animation" id="Animation_abwmi"]
 resource_name = "HideDeck"
@@ -74,7 +75,7 @@ grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("1_dcp54")
 CardScene = ExtResource("1_gyegu")
-PossibleTowers = Array[PackedScene]([ExtResource("3_u3d5s"), ExtResource("4_p0h3r"), ExtResource("5_p0h3r")])
+PossibleTowers = Array[PackedScene]([ExtResource("3_u3d5s"), ExtResource("4_p0h3r"), ExtResource("5_p0h3r"), ExtResource("6_h2p5k")])
 CardsContainer = NodePath("NinePatchRect/MarginContainer/CardsContainer")
 AnimationPlayer = NodePath("AnimationPlayer")
 CollisionRect = NodePath("NinePatchRect/CollisionRect")
@@ -85,13 +86,16 @@ libraries = {
 }
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
+self_modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(264, 72)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -132.0
+offset_top = 64.0
 offset_right = 132.0
+offset_bottom = 64.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 0
@@ -100,56 +104,6 @@ patch_margin_left = 8
 patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
-
-[node name="NinePatchRect2" type="NinePatchRect" parent="NinePatchRect"]
-self_modulate = Color(0, 0, 0, 1)
-show_behind_parent = true
-custom_minimum_size = Vector2(264, 72)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 1.0
-offset_top = 1.0
-offset_right = 1.0
-offset_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 0
-texture = ExtResource("1_6ici3")
-patch_margin_left = 8
-patch_margin_top = 8
-patch_margin_right = 8
-patch_margin_bottom = 8
-
-[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect/NinePatchRect2"]
-custom_minimum_size = Vector2(0, 72)
-layout_mode = 1
-offset_right = 264.0
-offset_bottom = 72.0
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 4
-
-[node name="CardsContainer" type="HBoxContainer" parent="NinePatchRect/NinePatchRect2/MarginContainer"]
-layout_mode = 2
-theme_override_constants/separation = 0
-alignment = 1
-
-[node name="CollisionRect" type="ReferenceRect" parent="NinePatchRect/NinePatchRect2"]
-custom_minimum_size = Vector2(280, 88)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -8.0
-offset_top = -8.0
-offset_right = 8.0
-offset_bottom = 8.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="NinePatchRect"]
 custom_minimum_size = Vector2(0, 72)

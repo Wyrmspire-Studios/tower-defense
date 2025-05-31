@@ -10,6 +10,9 @@ public partial class Enemy : PathFollow2D
 	[Export] private EnemyInfo _enemyInfo;
 	private EnemyInfo _currentEnemyInfo;
 
+	private float _secondsActive;
+	private float _stunnedUntil = -1;
+	
 	private int _health;
 
 	public override void _Ready()
@@ -20,17 +23,27 @@ public partial class Enemy : PathFollow2D
 
 	public override void _Process(double delta)
 	{
+		_secondsActive += (float)delta;
+		if (IsStunned()) return;
+		
 		Progress += _currentEnemyInfo.Speed * (float) delta;
-
+		
 		if (ProgressRatio >= 1) OnDamagePlayer();
 	}
 	
 	public int GetHealth() => _health;
+	public bool IsStunned() => _stunnedUntil > _secondsActive;
 
 	public void TakeDamage(int damage)
 	{
 		_health -= damage;
 		if (_health <= 0) OnDeath();
+	}
+
+	public void ApplyStun(float stunSeconds)
+	{
+		if (IsStunned()) _stunnedUntil += stunSeconds;
+		else _stunnedUntil = _secondsActive + stunSeconds;
 	}
 
 	private void OnDeath()

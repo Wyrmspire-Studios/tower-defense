@@ -23,6 +23,8 @@ public partial class EnemySprite : AnimatedSprite2D
 
 	public override void _Process(double delta)
 	{
+		if (_enemy.IsStunned()) return;
+		
 		var currentMoveVector = GlobalPosition - _lastPosition;
 		_lastPosition = GlobalPosition;
 		

@@ -24,6 +24,9 @@ public partial class TowerStats : NinePatchRect
 
 	[Export] private PackedScene _healthStat;
 	public TowerStat HealthStatContainer;
+	
+	[Export] private PackedScene _stunStat;
+	public TowerStat StunStatContainer;
 
 	public void Initialize(Tower tower)
 	{
@@ -36,6 +39,20 @@ public partial class TowerStats : NinePatchRect
 		Size += new Vector2(0, 22);
 		Position -= new Vector2(0, 22);
 	}
+
+	public void ResetToDefaultSize()
+	{
+		var children = _statContainer.GetChildren();
+		Position += new Vector2(0, 22) * children.Count;
+		
+		foreach (var child in children)
+		{
+			child.QueueFree();
+		}
+		
+		Size = new Vector2(84, 32);
+	}
+	
 	public void EnableDamageStat()
 	{
 		DamageStatContainer = _damageStat.Instantiate<TowerStat>();
@@ -75,6 +92,13 @@ public partial class TowerStats : NinePatchRect
 	{
 		HealthStatContainer = _healthStat.Instantiate<TowerStat>();
 		_statContainer.AddChild(HealthStatContainer);
+		_increaseSize();
+	}
+	
+	public void EnableStunStat()
+	{
+		StunStatContainer = _stunStat.Instantiate<TowerStat>();
+		_statContainer.AddChild(StunStatContainer);
 		_increaseSize();
 	}
 }

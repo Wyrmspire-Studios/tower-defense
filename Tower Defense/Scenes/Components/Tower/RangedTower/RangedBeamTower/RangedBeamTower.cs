@@ -11,6 +11,7 @@ public partial class RangedBeamTower : RangedTower
 
 	public virtual void OnEnemyShot(Enemy enemy)
 	{
+		if (RangedBeamTowerInfo.StunDuration > 0) enemy.ApplyStun(RangedBeamTowerInfo.StunDuration);
 		enemy.TakeDamage(RangedBeamTowerInfo.Damage);
 	}
 
@@ -62,42 +63,42 @@ public partial class RangedBeamTower : RangedTower
 				else newTowerData.BeamSpawnOffset = towerEnhancement.NewBeamSpawnOffset;
 			
 			if (towerEnhancement.NewBeamFireDelay > 0)
-			{
 				if (towerEnhancement.Additive) newTowerData.FireDelay -= towerEnhancement.NewBeamFireDelay;
 				else newTowerData.FireDelay = towerEnhancement.NewBeamFireDelay;
-			}
 			
 			if (towerEnhancement.NewBeamFireDuration > 0)
-			{
 				if (towerEnhancement.Additive) newTowerData.FireDuration += towerEnhancement.NewBeamFireDuration;
 				else newTowerData.FireDuration = towerEnhancement.NewBeamFireDuration;
-			}
 
 			if (towerEnhancement.NewRange != -1)
-			{
 				if (towerEnhancement.Additive) newTowerData.Range += towerEnhancement.NewRange;
 				else newTowerData.Range = towerEnhancement.NewRange;
-				
-			}
 
 			if (towerEnhancement.NewRangeOffset != Vector2.Inf)
-			{
 				if (towerEnhancement.Additive) newTowerData.RangeOffset += towerEnhancement.NewRangeOffset;
 				else newTowerData.RangeOffset = towerEnhancement.NewRangeOffset;
-			}
+
+			if (towerEnhancement.NewBeamStunDuration > 0)
+				if (towerEnhancement.Additive) newTowerData.StunDuration += towerEnhancement.NewBeamStunDuration;
+				else newTowerData.StunDuration = towerEnhancement.NewBeamStunDuration;
 		}
 		
 		_updateTowerInfo(newTowerData);
+		EnableStatsUi(TowerUi.TowerStats);
 		UpdateStatsUi(TowerUi.TowerStats);
 	}
 
 	public override void EnableStatsUi(TowerStats towerStats)
 	{
+		base.EnableStatsUi(towerStats);
+		
 		towerStats.EnableDamageStat();
 		towerStats.EnableFireDelayStat();
 		towerStats.EnableFireDurationStat();
 		towerStats.EnableRangeStat();
-	}
+		if (RangedBeamTowerInfo.StunDuration > 0) towerStats.EnableStunStat();
+	}		
+
 
 	public override void UpdateStatsUi(TowerStats towerStats)
 	{
@@ -105,5 +106,6 @@ public partial class RangedBeamTower : RangedTower
 		towerStats.FireDelayStatContainer.SetStatText($"{RangedBeamTowerInfo.FireDelay}s");
 		towerStats.FireDurationStatContainer.SetStatText($"{RangedBeamTowerInfo.FireDuration}s");
 		towerStats.RangeStatContainer.SetStatText($"{RangedBeamTowerInfo.Range}m");
+		towerStats.StunStatContainer?.SetStatText($"{RangedBeamTowerInfo.StunDuration}s");
 	}
 }

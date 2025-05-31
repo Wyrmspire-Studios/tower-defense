@@ -11,6 +11,7 @@ public partial class RangedProjectileTower : RangedTower
 	
 	public virtual void OnEnemyHit(Enemy enemy, Projectile projectile)
 	{
+		if (RangedProjectileTowerInfo.StunDuration > 0) enemy.ApplyStun(RangedProjectileTowerInfo.StunDuration);
 		enemy.TakeDamage(projectile.ProjectileInfo.Damage);
 		projectile.QueueFree();
 	}
@@ -67,34 +68,36 @@ public partial class RangedProjectileTower : RangedTower
 				else newTowerData.ProjectileSpawnOffset = towerEnhancement.NewProjectileSpawnOffset;
 			
 			if (towerEnhancement.NewProjectileFireDelay > 0)
-			{
 				if (towerEnhancement.Additive) newTowerData.FireDelay += towerEnhancement.NewProjectileFireDelay;
 				else newTowerData.FireDelay = towerEnhancement.NewProjectileFireDelay;
-			}
 
 			if (towerEnhancement.NewRange != -1)
-			{
 				if (towerEnhancement.Additive) newTowerData.Range += towerEnhancement.NewRange;
 				else newTowerData.Range = towerEnhancement.NewRange;
-			}
 
 			if (towerEnhancement.NewRangeOffset != Vector2.Inf)
-			{
 				if (towerEnhancement.Additive) newTowerData.RangeOffset += towerEnhancement.NewRangeOffset;
 				else newTowerData.RangeOffset = towerEnhancement.NewRangeOffset;
-			}
+
+			if (towerEnhancement.NewProjectileStunDuration > 0)
+				if (towerEnhancement.Additive) newTowerData.StunDuration += towerEnhancement.NewProjectileStunDuration;
+				else newTowerData.StunDuration = towerEnhancement.NewProjectileStunDuration;
 		}
 		
 		_updateTowerInfo(newTowerData);
+		EnableStatsUi(TowerUi.TowerStats);
 		UpdateStatsUi(TowerUi.TowerStats);
 	}
 
 	public override void EnableStatsUi(TowerStats towerStats)
 	{
+		base.EnableStatsUi(towerStats);
+		
 		towerStats.EnableDamageStat();
 		towerStats.EnableFireDelayStat();
 		towerStats.EnableProjectileSpeedStat();
 		towerStats.EnableRangeStat();
+		if (RangedProjectileTowerInfo.StunDuration > 0) towerStats.EnableStunStat();
 	}
 
 	public override void UpdateStatsUi(TowerStats towerStats)
@@ -103,5 +106,6 @@ public partial class RangedProjectileTower : RangedTower
 		towerStats.FireDelayStatContainer.SetStatText($"{RangedProjectileTowerInfo.FireDelay}s");
 		towerStats.ProjectileSpeedStatContainer.SetStatText($"{RangedProjectileTowerInfo.BaseProjectileInfo.Speed}/s");
 		towerStats.RangeStatContainer.SetStatText($"{RangedProjectileTowerInfo.Range}m");
+		towerStats.StunStatContainer?.SetStatText($"{RangedProjectileTowerInfo.StunDuration}s");
 	}
 }

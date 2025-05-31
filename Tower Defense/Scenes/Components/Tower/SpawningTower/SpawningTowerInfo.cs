@@ -8,4 +8,5 @@ public partial class SpawningTowerInfo : TowerInfo
 	[Export] public PackedScene SpawnedUnit;
 	[Export] public int UnitHealth;
 	[Export] public float UnitSpawnRate;
+	[Export] public float UnitStunDuration;
 }

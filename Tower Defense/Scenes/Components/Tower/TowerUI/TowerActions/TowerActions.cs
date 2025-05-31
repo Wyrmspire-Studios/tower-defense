@@ -57,6 +57,8 @@ public partial class TowerActions : NinePatchRect
 
 	private void _onUpgradeTower()
 	{
+		_recheckUpgradeAvailable(LevelData.GetGold(), LevelData.GetGold());
+		
 		if (!_canUpgrade || Tower.TowerInfo.TowerTier == TowerTier.Four) return;
 		
 		Tower.TowerInfo.TowerTier = Tower.TowerInfo.TowerTier.Next();
