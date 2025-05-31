@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://y1tl75a87wmt"]
+[gd_scene load_steps=14 format=3 uid="uid://y1tl75a87wmt"]
 
 [ext_resource type="Theme" uid="uid://dl3phl78tl4u3" path="res://Scenes/Components/Map/MapUI/MapUIPanelTheme.tres" id="1_c6my3"]
 [ext_resource type="Script" uid="uid://bddk78tin8110" path="res://Scenes/Components/Map/MapUI/MapUi.cs" id="1_n7h4j"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://bhxcmvil3d6dk" path="res://Scenes/Components/Map/CardDeck/CardDeck.tscn" id="2_285sl"]
 [ext_resource type="Script" uid="uid://byaifws2jofn6" path="res://Scenes/Components/Map/MapUI/WavePanel.cs" id="3_md2gh"]
 [ext_resource type="Script" uid="uid://cbf8qtfeu48d3" path="res://Scenes/Components/Map/MapUI/StatusPanel.cs" id="5_285sl"]
+[ext_resource type="Texture2D" uid="uid://c4v176lslfkmg" path="res://Assets/Coins/heart.png" id="7_osesm"]
+[ext_resource type="Texture2D" uid="uid://cbove36h35ibi" path="res://Assets/Coins/Coin.png" id="8_jaoyu"]
 
 [sub_resource type="Animation" id="Animation_n7h4j"]
 resource_name = "HideUI"
@@ -120,14 +122,14 @@ libraries = {
 layout_mode = 1
 
 [node name="WavePanel" type="PanelContainer" parent="MapUI"]
-custom_minimum_size = Vector2(126, 0)
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -37.5
-offset_right = 37.5
-offset_bottom = 40.0
+offset_left = -46.0
+offset_top = 4.0
+offset_right = 46.0
+offset_bottom = 30.0
 grow_horizontal = 2
 theme = ExtResource("1_c6my3")
 script = ExtResource("3_md2gh")
@@ -143,24 +145,27 @@ patch_margin_bottom = 8
 
 [node name="MarginContainer" type="MarginContainer" parent="MapUI/WavePanel"]
 layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_right = 10
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 4
 
 [node name="WaveLabel" type="Label" parent="MapUI/WavePanel/MarginContainer"]
-custom_minimum_size = Vector2(106, 23)
 layout_mode = 2
 text = "Wave: XX / XX"
 label_settings = SubResource("LabelSettings_osesm")
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="StatusPanel" type="PanelContainer" parent="MapUI"]
-custom_minimum_size = Vector2(115, 0)
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -115.0
-offset_bottom = 70.0
+offset_left = -88.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = 64.0
 grow_horizontal = 0
 theme = ExtResource("1_c6my3")
 script = ExtResource("5_285sl")
@@ -176,22 +181,46 @@ patch_margin_bottom = 8
 
 [node name="MarginContainer" type="MarginContainer" parent="MapUI/StatusPanel"]
 layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 4
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MapUI/StatusPanel/MarginContainer"]
 layout_mode = 2
 
-[node name="HealthLabel" type="Label" parent="MapUI/StatusPanel/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 23)
+[node name="HSplitContainer" type="HSplitContainer" parent="MapUI/StatusPanel/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Health: XXX"
-label_settings = SubResource("LabelSettings_osesm")
 
-[node name="GoldLabel" type="Label" parent="MapUI/StatusPanel/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 23)
+[node name="TextureRect" type="TextureRect" parent="MapUI/StatusPanel/MarginContainer/VBoxContainer/HSplitContainer"]
+custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
-text = "Gold: XXXXX"
+texture = ExtResource("7_osesm")
+stretch_mode = 4
+
+[node name="HealthLabel" type="Label" parent="MapUI/StatusPanel/MarginContainer/VBoxContainer/HSplitContainer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+text = "XXX"
 label_settings = SubResource("LabelSettings_osesm")
+vertical_alignment = 1
+
+[node name="HSplitContainer2" type="HSplitContainer" parent="MapUI/StatusPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MapUI/StatusPanel/MarginContainer/VBoxContainer/HSplitContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+
+[node name="TextureRect" type="TextureRect" parent="MapUI/StatusPanel/MarginContainer/VBoxContainer/HSplitContainer2/MarginContainer"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+texture = ExtResource("8_jaoyu")
+stretch_mode = 4
+
+[node name="GoldLabel" type="Label" parent="MapUI/StatusPanel/MarginContainer/VBoxContainer/HSplitContainer2"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+text = "XXXXX"
+label_settings = SubResource("LabelSettings_osesm")
+vertical_alignment = 1

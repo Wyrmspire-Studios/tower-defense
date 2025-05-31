@@ -6,7 +6,7 @@ namespace WyrmspireStudios.Data;
 public static class LevelData
 {
     private const int DefaultHealth = 25;
-    private const int DefaultGold = 10000000;
+    private const int DefaultGold = 150;
     private static int Health { get; set; } = DefaultHealth;
     private static int Gold { get; set; } = DefaultGold;
     private static int EnemyDeaths { get; set; }
