@@ -38,7 +38,7 @@ public partial class Card : Button
         _towerTextureRect = GetNode<TextureRect>("Background/TowerTextureRect");
         
         var towerInstance = TowerToPlace.Instantiate<Tower>();
-        towerInstance.OnStartPlacing();
+        towerInstance.OnStartPlacing(true);
         var regionRect = TowerSprite.GetRegionRect(towerInstance.TowerInfo.TowerTier);
         var atlasTexture = new AtlasTexture();
         atlasTexture.Atlas = towerInstance.TowerInfo.TowerTierTexture;

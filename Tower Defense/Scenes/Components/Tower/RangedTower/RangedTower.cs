@@ -7,9 +7,11 @@ public partial class RangedTower : Tower
 	
 	public TowerTargeting TowerTargeting;
 
-	public override void OnStartPlacing()
+	public override void OnStartPlacing(bool headless = false)
 	{
-		base.OnStartPlacing();
+		base.OnStartPlacing(headless);
+		
+		if (headless) return;
 		
 		TowerTargeting = GetNode<TowerTargeting>("TowerTargeting");
 		TowerTargeting.Initialize(this);

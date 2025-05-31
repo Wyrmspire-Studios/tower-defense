@@ -15,11 +15,13 @@ public partial class Tower : Node2D
 	public TowerCollider TowerCollider;
 	public TowerUI TowerUi;
 
-	public virtual void OnStartPlacing()
+	public virtual void OnStartPlacing(bool headless = false)
 	{
 		TowerSprite = GetNode<TowerSprite>("TowerSprite");
 		TowerCollider = GetNode<TowerCollider>("TowerCollider");
 		TowerUi = GetNode<TowerUI>("TowerUI");
+		
+		if (headless) return;
 		
 		TowerSprite.Initialize(this);
 		TowerCollider.Initialize(this);
