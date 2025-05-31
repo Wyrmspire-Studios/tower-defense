@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://bghpuyynvtrkm"]
 
-[ext_resource type="Texture2D" uid="uid://b3xj1u0bxi7l1" path="res://Assets/buttons.png" id="1_pmikh"]
+[ext_resource type="Texture2D" uid="uid://d2cjrito6dthd" path="res://Assets/window.png" id="1_qb6om"]
 [ext_resource type="Script" uid="uid://cnbw8mmpd2i0n" path="res://Scenes/Components/Tower/TowerUI/TowerStats/TowerStats.cs" id="2_pmikh"]
 [ext_resource type="PackedScene" uid="uid://c4va0wy5tuxen" path="res://Scenes/Components/Tower/TowerUI/TowerStats/Stats/DamageStat.tscn" id="3_e5ts5"]
 [ext_resource type="PackedScene" uid="uid://b8b0qdfseuryd" path="res://Scenes/Components/Tower/TowerUI/TowerStats/Stats/ProjectileSpeedStat.tscn" id="4_kmlsj"]
@@ -10,11 +10,11 @@
 [ext_resource type="PackedScene" uid="uid://bpp8r1hu3031s" path="res://Scenes/Components/Tower/TowerUI/TowerStats/Stats/HealthStat.tscn" id="8_qb6om"]
 
 [node name="TowerStats" type="NinePatchRect" node_paths=PackedStringArray("_statContainer", "_nameLabel")]
-custom_minimum_size = Vector2(100, 32)
-offset_right = 100.0
-offset_bottom = 16.0
-texture = ExtResource("1_pmikh")
-region_rect = Rect2(129, 65, 62, 30)
+custom_minimum_size = Vector2(84, 32)
+offset_right = 84.0
+offset_bottom = 32.0
+texture = ExtResource("1_qb6om")
+region_rect = Rect2(0, 0, 64, 64)
 patch_margin_left = 8
 patch_margin_top = 8
 patch_margin_right = 8
@@ -30,13 +30,13 @@ _rangeStat = ExtResource("7_kmlsj")
 _healthStat = ExtResource("8_qb6om")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
-custom_minimum_size = Vector2(100, 32)
+custom_minimum_size = Vector2(84, 32)
 layout_mode = 0
 offset_top = -40.0
-offset_right = 100.0
+offset_right = 84.0
 offset_bottom = -8.0
-texture = ExtResource("1_pmikh")
-region_rect = Rect2(129, 65, 62, 30)
+texture = ExtResource("1_qb6om")
+region_rect = Rect2(0, 0, 64, 64)
 patch_margin_left = 8
 patch_margin_top = 8
 patch_margin_right = 8
