@@ -63,7 +63,7 @@ public partial class RangedProjectileTower : RangedTower
 				if (towerEnhancement.Additive) newTowerData.ProjectileSpawnOffset += towerEnhancement.NewProjectileSpawnOffset;
 				else newTowerData.ProjectileSpawnOffset = towerEnhancement.NewProjectileSpawnOffset;
 			
-			if (Math.Abs(towerEnhancement.NewProjectileFireDelay - -1) > 0.001)
+			if (towerEnhancement.NewProjectileFireDelay > 0)
 			{
 				if (towerEnhancement.Additive) newTowerData.FireDelay += towerEnhancement.NewProjectileFireDelay;
 				else newTowerData.FireDelay = towerEnhancement.NewProjectileFireDelay;

@@ -2,21 +2,6 @@
 
 [ext_resource type="Script" uid="uid://dxt84hcq4aiuo" path="res://Scenes/Components/Tower/TowerShooting/TowerBeamShooting/TowerBeamShooting.cs" id="1_dmra5"]
 
-[node name="TowerBeamShooting" type="Node2D" node_paths=PackedStringArray("_shootDelayTimer", "_shootDurationTimer", "_damageTickTimer")]
+[node name="TowerBeamShooting" type="Node2D"]
 z_index = 3
 script = ExtResource("1_dmra5")
-_shootDelayTimer = NodePath("ShootDelay")
-_shootDurationTimer = NodePath("ShootDuration")
-_damageTickTimer = NodePath("DamageTick")
-
-[node name="ShootDelay" type="Timer" parent="."]
-one_shot = true
-autostart = true
-
-[node name="ShootDuration" type="Timer" parent="."]
-one_shot = true
-autostart = true
-
-[node name="DamageTick" type="Timer" parent="."]
-wait_time = 0.1
-autostart = true

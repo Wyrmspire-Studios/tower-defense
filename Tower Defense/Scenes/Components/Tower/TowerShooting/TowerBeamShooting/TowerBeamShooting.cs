@@ -3,9 +3,9 @@ using System;
 
 public partial class TowerBeamShooting : Node2D
 {
-	[Export] private Timer _shootDelayTimer;
-	[Export] private Timer _shootDurationTimer;
-	[Export] private Timer _damageTickTimer;
+	private Timer _shootDelayTimer;
+	private Timer _shootDurationTimer;
+	private Timer _damageTickTimer;
 
 	public RangedBeamTower Tower;
 
@@ -16,14 +16,37 @@ public partial class TowerBeamShooting : Node2D
 	{
 		Tower = tower;
 
+		Tower.TowerTargeting.TargetChange += _onTargetChange;
+
+		_shootDelayTimer = new Timer
+		{
+			WaitTime = Tower.RangedBeamTowerInfo.FireDelay,
+			Autostart = false,
+			OneShot = true
+		};
+
+		_shootDurationTimer = new Timer
+		{
+			WaitTime = Tower.RangedBeamTowerInfo.FireDuration,
+			Autostart = false,
+			OneShot = true
+		};
+
+		_damageTickTimer = new Timer
+		{
+			WaitTime = 0.1f,
+			Autostart = true
+		};
+		
+		AddChild(_shootDelayTimer);
+		AddChild(_shootDurationTimer);
+		AddChild(_damageTickTimer);
+		
 		_shootDelayTimer.Timeout += _onShootDelay;
 		_shootDurationTimer.Timeout += _onShootDuration;
 		_damageTickTimer.Timeout += _onDamageTick;
-
-		Tower.TowerTargeting.TargetChange += _onTargetChange;
-
-		_shootDelayTimer.WaitTime = Tower.RangedBeamTowerInfo.FireDelay;
-		_shootDelayTimer.Autostart = true;
+		
+		_onShootDelay();
 	}
 
 	public override void _Draw()
@@ -47,6 +70,15 @@ public partial class TowerBeamShooting : Node2D
 	public override void _Process(double delta)
 	{
 		QueueRedraw();
+	}
+
+	public void UpdateTimerDurations()
+	{
+		_shootDelayTimer.WaitTime = Tower.RangedBeamTowerInfo.FireDelay;
+		_shootDelayTimer.Start();
+		
+		_shootDurationTimer.WaitTime = Tower.RangedBeamTowerInfo.FireDuration;
+		_shootDurationTimer.Stop();
 	}
 
 	private void _onShootDelay()

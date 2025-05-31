@@ -21,6 +21,11 @@ public partial class TowerPlacement : Node2D
 	private static readonly Color EnhancementTint = Color.Color8(128, 128, 255, 192);
 	private static readonly Color UnplaceableTint = Color.Color8(255, 128, 128, 192);
 
+	public override void _Ready()
+	{
+		Tower.TowerSold += _onTowerSold;
+	}
+
 	public override void _Process(double delta)
 	{
 		if (_currentlyPlacing != null) _handleMouseMovement();

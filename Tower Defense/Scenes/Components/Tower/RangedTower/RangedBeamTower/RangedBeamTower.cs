@@ -33,7 +33,7 @@ public partial class RangedBeamTower : RangedTower
 		TowerBeamShooting = GetNode<TowerBeamShooting>("TowerBeamShooting");
 		TowerBeamShooting.Initialize(this);
 
-		ApplyEnhancements();
+		CallDeferred(MethodName.ApplyEnhancements);
 	}
 
 	public override void OnPlaceTower()
@@ -58,16 +58,18 @@ public partial class RangedBeamTower : RangedTower
 				if (towerEnhancement.Additive) newTowerData.BeamSpawnOffset += towerEnhancement.NewBeamSpawnOffset;
 				else newTowerData.BeamSpawnOffset = towerEnhancement.NewBeamSpawnOffset;
 			
-			if (Math.Abs(towerEnhancement.NewBeamFireDelay - -1) > 0.001)
+			if (towerEnhancement.NewBeamFireDelay > 0)
 			{
 				if (towerEnhancement.Additive) newTowerData.FireDelay += towerEnhancement.NewBeamFireDelay;
 				else newTowerData.FireDelay = towerEnhancement.NewBeamFireDelay;
+				TowerBeamShooting.UpdateTimerDurations();
 			}
 			
-			if (Math.Abs(towerEnhancement.NewBeamFireDuration - -1) > 0.001)
+			if (towerEnhancement.NewBeamFireDuration > 0)
 			{
 				if (towerEnhancement.Additive) newTowerData.FireDuration += towerEnhancement.NewBeamFireDuration;
 				else newTowerData.FireDuration = towerEnhancement.NewBeamFireDuration;
+				TowerBeamShooting.UpdateTimerDurations();
 			}
 
 			if (towerEnhancement.NewRange != -1)
