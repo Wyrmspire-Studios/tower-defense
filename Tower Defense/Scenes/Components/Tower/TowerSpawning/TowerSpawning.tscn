@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0o6hqht1oj2c"]
+
+[ext_resource type="Script" uid="uid://b8r7rw2l3qygd" path="res://Scenes/Components/Tower/TowerSpawning/TowerSpawning.cs" id="1_etx5i"]
+
+[node name="TowerSpawning" type="Node2D" node_paths=PackedStringArray("_spawnUnitTimer")]
+script = ExtResource("1_etx5i")
+_spawnUnitTimer = NodePath("SpawnUnit")
+
+[node name="SpawnUnit" type="Timer" parent="."]
+autostart = true

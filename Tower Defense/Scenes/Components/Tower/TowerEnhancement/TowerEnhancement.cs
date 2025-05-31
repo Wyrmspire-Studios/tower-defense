@@ -18,6 +18,10 @@ public partial class TowerEnhancement : Resource
 	[Export] public float NewBeamFireDelay = -1;
 	[Export] public float NewBeamFireDuration = -1;
 	
+	[ExportGroup("Unit Enhancement")]
+	[Export] public int NewUnitHealth = -1;
+	[Export] public float NewUnitSpawnRate = -1;
+	
 	[ExportGroup("Range Enhancement")]
 	[Export] public int NewRange = -1;
 	[Export] public Vector2 NewRangeOffset = Vector2.Inf;

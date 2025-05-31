@@ -9,7 +9,8 @@ public partial class TowerPlacement : Node2D
 	
 	[ExportGroup("Internal")]
 	[Export] private Node2D _placedTowers;
-	[Export] private Occupied _occupied;
+	[Export] public Occupied Occupied;
+	[Export] public Paths Paths;
 
 	private CanPlace _canPlace;
 	private Tower _currentlyPlacing;
@@ -33,18 +34,18 @@ public partial class TowerPlacement : Node2D
 	
 	public void StartPlacingTower(PackedScene tower)
 	{
-		_occupied.ShowTileMap();
+		Occupied.ShowTileMap();
 		
 		_currentlyPlacing?.QueueFree();
 		_currentlyPlacing = tower.Instantiate<Tower>();
 		_currentlyPlacing.Modulate = HiddenTint;
-		_currentlyPlacing.OnStartPlacing();
+		_currentlyPlacing.OnStartPlacing(this);
 		_placedTowers.AddChild(_currentlyPlacing);
 	}
 
 	public void CancelPlacingTower()
 	{
-		_occupied.HideTileMap();
+		Occupied.HideTileMap();
 		_currentlyPlacing?.QueueFree();
 		_currentlyPlacing = null;
 	}
@@ -59,7 +60,7 @@ public partial class TowerPlacement : Node2D
 	
 	public bool PlaceTower()
 	{
-		_occupied.HideTileMap();
+		Occupied.HideTileMap();
 		if (_canPlace == CanPlace.No || _currentlyPlacing == null)
 		{
 			CancelPlacingTower();
@@ -78,8 +79,8 @@ public partial class TowerPlacement : Node2D
 		
 		_showSmoke();
 		
-		var mouseTile = _getMouseTile();
-		_occupied.AddTile(mouseTile);
+		var mouseTile = GetMouseTile();
+		Occupied.AddTile(mouseTile);
 		_currentlyPlacing.PlacedAt = mouseTile;
 		_currentlyPlacing.Modulate = NoTint;
 		
@@ -89,7 +90,7 @@ public partial class TowerPlacement : Node2D
 
 	private void _enhanceTower()
 	{
-		var mouseTile = _getMouseTile();
+		var mouseTile = GetMouseTile();
 		var givenEnhancement = _currentlyPlacing.TowerInfo.GivenEnhancement;
 		var tower = _towers[mouseTile];
 		tower.TowerUi.TowerActions.IncreaseCurrentCost(Mathf.FloorToInt(50 * 0.5));
@@ -102,18 +103,22 @@ public partial class TowerPlacement : Node2D
 		_currentlyPlacing = null;
 	}
 
-	private Vector2I _getMouseTile()
+	public Vector2I GetMouseTile()
 	{
 		return (Vector2I)(GetGlobalMousePosition() / 32).Floor();
 	}
 
 	private void _handleMouseMovement()
 	{
-		var mouseTile = _getMouseTile();
+		var mouseTile = GetMouseTile();
 		_currentlyPlacing.Position = mouseTile * 32;
+		
 		_canPlace = _towers.ContainsKey(mouseTile) ? CanPlace.Enhancement 
-			: _occupied.IsTileOccupied(mouseTile) ? CanPlace.No 
+			: Occupied.IsTileOccupied(mouseTile) ? CanPlace.No 
 			: CanPlace.Yes;
+		if (_canPlace == CanPlace.Yes)
+			_canPlace = _currentlyPlacing.CheckPlacementRequirements(this, mouseTile);
+		
 		_currentlyPlacing.Modulate = _canPlace switch
 		{
 			CanPlace.No => UnplaceableTint,
@@ -126,7 +131,7 @@ public partial class TowerPlacement : Node2D
 
 	private void _onTowerSold(Vector2I tile)
 	{
-		_occupied.RemoveTile(tile);
+		Occupied.RemoveTile(tile);
 		_towers.Remove(tile);
 	}
 

@@ -32,6 +32,7 @@ public partial class TowerUI : CanvasLayer
 	{
 		if (!Visible) return;
 		if (TowerActions.GetGlobalRect().HasPoint(ev.GlobalPosition)) return;
+		if (TowerStats.GetGlobalRect().HasPoint(ev.GlobalPosition)) return;
 		ToggleVisibility();
 	}
 }

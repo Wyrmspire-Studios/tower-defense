@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://co4vvln87bywk"]
+[gd_scene load_steps=19 format=4 uid="uid://co4vvln87bywk"]
 
 [ext_resource type="PackedScene" uid="uid://y1tl75a87wmt" path="res://Scenes/Components/Map/MapUI/MapUI.tscn" id="1_ah1jo"]
 [ext_resource type="PackedScene" uid="uid://bfaw150aps460" path="res://Scenes/Components/Map/MapTiles/MapTiles.tscn" id="1_mik4u"]
@@ -9,8 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://d0bbbmoraofao" path="res://Scenes/Enemies/SlowSlime.tscn" id="4_ah1jo"]
 [ext_resource type="Script" uid="uid://dut1irbek148f" path="res://Scenes/Components/Map/EnemySpawner/EnemyWave.cs" id="4_ipyvt"]
 [ext_resource type="PackedScene" uid="uid://c6embu1anb0ai" path="res://Scenes/Enemies/FastSlime.tscn" id="6_wu13y"]
-[ext_resource type="PackedScene" uid="uid://d3g75wvfm4lx5" path="res://Scenes/Enemies/UltraSlowSlime.tscn" id="8_wu13y"]
-[ext_resource type="PackedScene" uid="uid://dqa4pw7i5wv5t" path="res://Scenes/Enemies/UltraFastSlime.tscn" id="10_trfe8"]
 
 [sub_resource type="Resource" id="Resource_wu13y"]
 script = ExtResource("3_7fg68")
@@ -30,36 +28,9 @@ SpawnIntervalSeconds = 2.0
 DelayUntilNextGroup = 1.0
 metadata/_custom_type_script = "uid://db072fixsh811"
 
-[sub_resource type="Resource" id="Resource_lleqr"]
-script = ExtResource("3_7fg68")
-EnemyToSpawn = ExtResource("8_wu13y")
-PathIdToSpawnOn = 0
-EnemyCount = 1
-SpawnIntervalSeconds = 1.0
-DelayUntilNextGroup = 1.0
-metadata/_custom_type_script = "uid://db072fixsh811"
-
-[sub_resource type="Resource" id="Resource_qo52g"]
-script = ExtResource("3_7fg68")
-EnemyToSpawn = ExtResource("6_wu13y")
-PathIdToSpawnOn = 0
-EnemyCount = 1
-SpawnIntervalSeconds = 1.0
-DelayUntilNextGroup = 1.0
-metadata/_custom_type_script = "uid://db072fixsh811"
-
-[sub_resource type="Resource" id="Resource_ooy5k"]
-script = ExtResource("3_7fg68")
-EnemyToSpawn = ExtResource("10_trfe8")
-PathIdToSpawnOn = 0
-EnemyCount = 1
-SpawnIntervalSeconds = 1.0
-DelayUntilNextGroup = 1.0
-metadata/_custom_type_script = "uid://db072fixsh811"
-
 [sub_resource type="Resource" id="Resource_trfe8"]
 script = ExtResource("4_ipyvt")
-EnemyGroups = Array[Object]([SubResource("Resource_wu13y"), SubResource("Resource_vqjx3"), SubResource("Resource_lleqr"), SubResource("Resource_qo52g"), SubResource("Resource_ooy5k")])
+EnemyGroups = Array[Object]([SubResource("Resource_wu13y"), SubResource("Resource_vqjx3")])
 DelayUntilNextWave = 30.0
 metadata/_custom_type_script = "uid://dut1irbek148f"
 
@@ -129,8 +100,8 @@ tile_map_data = PackedByteArray("AAD//wUAAAADAAAABgAAAAUAAAABAAEAAQABAAUAAAAAAAE
 [node name="Props" parent="MapTiles" index="2"]
 tile_map_data = PackedByteArray("AAAAAAMAAQACAAAAAAACAAUAAAAPAAMAAAACAAcAAQAEAAAAAAACAAwAAAADAAQAAAACAA4AAQAAAAAAAAADAAQAAQAEAAAAAAADAAkAAAAFAAUAAAADABUAAAAGAAUAAAAFAAEAAAAMAAUAAAAFAAMAAQACAAAAAAAHAAAAAQAGAAAAAAAHAA0AAQAGAAAAAAAJAAQAAAANAAUAAAALABUAAAACAAMAAAAMAAgAAQAGAAAAAAAMABQAAAAEAAQAAAAPAAwAAQACAAAAAAARABYAAQAEAAAAAAASAAIAAQACAAAAAAASAA0AAAAPAAQAAAASABIAAAAOAAUAAAATAAsAAQACAAAAAAATAA8AAQACAAAAAAATABYAAQAGAAAAAAAUAAUAAAAOAAMAAAAVAA4AAAANAAUAAAAVABMAAQACAAAAAAAYAAEAAAAKAAUAAAAaAAAAAAAJAAUAAAAaAAIAAAADAAUAAAAbAAAAAAANAAQAAAAbAA0AAAAEAAUAAAAcAAQAAQAEAAAAAAAdAA0AAQAAAAAAAAAeABEAAAABAAMAAAAeABUAAQAGAAAAAAAfAAwAAAAGAAUAAAAfABQAAQAGAAAAAAAgAA0AAAAMAAQAAAAgAA8AAQAGAAAAAAAgABEAAQAEAAAAAAAhAAEAAQAGAAAAAAAhABYAAQAAAAAAAAAiAAoAAAAAAAMAAAAiAAsAAAABAAQAAAAiABEAAQAGAAAAAAAjABQAAQACAAAAAAAlAAcAAAAHAAUAAAAlAAwAAAAKAAQAAAAlABUAAQACAAAAAAAnAAUAAQACAAAAAAA=")
 
-[node name="TowerPlacement" parent="." node_paths=PackedStringArray("_occupied") instance=ExtResource("2_7fg68")]
-_occupied = NodePath("Occupied")
+[node name="TowerPlacement" parent="." node_paths=PackedStringArray("Paths") instance=ExtResource("2_7fg68")]
+Paths = NodePath("../MapTiles/Paths")
 
 [node name="Occupied" parent="TowerPlacement" index="0"]
 tile_map_data = PackedByteArray("AAD//wUAAAACAAEAAAAAAAUAAAABAAQAAAABAAUAAAABAAQAAAACAAUAAAABAAQAAAADAAUAAAADAAIAAAADAAQAAAAAAAQAAAADAAMAAAAAAAIAAAAEAAMAAAABAAQAAAAFAAMAAAABAAIAAAAFAAQAAAAAAAQAAAAFAAUAAAAAAAQAAAAFAAYAAAAAAAQAAAAFAAcAAAADAAIAAAAEAAcAAAABAAQAAAADAAcAAAABAAQAAAACAAcAAAAAAAIAAAACAAgAAAAAAAQAAAACAAkAAAACAAIAAAADAAkAAAABAAQAAAAEAAkAAAABAAQAAAAFAAkAAAABAAQAAAAGAAkAAAABAAQAAAAHAAkAAAABAAQAAAAIAAkAAAADAAIAAAAIAAgAAAAAAAQAAAAIAAcAAAAAAAQAAAAIAAYAAAAAAAQAAAAIAAUAAAAAAAQAAAAIAAQAAAAAAAQAAAAIAAMAAAAAAAIAAAAJAAMAAAABAAQAAAAKAAMAAAABAAQAAAALAAMAAAABAAQAAAAMAAMAAAABAAQAAAANAAMAAAABAAQAAAAOAAMAAAABAAQAAAAPAAMAAAABAAIAAAAPAAQAAAAAAAQAAAAPAAUAAAADAAIAAAAOAAUAAAABAAQAAAANAAUAAAABAAQAAAAMAAUAAAABAAQAAAALAAUAAAAAAAIAAAALAAYAAAAAAAQAAAALAAcAAAAAAAQAAAALAAgAAAAAAAQAAAALAAkAAAACAAIAAAAMAAkAAAABAAQAAAANAAkAAAABAAQAAAAOAAkAAAABAAQAAAAPAAkAAAABAAQAAAAQAAkAAAABAAQAAAARAAkAAAABAAQAAAASAAkAAAABAAQAAAATAAkAAAABAAQAAAAUAAkAAAADAAEAAAA=")

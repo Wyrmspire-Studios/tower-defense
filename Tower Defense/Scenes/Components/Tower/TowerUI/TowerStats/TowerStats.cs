@@ -22,6 +22,9 @@ public partial class TowerStats : NinePatchRect
 	[Export] private PackedScene _rangeStat;
 	public TowerStat RangeStatContainer;
 
+	[Export] private PackedScene _healthStat;
+	public TowerStat HealthStatContainer;
+
 	public void Initialize(Tower tower)
 	{
 		_tower = tower;
@@ -65,6 +68,13 @@ public partial class TowerStats : NinePatchRect
 	{
 		RangeStatContainer = _rangeStat.Instantiate<TowerStat>();
 		_statContainer.AddChild(RangeStatContainer);
+		_increaseSize();
+	}
+
+	public void EnableHealthStat()
+	{
+		HealthStatContainer = _healthStat.Instantiate<TowerStat>();
+		_statContainer.AddChild(HealthStatContainer);
 		_increaseSize();
 	}
 }

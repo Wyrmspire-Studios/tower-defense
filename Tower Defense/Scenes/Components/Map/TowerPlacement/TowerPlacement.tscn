@@ -5,10 +5,11 @@
 [ext_resource type="TileSet" uid="uid://rmii3s34epr2" path="res://Resources/TileSets/Occupied.tres" id="2_ja2rd"]
 [ext_resource type="PackedScene" uid="uid://cw85vx4te13q3" path="res://Scenes/Components/Map/TowerPlacement/PlacementSmoke.tscn" id="2_lpg02"]
 
-[node name="TowerPlacement" type="Node2D" node_paths=PackedStringArray("_placedTowers")]
+[node name="TowerPlacement" type="Node2D" node_paths=PackedStringArray("_placedTowers", "Occupied")]
 script = ExtResource("1_wiy7i")
 _placementSmokeScene = ExtResource("2_lpg02")
 _placedTowers = NodePath("PlacedTowers")
+Occupied = NodePath("Occupied")
 
 [node name="Occupied" type="TileMapLayer" parent="."]
 modulate = Color(1, 1, 1, 0.501961)

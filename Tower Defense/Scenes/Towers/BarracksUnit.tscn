@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://gwoiuxqrg8dd"]
+
+[ext_resource type="PackedScene" uid="uid://cdonejy0biygm" path="res://Scenes/Components/Unit/Unit.tscn" id="1_82cd7"]
+[ext_resource type="Texture2D" uid="uid://ltxeqm6lt54j" path="res://Assets/Towers/BarracksUnit.png" id="2_abac7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_82cd7"]
+size = Vector2(14, 15)
+
+[node name="BarracksUnit" instance=ExtResource("1_82cd7")]
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_82cd7")
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_abac7")

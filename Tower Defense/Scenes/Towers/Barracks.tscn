@@ -1,0 +1,109 @@
+[gd_scene load_steps=12 format=3 uid="uid://b3f8xjxol4l8t"]
+
+[ext_resource type="PackedScene" uid="uid://b7n10rivkinq4" path="res://Scenes/Components/Tower/SpawningTower/SpawningTower.tscn" id="1_bliy8"]
+[ext_resource type="Script" uid="uid://bh3qr8sm03xg8" path="res://Scenes/Components/Tower/TowerEnhancement/TowerEnhancement.cs" id="2_leib3"]
+[ext_resource type="Texture2D" uid="uid://1bdj4dxvvgfc" path="res://Assets/Towers/BarracksTiers.png" id="2_xlkum"]
+[ext_resource type="Script" uid="uid://chgvjxx83wq4a" path="res://Scenes/Components/Tower/SpawningTower/SpawningTowerInfo.cs" id="3_leib3"]
+[ext_resource type="PackedScene" uid="uid://gwoiuxqrg8dd" path="res://Scenes/Towers/BarracksUnit.tscn" id="3_npu0w"]
+
+[sub_resource type="Resource" id="Resource_cigas"]
+script = ExtResource("2_leib3")
+Additive = true
+NewProjectileDamage = -1
+NewProjectileSpeed = 64
+NewProjectileSpawnOffset = Vector2(inf, inf)
+NewProjectileFireDelay = -1.0
+NewBeamDamage = -1
+NewBeamSpawnOffset = Vector2(inf, inf)
+NewBeamFireDelay = 0.25
+NewBeamFireDuration = 0.25
+NewUnitHealth = 5
+NewUnitSpawnRate = -1.0
+NewRange = -1
+NewRangeOffset = Vector2(inf, inf)
+metadata/_custom_type_script = "uid://bh3qr8sm03xg8"
+
+[sub_resource type="Resource" id="Resource_j4v32"]
+script = ExtResource("2_leib3")
+Additive = false
+NewProjectileDamage = -1
+NewProjectileSpeed = -1
+NewProjectileSpawnOffset = Vector2(inf, inf)
+NewProjectileFireDelay = -1.0
+NewBeamDamage = -1
+NewBeamSpawnOffset = Vector2(inf, inf)
+NewBeamFireDelay = -1.0
+NewBeamFireDuration = -1.0
+NewUnitHealth = 10
+NewUnitSpawnRate = 5.0
+NewRange = -1
+NewRangeOffset = Vector2(inf, inf)
+metadata/_custom_type_script = "uid://bh3qr8sm03xg8"
+
+[sub_resource type="Resource" id="Resource_fndwi"]
+script = ExtResource("2_leib3")
+Additive = false
+NewProjectileDamage = -1
+NewProjectileSpeed = -1
+NewProjectileSpawnOffset = Vector2(inf, inf)
+NewProjectileFireDelay = -1.0
+NewBeamDamage = -1
+NewBeamSpawnOffset = Vector2(inf, inf)
+NewBeamFireDelay = -1.0
+NewBeamFireDuration = -1.0
+NewUnitHealth = 20
+NewUnitSpawnRate = 4.5
+NewRange = -1
+NewRangeOffset = Vector2(inf, inf)
+metadata/_custom_type_script = "uid://bh3qr8sm03xg8"
+
+[sub_resource type="Resource" id="Resource_dmqrd"]
+script = ExtResource("2_leib3")
+Additive = false
+NewProjectileDamage = -1
+NewProjectileSpeed = -1
+NewProjectileSpawnOffset = Vector2(inf, inf)
+NewProjectileFireDelay = -1.0
+NewBeamDamage = -1
+NewBeamSpawnOffset = Vector2(inf, inf)
+NewBeamFireDelay = -1.0
+NewBeamFireDuration = -1.0
+NewUnitHealth = 30
+NewUnitSpawnRate = 4.0
+NewRange = -1
+NewRangeOffset = Vector2(inf, inf)
+metadata/_custom_type_script = "uid://bh3qr8sm03xg8"
+
+[sub_resource type="Resource" id="Resource_ra1yx"]
+script = ExtResource("2_leib3")
+Additive = false
+NewProjectileDamage = -1
+NewProjectileSpeed = -1
+NewProjectileSpawnOffset = Vector2(inf, inf)
+NewProjectileFireDelay = -1.0
+NewBeamDamage = -1
+NewBeamSpawnOffset = Vector2(inf, inf)
+NewBeamFireDelay = -1.0
+NewBeamFireDuration = -1.0
+NewUnitHealth = 40
+NewUnitSpawnRate = 3.5
+NewRange = -1
+NewRangeOffset = Vector2(inf, inf)
+metadata/_custom_type_script = "uid://bh3qr8sm03xg8"
+
+[sub_resource type="Resource" id="Resource_npu0w"]
+script = ExtResource("3_leib3")
+SpawnedUnit = ExtResource("3_npu0w")
+UnitHealth = 10
+UnitSpawnRate = 5.0
+Name = "Barracks"
+Active = false
+TowerTier = 0
+TowerTierTexture = ExtResource("2_xlkum")
+BaseUpgradeCost = 100
+TowerTierEnhancements = Array[Object]([SubResource("Resource_j4v32"), SubResource("Resource_fndwi"), SubResource("Resource_dmqrd"), SubResource("Resource_ra1yx")])
+GivenEnhancement = SubResource("Resource_cigas")
+metadata/_custom_type_script = "uid://chgvjxx83wq4a"
+
+[node name="Barracks" instance=ExtResource("1_bliy8")]
+_baseSpawningTowerInfo = SubResource("Resource_npu0w")

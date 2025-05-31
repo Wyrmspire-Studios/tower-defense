@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bpp8r1hu3031s"]
+
+[ext_resource type="PackedScene" uid="uid://rxshb5874vij" path="res://Scenes/Components/Tower/TowerUI/TowerStats/TowerStat.tscn" id="1_q45wh"]
+[ext_resource type="Texture2D" uid="uid://cbxlaq4dprfrw" path="res://Assets/Icons/Health.png" id="2_daiv4"]
+
+[node name="HealthStat" instance=ExtResource("1_q45wh")]
+
+[node name="TextureRect" parent="HBoxContainer" index="0"]
+texture = ExtResource("2_daiv4")

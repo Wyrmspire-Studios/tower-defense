@@ -7,9 +7,9 @@ public partial class RangedTower : Tower
 	
 	public TowerTargeting TowerTargeting;
 
-	public override void OnStartPlacing(bool headless = false)
+	public override void OnStartPlacing(TowerPlacement towerPlacement, bool headless = false)
 	{
-		base.OnStartPlacing(headless);
+		base.OnStartPlacing(towerPlacement, headless);
 		
 		if (headless) return;
 		

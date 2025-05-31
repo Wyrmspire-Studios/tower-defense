@@ -112,6 +112,7 @@ public partial class TowerTargeting : Area2D
 	{
 		if (!_rangeVisible) return;
 		if (Tower.TowerUi.TowerActions.GetGlobalRect().HasPoint(ev.GlobalPosition)) return;
+		if (Tower.TowerUi.TowerStats.GetGlobalRect().HasPoint(ev.GlobalPosition)) return;
 		ToggleRangeVisible();
 	}
 

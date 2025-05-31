@@ -9,7 +9,7 @@ public partial class RangedProjectileTower : RangedTower
 	
 	public TowerProjectileShooting TowerProjectileShooting;
 	
-	public virtual void OnEnemyShot(Enemy enemy, Projectile projectile)
+	public virtual void OnEnemyHit(Enemy enemy, Projectile projectile)
 	{
 		enemy.TakeDamage(projectile.ProjectileInfo.Damage);
 		projectile.QueueFree();
@@ -20,21 +20,24 @@ public partial class RangedProjectileTower : RangedTower
 		RangedProjectileTowerInfo = rangedProjectileTowerInfo;
 		RangedTowerInfo = RangedProjectileTowerInfo;
 		TowerInfo = RangedProjectileTowerInfo;
+		
+		TowerProjectileShooting?.UpdateFireDelay();
+		TowerTargeting?.UpdateRange();
 	}
 
-	public override void OnStartPlacing(bool headless = false)
+	public override void OnStartPlacing(TowerPlacement towerPlacement, bool headless = false) 
 	{
 		_updateTowerInfo((RangedProjectileTowerInfo)_baseRangedProjectileTowerInfo.Duplicate(true));
 		RangedProjectileTowerInfo.Active = false;
 		
-		base.OnStartPlacing(headless);
+		base.OnStartPlacing(towerPlacement, headless);
 		
 		if (headless) return;
 		
 		TowerProjectileShooting = GetNode<TowerProjectileShooting>("TowerProjectileShooting");
 		TowerProjectileShooting.Initialize(this);
-		
-		ApplyEnhancements();
+
+		CallDeferred(MethodName.ApplyEnhancements);
 	}
 
 	public override void OnPlaceTower()
@@ -47,7 +50,7 @@ public partial class RangedProjectileTower : RangedTower
 	{
 		var newTowerData = (RangedProjectileTowerInfo)_baseRangedProjectileTowerInfo.Duplicate(true);
 		newTowerData.TowerTier = RangedProjectileTowerInfo.TowerTier;
-		newTowerData.Active = true;
+		newTowerData.Active = RangedProjectileTowerInfo.Active;
 		
 		foreach (var towerEnhancement in TowerEnhancements.OrderBy(enhancement => enhancement.Additive))
 		{
@@ -67,24 +70,18 @@ public partial class RangedProjectileTower : RangedTower
 			{
 				if (towerEnhancement.Additive) newTowerData.FireDelay += towerEnhancement.NewProjectileFireDelay;
 				else newTowerData.FireDelay = towerEnhancement.NewProjectileFireDelay;
-				
-				TowerProjectileShooting.UpdateFireDelay();
 			}
 
 			if (towerEnhancement.NewRange != -1)
 			{
 				if (towerEnhancement.Additive) newTowerData.Range += towerEnhancement.NewRange;
 				else newTowerData.Range = towerEnhancement.NewRange;
-				
-				TowerTargeting.UpdateRange();
 			}
 
 			if (towerEnhancement.NewRangeOffset != Vector2.Inf)
 			{
 				if (towerEnhancement.Additive) newTowerData.RangeOffset += towerEnhancement.NewRangeOffset;
 				else newTowerData.RangeOffset = towerEnhancement.NewRangeOffset;
-				
-				TowerTargeting.UpdateRange();
 			}
 		}
 		

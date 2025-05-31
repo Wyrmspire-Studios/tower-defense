@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bfaw150aps460"]
+[gd_scene load_steps=5 format=3 uid="uid://bfaw150aps460"]
 
 [ext_resource type="TileSet" uid="uid://cd4ua0io1w7rr" path="res://Resources/TileSets/Ground.tres" id="1_dc8qk"]
 [ext_resource type="TileSet" uid="uid://d27v6hmjqo8c8" path="res://Resources/TileSets/Props.tres" id="2_d1gu7"]
+[ext_resource type="Script" uid="uid://d02c1n0d7prhj" path="res://Scenes/Components/Map/TowerPlacement/Paths.cs" id="3_frac4"]
 [ext_resource type="TileSet" uid="uid://cykwlxq4lnmvy" path="res://Resources/TileSets/Paths.tres" id="3_n8l16"]
 
 [node name="MapTiles" type="Node2D"]
@@ -11,6 +12,7 @@ tile_set = ExtResource("1_dc8qk")
 
 [node name="Paths" type="TileMapLayer" parent="."]
 tile_set = ExtResource("3_n8l16")
+script = ExtResource("3_frac4")
 
 [node name="Props" type="TileMapLayer" parent="."]
 tile_set = ExtResource("2_d1gu7")

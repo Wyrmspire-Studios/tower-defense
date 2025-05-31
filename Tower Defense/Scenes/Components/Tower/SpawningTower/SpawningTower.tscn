@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://b7n10rivkinq4"]
+
+[ext_resource type="PackedScene" uid="uid://4h7vniuq4gnc" path="res://Scenes/Components/Tower/Tower.tscn" id="1_gsioh"]
+[ext_resource type="Script" uid="uid://bi0qfifo2o0d2" path="res://Scenes/Components/Tower/SpawningTower/SpawningTower.cs" id="2_lx4eu"]
+[ext_resource type="PackedScene" uid="uid://c0o6hqht1oj2c" path="res://Scenes/Components/Tower/TowerSpawning/TowerSpawning.tscn" id="3_t4smq"]
+
+[node name="SpawningTower" instance=ExtResource("1_gsioh")]
+script = ExtResource("2_lx4eu")
+_baseSpawningTowerInfo = null
+
+[node name="TowerSpawning" parent="." index="1" instance=ExtResource("3_t4smq")]

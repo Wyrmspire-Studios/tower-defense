@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using TowerDefense.Scenes.Components.Map.TowerPlacement;
 
 public partial class Tower : Node2D
 {
@@ -15,7 +16,7 @@ public partial class Tower : Node2D
 	public TowerCollider TowerCollider;
 	public TowerUI TowerUi;
 
-	public virtual void OnStartPlacing(bool headless = false)
+	public virtual void OnStartPlacing(TowerPlacement towerPlacement, bool headless = false)
 	{
 		TowerSprite = GetNode<TowerSprite>("TowerSprite");
 		TowerCollider = GetNode<TowerCollider>("TowerCollider");
@@ -52,4 +53,9 @@ public partial class Tower : Node2D
 	public virtual void ApplyEnhancements() {}
 	public virtual void EnableStatsUi(TowerStats towerStats) {}
 	public virtual void UpdateStatsUi(TowerStats towerStats) {}
+
+	public virtual CanPlace CheckPlacementRequirements(TowerPlacement towerPlacement, Vector2I tile)
+	{
+		return CanPlace.Yes;
+	}
 }

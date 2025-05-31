@@ -24,6 +24,6 @@ public partial class Projectile : Area2D
 	private void _onAreaEntered(Area2D other)
 	{
 		var otherParent = other.GetParent();
-		if (otherParent is Enemy enemy) ShotBy.OnEnemyShot(enemy, this);
+		if (otherParent is Enemy enemy) ShotBy.OnEnemyHit(enemy, this);
 	}
 }
