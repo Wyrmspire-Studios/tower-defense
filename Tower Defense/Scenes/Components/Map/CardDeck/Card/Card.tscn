@@ -1,7 +1,6 @@
-[gd_scene load_steps=16 format=3 uid="uid://bksr4kilkosp0"]
+[gd_scene load_steps=15 format=3 uid="uid://bksr4kilkosp0"]
 
 [ext_resource type="Script" uid="uid://beolouq3mhbn8" path="res://Scenes/Components/Map/CardDeck/Card/Card.cs" id="1_dh2ae"]
-[ext_resource type="PackedScene" uid="uid://dnofluey7d5by" path="res://Scenes/Towers/ArcherTower.tscn" id="2_302d3"]
 [ext_resource type="Texture2D" uid="uid://dcc3alldfr5qe" path="res://Assets/Cards/Common.png" id="2_h8wm0"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_302d3"]
@@ -47,7 +46,6 @@ offset_right = 24.0
 offset_bottom = 32.0
 theme = SubResource("Theme_m0s5q")
 script = ExtResource("1_dh2ae")
-TowerToPlace = ExtResource("2_302d3")
 
 [node name="Highlight" type="ColorRect" parent="."]
 visible = false
@@ -68,3 +66,19 @@ patch_margin_left = 8
 patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
+
+[node name="TowerTextureRect" type="TextureRect" parent="Background"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 3.0
+offset_top = -3.0
+offset_right = 3.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+mouse_filter = 2

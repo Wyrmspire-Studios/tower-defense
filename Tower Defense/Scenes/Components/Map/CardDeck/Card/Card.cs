@@ -25,6 +25,7 @@ public partial class Card : Button
 
     private NinePatchRect _background;
     private ColorRect _highlight;
+    private TextureRect _towerTextureRect;
     private bool _animating;
     private bool _ready = false;
 
@@ -34,11 +35,16 @@ public partial class Card : Button
     {
         _background = GetNode<NinePatchRect>("Background");
         _highlight = GetNode<ColorRect>("Highlight");
-
-        // var towerInstance = TowerToPlace.Instantiate<Tower>();
-        // towerInstance.Position = new(8, 16);
-        // towerInstance.OnStartPlacing();
-        // _background.AddChild(towerInstance);
+        _towerTextureRect = GetNode<TextureRect>("Background/TowerTextureRect");
+        
+        var towerInstance = TowerToPlace.Instantiate<Tower>();
+        towerInstance.OnStartPlacing();
+        var regionRect = TowerSprite.GetRegionRect(towerInstance.TowerInfo.TowerTier);
+        var atlasTexture = new AtlasTexture();
+        atlasTexture.Atlas = towerInstance.TowerInfo.TowerTierTexture;
+        atlasTexture.Region = regionRect;
+        _towerTextureRect.Texture = atlasTexture;
+        towerInstance.QueueFree();
 
         ButtonDown += OnButtonDown;
         ButtonUp += OnButtonUp;

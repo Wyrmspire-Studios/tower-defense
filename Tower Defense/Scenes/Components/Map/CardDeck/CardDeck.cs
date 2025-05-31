@@ -203,10 +203,10 @@ public partial class CardDeck : Control
     public void AddCard(PackedScene tower)
     {
         var card = CardScene.Instantiate<Card>();
-        CardsContainer.AddChild(card);
         card.CardDeck = this;
         card.TowerPlacement = TowerPlacement;
         card.TowerToPlace = tower;
+        CardsContainer.AddChild(card);
         
         _ = UpdateCards();
     }

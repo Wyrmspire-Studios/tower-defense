@@ -28,6 +28,12 @@ public partial class TowerSprite : Sprite2D
 		GetTree().GetRoot().AddChild(placementSmoke);
 	}
 
+	public static Rect2 GetRegionRect(TowerTier towerTier)
+	{
+		var spriteOffset = towerTier.ToSpriteOffset();
+		return new Rect2(spriteOffset, new Vector2(TowerTextureWidth, TowerTextureHeight));
+	}
+
 	public void SetSpriteToTier(TowerTier towerTier)
 	{
 		var spriteOffset = towerTier.ToSpriteOffset();
