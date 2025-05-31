@@ -45,6 +45,7 @@ public partial class RangedProjectileTower : RangedTower
 	{
 		var newTowerData = (RangedProjectileTowerInfo)_baseRangedProjectileTowerInfo.Duplicate(true);
 		newTowerData.TowerTier = RangedProjectileTowerInfo.TowerTier;
+		newTowerData.Active = true;
 		
 		foreach (var towerEnhancement in TowerEnhancements.OrderBy(enhancement => enhancement.Additive))
 		{

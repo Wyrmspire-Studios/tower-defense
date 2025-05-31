@@ -44,6 +44,7 @@ public partial class RangedBeamTower : RangedTower
 	{
 		var newTowerData = (RangedBeamTowerInfo)_baseRangedBeamTowerInfo.Duplicate(true);
 		newTowerData.TowerTier = RangedBeamTowerInfo.TowerTier;
+		newTowerData.Active = true;
 		
 		foreach (var towerEnhancement in TowerEnhancements.OrderBy(enhancement => enhancement.Additive))
 		{
