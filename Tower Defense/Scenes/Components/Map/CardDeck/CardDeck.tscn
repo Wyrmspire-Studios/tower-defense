@@ -60,7 +60,7 @@ _data = {
 &"ShowDeck": SubResource("Animation_dcp54")
 }
 
-[node name="CardDeck" type="Control" node_paths=PackedStringArray("CardsContainer", "AnimationPlayer")]
+[node name="CardDeck" type="Control" node_paths=PackedStringArray("CardsContainer", "AnimationPlayer", "CollisionRect")]
 custom_minimum_size = Vector2(0, 72)
 layout_mode = 3
 anchors_preset = 7
@@ -76,6 +76,7 @@ CardScene = ExtResource("1_gyegu")
 PossibleTowers = Array[PackedScene]([ExtResource("3_u3d5s"), ExtResource("4_p0h3r")])
 CardsContainer = NodePath("NinePatchRect/MarginContainer/CardsContainer")
 AnimationPlayer = NodePath("AnimationPlayer")
+CollisionRect = NodePath("NinePatchRect/CollisionRect")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -113,3 +114,17 @@ theme_override_constants/margin_bottom = 4
 layout_mode = 2
 theme_override_constants/separation = 0
 alignment = 1
+
+[node name="CollisionRect" type="ReferenceRect" parent="NinePatchRect"]
+custom_minimum_size = Vector2(280, 88)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

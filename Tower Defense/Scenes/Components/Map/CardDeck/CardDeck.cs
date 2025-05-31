@@ -16,6 +16,7 @@ public partial class CardDeck : Control
     [Export] public PackedScene[] PossibleTowers;
     [Export] public HBoxContainer CardsContainer;
     [Export] public AnimationPlayer AnimationPlayer;
+    [Export] public ReferenceRect CollisionRect;
 
     private bool _placing;
     private NinePatchRect _background;
@@ -64,9 +65,8 @@ public partial class CardDeck : Control
     public override void _Process(double delta)
     {
         var mousePos = GetGlobalMousePosition();
-        var rect = _background.GetGlobalRect();
 
-        if (rect.HasPoint(mousePos))
+        if (CollisionRect.GetGlobalRect().HasPoint(mousePos))
         {
             if (_hoveringBackground) return;
             _hoveringBackground = true;

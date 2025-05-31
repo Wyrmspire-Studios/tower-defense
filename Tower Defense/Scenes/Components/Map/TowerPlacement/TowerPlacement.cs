@@ -24,14 +24,6 @@ public partial class TowerPlacement : Node2D
 	public override void _Process(double delta)
 	{
 		if (_currentlyPlacing != null) _handleMouseMovement();
-		
-		// TODO: CHECK IF THIS WORKS
-		
-		// if (Input.IsActionJustPressed("Start Placing Tower")) _startPlacingTower();
-		// if (_currentlyPlacing != null && Input.IsActionJustPressed("Cancel Placing Tower")) _cancelPlacingTower();
-		
-		// if (_canPlace == CanPlace.Enhancement && _currentlyPlacing != null && Input.IsActionJustPressed("Place Tower")) _enhanceTower();
-		// else if (_canPlace == CanPlace.Yes && _currentlyPlacing != null && Input.IsActionJustPressed("Place Tower")) _placeTower();
 	}
 	
 	public void StartPlacingTower(PackedScene tower)
@@ -79,11 +71,7 @@ public partial class TowerPlacement : Node2D
 	{
 		_currentlyPlacing.OnPlaceTower();
 		
-		// TODO: Replace with _showSmoke
-		var placementSmoke = _placementSmokeScene.Instantiate<AnimatedSprite2D>();
-		placementSmoke.Position = _currentlyPlacing.Position;
-		placementSmoke.AnimationFinished += placementSmoke.QueueFree;
-		_placedTowers.AddChild(placementSmoke);
+		_showSmoke();
 		
 		var mouseTile = _getMouseTile();
 		_occupied.AddTile(mouseTile);
