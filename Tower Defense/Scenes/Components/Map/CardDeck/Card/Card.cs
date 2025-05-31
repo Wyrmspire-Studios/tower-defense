@@ -120,8 +120,7 @@ public partial class Card : Button
 
         CardSelected?.Invoke(this, CardDeck.IsInDeck());
         _position = _defaultPosition;
-        TowerPlacement?.ChangePlacedScene(TowerToPlace);
-        TowerPlacement?.StartPlacingTower();
+        TowerPlacement?.StartPlacingTower(TowerToPlace);
     }
 
     private void OnButtonUp()

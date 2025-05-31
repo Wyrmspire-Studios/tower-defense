@@ -6,7 +6,6 @@ using TowerDefense.Scenes.Components.Map.TowerPlacement;
 public partial class TowerPlacement : Node2D
 {
 	[Export] private PackedScene _placementSmokeScene;
-	[Export] private PackedScene _placedScene;
 	
 	[ExportGroup("Internal")]
 	[Export] private Node2D _placedTowers;
@@ -35,12 +34,12 @@ public partial class TowerPlacement : Node2D
 		// else if (_canPlace == CanPlace.Yes && _currentlyPlacing != null && Input.IsActionJustPressed("Place Tower")) _placeTower();
 	}
 	
-	public void StartPlacingTower()
+	public void StartPlacingTower(PackedScene tower)
 	{
 		_occupied.ShowTileMap();
 		
 		_currentlyPlacing?.QueueFree();
-		_currentlyPlacing = _placedScene.Instantiate<Tower>();
+		_currentlyPlacing = tower.Instantiate<Tower>();
 		_currentlyPlacing.Modulate = HiddenTint;
 		_currentlyPlacing.OnStartPlacing();
 		_placedTowers.AddChild(_currentlyPlacing);
@@ -136,16 +135,6 @@ public partial class TowerPlacement : Node2D
 	{
 		_occupied.RemoveTile(tile);
 		_towers.Remove(tile);
-	}
-	
-	public void ChangePlacedScene(PackedScene scene)
-	{
-		_placedScene = scene;
-	}
-	
-	public PackedScene GetPlacedScene()
-	{
-		return _placedScene;
 	}
 
 	public bool IsPlacing()

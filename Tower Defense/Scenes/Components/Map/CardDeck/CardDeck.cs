@@ -13,6 +13,7 @@ public partial class CardDeck : Control
 
     [Export] public TowerPlacement TowerPlacement;
     [Export] public PackedScene CardScene;
+    [Export] public PackedScene[] PossibleTowers;
     [Export] public HBoxContainer CardsContainer;
     [Export] public AnimationPlayer AnimationPlayer;
 
@@ -247,11 +248,16 @@ public partial class CardDeck : Control
     
     public bool IsHidden => _hidden;
     
+    private PackedScene _pickTower()
+    {
+        return PossibleTowers[Random.Shared.Next(PossibleTowers.Length)];
+    }
+    
     public override void _Input(InputEvent @event)
     {
         if (@event is InputEventKey keyEvent && keyEvent.Pressed && keyEvent.Keycode == Key.A)
         {
-            AddCard(TowerPlacement.GetPlacedScene());
+            AddCard(_pickTower());
         }
     }
 }
