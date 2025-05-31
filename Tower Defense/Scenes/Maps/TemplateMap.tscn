@@ -14,7 +14,8 @@ TowerPlacement = NodePath("../../../TowerPlacement")
 
 [node name="MapTiles" parent="." instance=ExtResource("2_y1n2n")]
 
-[node name="TowerPlacement" parent="." instance=ExtResource("3_hqyf3")]
+[node name="TowerPlacement" parent="." node_paths=PackedStringArray("_occupied") instance=ExtResource("3_hqyf3")]
+_occupied = NodePath("Occupied")
 
 [node name="EnemySpawner" parent="." node_paths=PackedStringArray("SpawnPoints") instance=ExtResource("4_8y5fv")]
 SpawnPoints = []

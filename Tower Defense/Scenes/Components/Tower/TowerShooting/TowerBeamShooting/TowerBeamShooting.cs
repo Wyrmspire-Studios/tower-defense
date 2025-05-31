@@ -92,7 +92,7 @@ public partial class TowerBeamShooting : Node2D
 	{
 		if (!Tower.RangedBeamTowerInfo.Active) return;
 		_canShoot = false;
-		if (_shootingAt != null) _shootDelayTimer.Start(Tower.RangedBeamTowerInfo.FireDelay);
+		_shootDelayTimer.Start(Tower.RangedBeamTowerInfo.FireDelay);
 	}
 
 	private void _onDamageTick()
