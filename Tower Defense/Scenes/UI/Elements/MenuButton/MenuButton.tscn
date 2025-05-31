@@ -24,7 +24,7 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4ufmu"]
 
-[sub_resource type="Theme" id="Theme_fu2ug"]
+[sub_resource type="Theme" id="Theme_f6pap"]
 Button/styles/disabled = SubResource("StyleBoxEmpty_c7j8o")
 Button/styles/disabled_mirrored = SubResource("StyleBoxEmpty_fu2ug")
 Button/styles/focus = SubResource("StyleBoxEmpty_cylhw")
@@ -42,7 +42,7 @@ Button/styles/pressed_mirrored = SubResource("StyleBoxEmpty_4ufmu")
 [node name="MenuButton" type="Button"]
 offset_right = 150.0
 offset_bottom = 50.0
-theme = SubResource("Theme_fu2ug")
+theme = SubResource("Theme_f6pap")
 script = ExtResource("1_c7j8o")
 
 [node name="Background" type="NinePatchRect" parent="."]

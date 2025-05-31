@@ -1,0 +1,70 @@
+[gd_scene load_steps=16 format=3 uid="uid://bksr4kilkosp0"]
+
+[ext_resource type="Script" uid="uid://beolouq3mhbn8" path="res://Scenes/Components/Map/CardDeck/Card/Card.cs" id="1_dh2ae"]
+[ext_resource type="PackedScene" uid="uid://dnofluey7d5by" path="res://Scenes/Towers/ArcherTower.tscn" id="2_302d3"]
+[ext_resource type="Texture2D" uid="uid://dcc3alldfr5qe" path="res://Assets/Cards/Common.png" id="2_h8wm0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_302d3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5iiex"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xh2wx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mkthf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nj5um"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ylgbq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pt4ky"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0q0n8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_46iuv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fu25q"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_exeie"]
+
+[sub_resource type="Theme" id="Theme_m0s5q"]
+Button/styles/disabled = SubResource("StyleBoxEmpty_302d3")
+Button/styles/disabled_mirrored = SubResource("StyleBoxEmpty_5iiex")
+Button/styles/focus = SubResource("StyleBoxEmpty_xh2wx")
+Button/styles/hover = SubResource("StyleBoxEmpty_mkthf")
+Button/styles/hover_mirrored = SubResource("StyleBoxEmpty_nj5um")
+Button/styles/hover_pressed = SubResource("StyleBoxEmpty_ylgbq")
+Button/styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_pt4ky")
+Button/styles/normal = SubResource("StyleBoxEmpty_0q0n8")
+Button/styles/normal_mirrored = SubResource("StyleBoxEmpty_46iuv")
+Button/styles/pressed = SubResource("StyleBoxEmpty_fu25q")
+Button/styles/pressed_mirrored = SubResource("StyleBoxEmpty_exeie")
+
+[node name="Card" type="Button"]
+custom_minimum_size = Vector2(48, 64)
+offset_left = -24.0
+offset_top = -32.0
+offset_right = 24.0
+offset_bottom = 32.0
+theme = SubResource("Theme_m0s5q")
+script = ExtResource("1_dh2ae")
+TowerToPlace = ExtResource("2_302d3")
+
+[node name="Highlight" type="ColorRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 49.0
+offset_bottom = 65.0
+mouse_filter = 2
+color = Color(0.754691, 0.923563, 0, 1)
+
+[node name="Background" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_right = 48.0
+offset_bottom = 64.0
+texture = ExtResource("2_h8wm0")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8

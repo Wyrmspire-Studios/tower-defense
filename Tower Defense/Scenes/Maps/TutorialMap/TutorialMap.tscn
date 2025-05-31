@@ -2,13 +2,13 @@
 
 [ext_resource type="PackedScene" uid="uid://y1tl75a87wmt" path="res://Scenes/Components/Map/MapUI/MapUI.tscn" id="1_ah1jo"]
 [ext_resource type="PackedScene" uid="uid://bfaw150aps460" path="res://Scenes/Components/Map/MapTiles/MapTiles.tscn" id="1_mik4u"]
-[ext_resource type="PackedScene" uid="uid://cco4fc4yif78y" path="res://Scenes/Components/EnemySpawner/EnemySpawner.tscn" id="1_tw565"]
+[ext_resource type="PackedScene" uid="uid://cco4fc4yif78y" path="res://Scenes/Components/Map/EnemySpawner/EnemySpawner.tscn" id="1_tw565"]
 [ext_resource type="PackedScene" uid="uid://bo54w4efanqvm" path="res://Scenes/Components/Map/TowerPlacement/TowerPlacement.tscn" id="2_7fg68"]
 [ext_resource type="PackedScene" uid="uid://drpmojh54436v" path="res://Scenes/Enemies/Slime.tscn" id="2_ipyvt"]
-[ext_resource type="Script" uid="uid://db072fixsh811" path="res://Scenes/Components/EnemySpawner/EnemyGroup.cs" id="3_7fg68"]
+[ext_resource type="Script" uid="uid://db072fixsh811" path="res://Scenes/Components/Map/EnemySpawner/EnemyGroup.cs" id="3_7fg68"]
+[ext_resource type="PackedScene" uid="uid://dnofluey7d5by" path="res://Scenes/Towers/ArcherTower.tscn" id="3_ipyvt"]
 [ext_resource type="PackedScene" uid="uid://d0bbbmoraofao" path="res://Scenes/Enemies/SlowSlime.tscn" id="4_ah1jo"]
-[ext_resource type="Script" uid="uid://dut1irbek148f" path="res://Scenes/Components/EnemySpawner/EnemyWave.cs" id="4_ipyvt"]
-[ext_resource type="PackedScene" uid="uid://bt1efhy4djaqj" path="res://Scenes/Towers/MageTower.tscn" id="4_wu13y"]
+[ext_resource type="Script" uid="uid://dut1irbek148f" path="res://Scenes/Components/Map/EnemySpawner/EnemyWave.cs" id="4_ipyvt"]
 [ext_resource type="PackedScene" uid="uid://c6embu1anb0ai" path="res://Scenes/Enemies/FastSlime.tscn" id="6_wu13y"]
 
 [sub_resource type="Resource" id="Resource_wu13y"]
@@ -87,6 +87,9 @@ point_count = 14
 
 [node name="MapUi" parent="." instance=ExtResource("1_ah1jo")]
 
+[node name="CardDeck" parent="MapUi/MapUI" index="1" node_paths=PackedStringArray("TowerPlacement")]
+TowerPlacement = NodePath("../../../TowerPlacement")
+
 [node name="MapTiles" parent="." instance=ExtResource("1_mik4u")]
 
 [node name="Grass" parent="MapTiles" index="0"]
@@ -99,7 +102,7 @@ tile_map_data = PackedByteArray("AAD//wUAAAADAAAABgAAAAUAAAABAAEAAQABAAUAAAAAAAE
 tile_map_data = PackedByteArray("AAAAAAMAAQACAAAAAAACAAUAAAAPAAMAAAACAAcAAQAEAAAAAAACAAwAAAADAAQAAAACAA4AAQAAAAAAAAADAAQAAQAEAAAAAAADAAkAAAAFAAUAAAADABUAAAAGAAUAAAAFAAEAAAAMAAUAAAAFAAMAAQACAAAAAAAHAAAAAQAGAAAAAAAHAA0AAQAGAAAAAAAJAAQAAAANAAUAAAALABUAAAACAAMAAAAMAAgAAQAGAAAAAAAMABQAAAAEAAQAAAAPAAwAAQACAAAAAAARABYAAQAEAAAAAAASAAIAAQACAAAAAAASAA0AAAAPAAQAAAASABIAAAAOAAUAAAATAAsAAQACAAAAAAATAA8AAQACAAAAAAATABYAAQAGAAAAAAAUAAUAAAAOAAMAAAAVAA4AAAANAAUAAAAVABMAAQACAAAAAAAYAAEAAAAKAAUAAAAaAAAAAAAJAAUAAAAaAAIAAAADAAUAAAAbAAAAAAANAAQAAAAbAA0AAAAEAAUAAAAcAAQAAQAEAAAAAAAdAA0AAQAAAAAAAAAeABEAAAABAAMAAAAeABUAAQAGAAAAAAAfAAwAAAAGAAUAAAAfABQAAQAGAAAAAAAgAA0AAAAMAAQAAAAgAA8AAQAGAAAAAAAgABEAAQAEAAAAAAAhAAEAAQAGAAAAAAAhABYAAQAAAAAAAAAiAAoAAAAAAAMAAAAiAAsAAAABAAQAAAAiABEAAQAGAAAAAAAjABQAAQACAAAAAAAlAAcAAAAHAAUAAAAlAAwAAAAKAAQAAAAlABUAAQACAAAAAAAnAAUAAQACAAAAAAA=")
 
 [node name="TowerPlacement" parent="." instance=ExtResource("2_7fg68")]
-_placedScene = ExtResource("4_wu13y")
+_placedScene = ExtResource("3_ipyvt")
 
 [node name="Occupied" parent="TowerPlacement" index="0"]
 tile_map_data = PackedByteArray("AAD//wUAAAACAAEAAAAAAAUAAAABAAQAAAABAAUAAAABAAQAAAACAAUAAAABAAQAAAADAAUAAAADAAIAAAADAAQAAAAAAAQAAAADAAMAAAAAAAIAAAAEAAMAAAABAAQAAAAFAAMAAAABAAIAAAAFAAQAAAAAAAQAAAAFAAUAAAAAAAQAAAAFAAYAAAAAAAQAAAAFAAcAAAADAAIAAAAEAAcAAAABAAQAAAADAAcAAAABAAQAAAACAAcAAAAAAAIAAAACAAgAAAAAAAQAAAACAAkAAAACAAIAAAADAAkAAAABAAQAAAAEAAkAAAABAAQAAAAFAAkAAAABAAQAAAAGAAkAAAABAAQAAAAHAAkAAAABAAQAAAAIAAkAAAADAAIAAAAIAAgAAAAAAAQAAAAIAAcAAAAAAAQAAAAIAAYAAAAAAAQAAAAIAAUAAAAAAAQAAAAIAAQAAAAAAAQAAAAIAAMAAAAAAAIAAAAJAAMAAAABAAQAAAAKAAMAAAABAAQAAAALAAMAAAABAAQAAAAMAAMAAAABAAQAAAANAAMAAAABAAQAAAAOAAMAAAABAAQAAAAPAAMAAAABAAIAAAAPAAQAAAAAAAQAAAAPAAUAAAADAAIAAAAOAAUAAAABAAQAAAANAAUAAAABAAQAAAAMAAUAAAABAAQAAAALAAUAAAAAAAIAAAALAAYAAAAAAAQAAAALAAcAAAAAAAQAAAALAAgAAAAAAAQAAAALAAkAAAACAAIAAAAMAAkAAAABAAQAAAANAAkAAAABAAQAAAAOAAkAAAABAAQAAAAPAAkAAAABAAQAAAAQAAkAAAABAAQAAAARAAkAAAABAAQAAAASAAkAAAABAAQAAAATAAkAAAABAAQAAAAUAAkAAAADAAEAAAA=")
@@ -112,5 +115,7 @@ Waves = Array[Object]([SubResource("Resource_trfe8"), SubResource("Resource_4phx
 rotation = 0.00243818
 curve = SubResource("Curve2D_7fg68")
 
+[editable path="MapUi"]
+[editable path="MapUi/MapUI/CardDeck"]
 [editable path="MapTiles"]
 [editable path="TowerPlacement"]

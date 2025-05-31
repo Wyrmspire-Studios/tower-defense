@@ -1,27 +1,14 @@
 [gd_scene load_steps=2 format=3 uid="uid://buqf13wh7siy1"]
 
-[ext_resource type="PackedScene" uid="uid://bksr4kilkosp0" path="res://Scenes/Components/Card/Card.tscn" id="1_s2axn"]
+[ext_resource type="PackedScene" uid="uid://bhxcmvil3d6dk" path="res://Scenes/Components/Map/CardDeck/CardDeck.tscn" id="1_mv762"]
 
-[node name="CardTesting" type="Node2D"]
-position = Vector2(10, 18)
+[node name="CardTesting" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 10.0
+offset_top = 18.0
+offset_right = 10.0
+offset_bottom = 18.0
 
-[node name="Card" parent="." instance=ExtResource("1_s2axn")]
-offset_left = 30.0
-offset_top = 30.0
-offset_right = 30.0
-offset_bottom = 30.0
-metadata/_edit_use_anchors_ = true
-
-[node name="Card2" parent="." instance=ExtResource("1_s2axn")]
-offset_left = 60.0
-offset_top = 30.0
-offset_right = 60.0
-offset_bottom = 30.0
-metadata/_edit_use_anchors_ = true
-
-[node name="Card3" parent="." instance=ExtResource("1_s2axn")]
-offset_left = 90.0
-offset_top = 30.0
-offset_right = 90.0
-offset_bottom = 30.0
-metadata/_edit_use_anchors_ = true
+[node name="CardDeck" parent="." instance=ExtResource("1_mv762")]
+layout_mode = 1

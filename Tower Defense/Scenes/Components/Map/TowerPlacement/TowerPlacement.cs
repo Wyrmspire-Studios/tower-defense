@@ -22,23 +22,20 @@ public partial class TowerPlacement : Node2D
 	private static readonly Color EnhancementTint = Color.Color8(128, 128, 255, 192);
 	private static readonly Color UnplaceableTint = Color.Color8(255, 128, 128, 192);
 
-	public override void _Ready()
-	{
-		Tower.TowerSold += _onTowerSold;
-	}
-
 	public override void _Process(double delta)
 	{
 		if (_currentlyPlacing != null) _handleMouseMovement();
 		
-		if (Input.IsActionJustPressed("Start Placing Tower")) _startPlacingTower();
-		if (_currentlyPlacing != null && Input.IsActionJustPressed("Cancel Placing Tower")) _cancelPlacingTower();
+		// TODO: CHECK IF THIS WORKS
 		
-		if (_canPlace == CanPlace.Enhancement && _currentlyPlacing != null && Input.IsActionJustPressed("Place Tower")) _enhanceTower();
-		else if (_canPlace == CanPlace.Yes && _currentlyPlacing != null && Input.IsActionJustPressed("Place Tower")) _placeTower();
+		// if (Input.IsActionJustPressed("Start Placing Tower")) _startPlacingTower();
+		// if (_currentlyPlacing != null && Input.IsActionJustPressed("Cancel Placing Tower")) _cancelPlacingTower();
+		
+		// if (_canPlace == CanPlace.Enhancement && _currentlyPlacing != null && Input.IsActionJustPressed("Place Tower")) _enhanceTower();
+		// else if (_canPlace == CanPlace.Yes && _currentlyPlacing != null && Input.IsActionJustPressed("Place Tower")) _placeTower();
 	}
 	
-	private void _startPlacingTower()
+	public void StartPlacingTower()
 	{
 		_occupied.ShowTileMap();
 		
@@ -49,13 +46,13 @@ public partial class TowerPlacement : Node2D
 		_placedTowers.AddChild(_currentlyPlacing);
 	}
 
-	private void _cancelPlacingTower()
+	public void CancelPlacingTower()
 	{
 		_occupied.HideTileMap();
 		_currentlyPlacing?.QueueFree();
 		_currentlyPlacing = null;
 	}
-
+	
 	private void _showSmoke()
 	{
 		var placementSmoke = _placementSmokeScene.Instantiate<AnimatedSprite2D>();
@@ -64,13 +61,22 @@ public partial class TowerPlacement : Node2D
 		_placedTowers.AddChild(placementSmoke);
 	}
 	
-	private void _placeTower()
+	public bool PlaceTower()
 	{
 		_occupied.HideTileMap();
+		if (_canPlace == CanPlace.No || _currentlyPlacing == null)
+		{
+			CancelPlacingTower();
+			return false;
+		} ;
 		
 		_currentlyPlacing.OnPlaceTower();
-
-		_showSmoke();
+		
+		// TODO: Replace with _showSmoke
+		var placementSmoke = _placementSmokeScene.Instantiate<AnimatedSprite2D>();
+		placementSmoke.Position = _currentlyPlacing.Position;
+		placementSmoke.AnimationFinished += placementSmoke.QueueFree;
+		_placedTowers.AddChild(placementSmoke);
 		
 		var mouseTile = _getMouseTile();
 		_occupied.AddTile(mouseTile);
@@ -79,11 +85,19 @@ public partial class TowerPlacement : Node2D
 		
 		_towers.Add(mouseTile, _currentlyPlacing);
 		_currentlyPlacing = null;
+
+		return true;
 	}
 
-	private void _enhanceTower()
+	private bool EnhanceTower()
 	{
 		_occupied.HideTileMap();
+		
+		if (_canPlace == CanPlace.No || _currentlyPlacing == null)
+		{
+			CancelPlacingTower();
+			return false;
+		} ;
 
 		var mouseTile = _getMouseTile();
 		var givenEnhancement = _currentlyPlacing.TowerInfo.GivenEnhancement;
@@ -96,6 +110,8 @@ public partial class TowerPlacement : Node2D
 
 		_currentlyPlacing.QueueFree();
 		_currentlyPlacing = null;
+		
+		return true;
 	}
 
 	private Vector2I _getMouseTile()
@@ -124,5 +140,20 @@ public partial class TowerPlacement : Node2D
 	{
 		_occupied.RemoveTile(tile);
 		_towers.Remove(tile);
+	}
+	
+	public void ChangePlacedScene(PackedScene scene)
+	{
+		_placedScene = scene;
+	}
+	
+	public PackedScene GetPlacedScene()
+	{
+		return _placedScene;
+	}
+
+	public bool IsPlacing()
+	{
+		return _currentlyPlacing != null;
 	}
 }
