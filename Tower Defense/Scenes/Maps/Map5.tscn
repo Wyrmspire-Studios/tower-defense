@@ -1,6 +1,307 @@
-[gd_scene load_steps=3 format=4 uid="uid://c16bx58wfpp0i"]
+[gd_scene load_steps=46 format=4 uid="uid://c16bx58wfpp0i"]
 
 [ext_resource type="PackedScene" uid="uid://l1hce7nsraba" path="res://Scenes/Maps/TemplateMap.tscn" id="1_6ktta"]
+[ext_resource type="PackedScene" uid="uid://drpmojh54436v" path="res://Scenes/Enemies/Slime.tscn" id="2_6tm8a"]
+[ext_resource type="Script" uid="uid://db072fixsh811" path="res://Scenes/Components/Map/EnemySpawner/EnemyGroup.cs" id="3_xtqyl"]
+[ext_resource type="Script" uid="uid://dut1irbek148f" path="res://Scenes/Components/Map/EnemySpawner/EnemyWave.cs" id="4_iq8g8"]
+[ext_resource type="PackedScene" uid="uid://d0bbbmoraofao" path="res://Scenes/Enemies/SlowSlime.tscn" id="5_it4ie"]
+[ext_resource type="PackedScene" uid="uid://c6embu1anb0ai" path="res://Scenes/Enemies/FastSlime.tscn" id="6_cl433"]
+[ext_resource type="PackedScene" uid="uid://dqa4pw7i5wv5t" path="res://Scenes/Enemies/UltraFastSlime.tscn" id="7_j5bh1"]
+[ext_resource type="PackedScene" uid="uid://d3g75wvfm4lx5" path="res://Scenes/Enemies/UltraSlowSlime.tscn" id="8_xs3ra"]
+
+[sub_resource type="Resource" id="Resource_sie2w"]
+script = ExtResource("3_xtqyl")
+EnemyToSpawn = ExtResource("2_6tm8a")
+PathIdToSpawnOn = 0
+EnemyCount = 6
+SpawnIntervalSeconds = 3.0
+DelayUntilNextGroup = 1.0
+metadata/_custom_type_script = "uid://db072fixsh811"
+
+[sub_resource type="Resource" id="Resource_luigp"]
+script = ExtResource("4_iq8g8")
+EnemyGroups = Array[Object]([SubResource("Resource_sie2w")])
+DelayUntilNextWave = 20.0
+metadata/_custom_type_script = "uid://dut1irbek148f"
+
+[sub_resource type="Resource" id="Resource_m3388"]
+script = ExtResource("3_xtqyl")
+EnemyToSpawn = ExtResource("2_6tm8a")
+PathIdToSpawnOn = 0
+EnemyCount = 8
+SpawnIntervalSeconds = 2.0
+DelayUntilNextGroup = 1.0
+metadata/_custom_type_script = "uid://db072fixsh811"
+
+[sub_resource type="Resource" id="Resource_alced"]
+script = ExtResource("4_iq8g8")
+EnemyGroups = Array[Object]([SubResource("Resource_m3388")])
+DelayUntilNextWave = 20.0
+metadata/_custom_type_script = "uid://dut1irbek148f"
+
+[sub_resource type="Resource" id="Resource_is8v5"]
+script = ExtResource("3_xtqyl")
+EnemyToSpawn = ExtResource("2_6tm8a")
+PathIdToSpawnOn = 0
+EnemyCount = 4
+SpawnIntervalSeconds = 2.0
+DelayUntilNextGroup = 6.5
+metadata/_custom_type_script = "uid://db072fixsh811"
+
+[sub_resource type="Resource" id="Resource_olh8c"]
+script = ExtResource("3_xtqyl")
+EnemyToSpawn = ExtResource("5_it4ie")
+PathIdToSpawnOn = 0
+EnemyCount = 4
+SpawnIntervalSeconds = 1.0
+DelayUntilNextGroup = 3.5
+metadata/_custom_type_script = "uid://db072fixsh811"
+
+[sub_resource type="Resource" id="Resource_bm0io"]
+script = ExtResource("3_xtqyl")
+EnemyToSpawn = ExtResource("2_6tm8a")
+PathIdToSpawnOn = 0
+EnemyCount = 6
+SpawnIntervalSeconds = 2.0
+DelayUntilNextGroup = 1.0
+metadata/_custom_type_script = "uid://db072fixsh811"
+
+[sub_resource type="Resource" id="Resource_jryuy"]
+script = ExtResource("4_iq8g8")
+EnemyGroups = Array[Object]([SubResource("Resource_is8v5"), SubResource("Resource_olh8c"), SubResource("Resource_bm0io")])
+DelayUntilNextWave = 20.0
+metadata/_custom_type_script = "uid://dut1irbek148f"
+
+[sub_resource type="Resource" id="Resource_xx8hw"]
+script = ExtResource("3_xtqyl")
+EnemyToSpawn = ExtResource("2_6tm8a")
+PathIdToSpawnOn = 0
+EnemyCount = 6
+SpawnIntervalSeconds = 2.0
+DelayUntilNextGroup = 4.0
+metadata/_custom_type_script = "uid://db072fixsh811"
+
+[sub_resource type="Resource" id="Resource_uo6do"]
+script = ExtResource("3_xtqyl")
+EnemyToSpawn = ExtResource("5_it4ie")
+PathIdToSpawnOn = 0
+EnemyCount = 4
+SpawnIntervalSeconds = 2.0
+DelayUntilNextGroup = 8.0
+metadata/_custom_type_script = "uid://db072fixsh811"
+
+[sub_resource type="Resource" id="Resource_tkvve"]
+script = ExtResource("3_xtqyl")
+EnemyToSpawn = ExtResource("2_6tm8a")
+PathIdToSpawnOn = 0
+EnemyCount = 6
+SpawnIntervalSeconds = 0.5
+DelayUntilNextGroup = 1.0
+metadata/_custom_type_script = "uid://db072fixsh811"
+
+[sub_resource type="Resource" id="Resource_0qg8h"]
+script = ExtResource("4_iq8g8")
+EnemyGroups = Array[Object]([SubResource("Resource_xx8hw"), SubResource("Resource_uo6do"), SubResource("Resource_tkvve")])
+DelayUntilNextWave = 20.0
+metadata/_custom_type_script = "uid://dut1irbek148f"
+
+[sub_resource type="Resource" id="Resource_fkm4b"]
+script = ExtResource("3_xtqyl")
+EnemyToSpawn = ExtResource("6_cl433")
+PathIdToSpawnOn = 0
+EnemyCount = 4
+SpawnIntervalSeconds = 2.0
+DelayUntilNextGroup = 6.0
+metadata/_custom_type_script = "uid://db072fixsh811"
+
+[sub_resource type="Resource" id="Resource_novje"]
+script = ExtResource("3_xtqyl")
+EnemyToSpawn = ExtResource("2_6tm8a")
+PathIdToSpawnOn = 0
+EnemyCount = 5
+SpawnIntervalSeconds = 0.5
+DelayUntilNextGroup = 5.0
+metadata/_custom_type_script = "uid://db072fixsh811"
+
+[sub_resource type="Resource" id="Resource_atfra"]
+script = ExtResource("3_xtqyl")
+EnemyToSpawn = ExtResource("6_cl433")
+PathIdToSpawnOn = 0
+EnemyCount = 4
+SpawnIntervalSeconds = 1.0
+DelayUntilNextGroup = 1.0
+metadata/_custom_type_script = "uid://db072fixsh811"
+
+[sub_resource type="Resource" id="Resource_2mw3h"]
+script = ExtResource("4_iq8g8")
+EnemyGroups = Array[Object]([SubResource("Resource_fkm4b"), SubResource("Resource_novje"), SubResource("Resource_atfra")])
+DelayUntilNextWave = 20.0
+metadata/_custom_type_script = "uid://dut1irbek148f"
+
+[sub_resource type="Resource" id="Resource_jc55y"]
+script = ExtResource("3_xtqyl")
+EnemyToSpawn = ExtResource("5_it4ie")
+PathIdToSpawnOn = 0
+EnemyCount = 8
+SpawnIntervalSeconds = 2.0
+DelayUntilNextGroup = 1.5
+metadata/_custom_type_script = "uid://db072fixsh811"
+
+[sub_resource type="Resource" id="Resource_5qswj"]
+script = ExtResource("3_xtqyl")
+EnemyToSpawn = ExtResource("6_cl433")
+PathIdToSpawnOn = 0
+EnemyCount = 4
+SpawnIntervalSeconds = 4.0
+DelayUntilNextGroup = 1.0
+metadata/_custom_type_script = "uid://db072fixsh811"
+
+[sub_resource type="Resource" id="Resource_r40jw"]
+script = ExtResource("4_iq8g8")
+EnemyGroups = Array[Object]([SubResource("Resource_jc55y"), SubResource("Resource_5qswj")])
+DelayUntilNextWave = 20.0
+metadata/_custom_type_script = "uid://dut1irbek148f"
+
+[sub_resource type="Resource" id="Resource_4c2vl"]
+script = ExtResource("3_xtqyl")
+EnemyToSpawn = ExtResource("2_6tm8a")
+PathIdToSpawnOn = 0
+EnemyCount = 36
+SpawnIntervalSeconds = 0.5
+DelayUntilNextGroup = 1.0
+metadata/_custom_type_script = "uid://db072fixsh811"
+
+[sub_resource type="Resource" id="Resource_hdwuw"]
+script = ExtResource("4_iq8g8")
+EnemyGroups = Array[Object]([SubResource("Resource_4c2vl")])
+DelayUntilNextWave = 20.0
+metadata/_custom_type_script = "uid://dut1irbek148f"
+
+[sub_resource type="Resource" id="Resource_v2ar1"]
+script = ExtResource("3_xtqyl")
+EnemyToSpawn = ExtResource("6_cl433")
+PathIdToSpawnOn = 0
+EnemyCount = 16
+SpawnIntervalSeconds = 2.0
+DelayUntilNextGroup = 1.0
+metadata/_custom_type_script = "uid://db072fixsh811"
+
+[sub_resource type="Resource" id="Resource_6x5dk"]
+script = ExtResource("3_xtqyl")
+EnemyToSpawn = ExtResource("7_j5bh1")
+PathIdToSpawnOn = 0
+EnemyCount = 6
+SpawnIntervalSeconds = 2.0
+DelayUntilNextGroup = 1.0
+metadata/_custom_type_script = "uid://db072fixsh811"
+
+[sub_resource type="Resource" id="Resource_l6yxw"]
+script = ExtResource("4_iq8g8")
+EnemyGroups = Array[Object]([SubResource("Resource_v2ar1"), SubResource("Resource_6x5dk")])
+DelayUntilNextWave = 20.0
+metadata/_custom_type_script = "uid://dut1irbek148f"
+
+[sub_resource type="Resource" id="Resource_wd55j"]
+script = ExtResource("3_xtqyl")
+EnemyToSpawn = ExtResource("2_6tm8a")
+PathIdToSpawnOn = 0
+EnemyCount = 10
+SpawnIntervalSeconds = 1.5
+DelayUntilNextGroup = 1.0
+metadata/_custom_type_script = "uid://db072fixsh811"
+
+[sub_resource type="Resource" id="Resource_ofoxe"]
+script = ExtResource("3_xtqyl")
+EnemyToSpawn = ExtResource("5_it4ie")
+PathIdToSpawnOn = 0
+EnemyCount = 3
+SpawnIntervalSeconds = 0.5
+DelayUntilNextGroup = 2.0
+metadata/_custom_type_script = "uid://db072fixsh811"
+
+[sub_resource type="Resource" id="Resource_fa07q"]
+script = ExtResource("3_xtqyl")
+EnemyToSpawn = ExtResource("8_xs3ra")
+PathIdToSpawnOn = 0
+EnemyCount = 1
+SpawnIntervalSeconds = 1.0
+DelayUntilNextGroup = 0.5
+metadata/_custom_type_script = "uid://db072fixsh811"
+
+[sub_resource type="Resource" id="Resource_mfng5"]
+script = ExtResource("3_xtqyl")
+EnemyToSpawn = ExtResource("5_it4ie")
+PathIdToSpawnOn = 0
+EnemyCount = 3
+SpawnIntervalSeconds = 0.5
+DelayUntilNextGroup = 1.0
+metadata/_custom_type_script = "uid://db072fixsh811"
+
+[sub_resource type="Resource" id="Resource_a21q0"]
+script = ExtResource("4_iq8g8")
+EnemyGroups = Array[Object]([SubResource("Resource_wd55j"), SubResource("Resource_ofoxe"), SubResource("Resource_fa07q"), SubResource("Resource_mfng5")])
+DelayUntilNextWave = 20.0
+metadata/_custom_type_script = "uid://dut1irbek148f"
+
+[sub_resource type="Resource" id="Resource_fv8qv"]
+script = ExtResource("3_xtqyl")
+EnemyToSpawn = ExtResource("8_xs3ra")
+PathIdToSpawnOn = 0
+EnemyCount = 1
+SpawnIntervalSeconds = 0.5
+DelayUntilNextGroup = 1.0
+metadata/_custom_type_script = "uid://db072fixsh811"
+
+[sub_resource type="Resource" id="Resource_dante"]
+script = ExtResource("3_xtqyl")
+EnemyToSpawn = ExtResource("5_it4ie")
+PathIdToSpawnOn = 0
+EnemyCount = 4
+SpawnIntervalSeconds = 0.5
+DelayUntilNextGroup = 2.5
+metadata/_custom_type_script = "uid://db072fixsh811"
+
+[sub_resource type="Resource" id="Resource_ds108"]
+script = ExtResource("3_xtqyl")
+EnemyToSpawn = ExtResource("2_6tm8a")
+PathIdToSpawnOn = 0
+EnemyCount = 6
+SpawnIntervalSeconds = 0.5
+DelayUntilNextGroup = 3.5
+metadata/_custom_type_script = "uid://db072fixsh811"
+
+[sub_resource type="Resource" id="Resource_3rwcf"]
+script = ExtResource("3_xtqyl")
+EnemyToSpawn = ExtResource("6_cl433")
+PathIdToSpawnOn = 0
+EnemyCount = 6
+SpawnIntervalSeconds = 0.5
+DelayUntilNextGroup = 3.5
+metadata/_custom_type_script = "uid://db072fixsh811"
+
+[sub_resource type="Resource" id="Resource_g44av"]
+script = ExtResource("3_xtqyl")
+EnemyToSpawn = ExtResource("7_j5bh1")
+PathIdToSpawnOn = 0
+EnemyCount = 3
+SpawnIntervalSeconds = 1.0
+DelayUntilNextGroup = 5.0
+metadata/_custom_type_script = "uid://db072fixsh811"
+
+[sub_resource type="Resource" id="Resource_md0rp"]
+script = ExtResource("3_xtqyl")
+EnemyToSpawn = ExtResource("8_xs3ra")
+PathIdToSpawnOn = 0
+EnemyCount = 3
+SpawnIntervalSeconds = 1.0
+DelayUntilNextGroup = 1.0
+metadata/_custom_type_script = "uid://db072fixsh811"
+
+[sub_resource type="Resource" id="Resource_2u54b"]
+script = ExtResource("4_iq8g8")
+EnemyGroups = Array[Object]([SubResource("Resource_fv8qv"), SubResource("Resource_dante"), SubResource("Resource_ds108"), SubResource("Resource_3rwcf"), SubResource("Resource_g44av"), SubResource("Resource_md0rp")])
+DelayUntilNextWave = 20.0
+metadata/_custom_type_script = "uid://dut1irbek148f"
 
 [sub_resource type="Curve2D" id="Curve2D_aea82"]
 _data = {
@@ -21,6 +322,10 @@ tile_map_data = PackedByteArray("AAABAAwAAAAEAAMAAAABAA4AAAABAAUAAAAFAAwAAAANAAU
 
 [node name="Occupied" parent="TowerPlacement" index="0"]
 tile_map_data = PackedByteArray("AAD//wMAAAACAAEAAAAAAAMAAAABAAQAAAABAAMAAAABAAQAAAACAAMAAAABAAQAAAADAAMAAAABAAQAAAAEAAMAAAABAAQAAAAFAAMAAAABAAQAAAAGAAMAAAABAAQAAAAHAAMAAAABAAQAAAAIAAMAAAABAAIAAAAIAAQAAAAAAAQAAAAIAAUAAAADAAAAAAAIAAYAAAAAAAQAAAAIAAcAAAADAAIAAAAHAAcAAAABAAQAAAAGAAcAAAACAAIAAAAGAAYAAAAAAAQAAAAGAAUAAAAAAAIAAAAHAAUAAAABAAQAAAAJAAUAAAABAAQAAAAKAAUAAAABAAQAAAALAAUAAAADAAAAAAAMAAUAAAABAAQAAAANAAUAAAABAAIAAAANAAYAAAAAAAQAAAANAAcAAAADAAIAAAAMAAcAAAABAAQAAAALAAcAAAACAAIAAAALAAYAAAAAAAQAAAALAAQAAAAAAAQAAAALAAMAAAAAAAIAAAAMAAMAAAABAAQAAAANAAMAAAABAAQAAAAOAAMAAAABAAQAAAAPAAMAAAABAAQAAAAQAAMAAAABAAQAAAARAAMAAAABAAQAAAASAAMAAAABAAQAAAATAAMAAAABAAQAAAAUAAMAAAADAAEAAAA=")
+
+[node name="EnemySpawner" parent="." index="3" node_paths=PackedStringArray("SpawnPoints")]
+SpawnPoints = [NodePath("Path2D")]
+Waves = Array[Object]([SubResource("Resource_luigp"), SubResource("Resource_alced"), SubResource("Resource_jryuy"), SubResource("Resource_0qg8h"), SubResource("Resource_2mw3h"), SubResource("Resource_r40jw"), SubResource("Resource_hdwuw"), SubResource("Resource_l6yxw"), SubResource("Resource_a21q0"), SubResource("Resource_2u54b")])
 
 [node name="Path2D" type="Path2D" parent="EnemySpawner" index="0"]
 curve = SubResource("Curve2D_aea82")
