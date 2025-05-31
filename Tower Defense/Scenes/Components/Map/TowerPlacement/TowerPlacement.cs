@@ -68,8 +68,16 @@ public partial class TowerPlacement : Node2D
 		{
 			CancelPlacingTower();
 			return false;
-		} ;
+		}
 		
+		if (_canPlace == CanPlace.Enhancement) _enhanceTower();
+		else if (_canPlace == CanPlace.Yes) _placeNewTower();
+
+		return true;
+	}
+
+	private void _placeNewTower()
+	{
 		_currentlyPlacing.OnPlaceTower();
 		
 		// TODO: Replace with _showSmoke
@@ -85,20 +93,10 @@ public partial class TowerPlacement : Node2D
 		
 		_towers.Add(mouseTile, _currentlyPlacing);
 		_currentlyPlacing = null;
-
-		return true;
 	}
 
-	private bool EnhanceTower()
+	private void _enhanceTower()
 	{
-		_occupied.HideTileMap();
-		
-		if (_canPlace == CanPlace.No || _currentlyPlacing == null)
-		{
-			CancelPlacingTower();
-			return false;
-		} ;
-
 		var mouseTile = _getMouseTile();
 		var givenEnhancement = _currentlyPlacing.TowerInfo.GivenEnhancement;
 		var tower = _towers[mouseTile];
@@ -110,8 +108,6 @@ public partial class TowerPlacement : Node2D
 
 		_currentlyPlacing.QueueFree();
 		_currentlyPlacing = null;
-		
-		return true;
 	}
 
 	private Vector2I _getMouseTile()
