@@ -98,6 +98,7 @@ FireDelay = 1.0
 Range = 64
 RangeOffset = Vector2(16, 16)
 TargetingMode = 0
+Name = "Archer"
 Active = false
 TowerTier = 0
 TowerTierTexture = ExtResource("2_cclwp")

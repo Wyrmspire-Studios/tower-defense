@@ -5,7 +5,8 @@ using System;
 public partial class TowerInfo : Resource
 {
 	[ExportGroup("Tower Info")]
-	[Export] public bool Active = true;
+	[Export] public string Name;
+	[Export] public bool Active;
 	[Export] public TowerTier TowerTier;
 	[Export] public Texture2D TowerTierTexture;
 	[Export] public int BaseUpgradeCost;

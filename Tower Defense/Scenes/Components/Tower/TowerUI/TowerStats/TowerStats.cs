@@ -5,6 +5,7 @@ public partial class TowerStats : NinePatchRect
 {
 	private Tower _tower;
 	[Export] private VBoxContainer _statContainer;
+	[Export] private Label _nameLabel;
 
 	[Export] private PackedScene _damageStat;
 	public TowerStat DamageStatContainer;
@@ -24,6 +25,7 @@ public partial class TowerStats : NinePatchRect
 	public void Initialize(Tower tower)
 	{
 		_tower = tower;
+		_nameLabel.Text = _tower.TowerInfo.Name;
 	}
 
 	private void _increaseSize()

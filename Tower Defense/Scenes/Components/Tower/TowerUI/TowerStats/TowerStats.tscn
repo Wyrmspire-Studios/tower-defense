@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://hti6w0rdmty6" path="res://Scenes/Components/Tower/TowerUI/TowerStats/Stats/FireDurationStat.tscn" id="6_dcdl8"]
 [ext_resource type="PackedScene" uid="uid://1cyqmjeffl7q" path="res://Scenes/Components/Tower/TowerUI/TowerStats/Stats/RangeStat.tscn" id="7_kmlsj"]
 
-[node name="TowerStats" type="NinePatchRect" node_paths=PackedStringArray("_statContainer")]
+[node name="TowerStats" type="NinePatchRect" node_paths=PackedStringArray("_statContainer", "_nameLabel")]
 custom_minimum_size = Vector2(100, 32)
 offset_right = 100.0
 offset_bottom = 16.0
@@ -20,11 +20,34 @@ patch_margin_right = 8
 patch_margin_bottom = 8
 script = ExtResource("2_pmikh")
 _statContainer = NodePath("VBoxContainer")
+_nameLabel = NodePath("NinePatchRect/TowerName")
 _damageStat = ExtResource("3_e5ts5")
 _projectileSpeedStat = ExtResource("4_kmlsj")
 _fireDelayStat = ExtResource("5_qb6om")
 _fireDurationStat = ExtResource("6_dcdl8")
 _rangeStat = ExtResource("7_kmlsj")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+custom_minimum_size = Vector2(100, 32)
+offset_top = -40.0
+offset_right = 100.0
+offset_bottom = -8.0
+texture = ExtResource("1_pmikh")
+region_rect = Rect2(129, 65, 62, 30)
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="TowerName" type="Label" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1

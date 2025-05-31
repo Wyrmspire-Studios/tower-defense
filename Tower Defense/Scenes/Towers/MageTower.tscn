@@ -92,6 +92,7 @@ ForegroundBeamColor = Color(0, 0.639216, 1, 1)
 Range = 64
 RangeOffset = Vector2(16, 16)
 TargetingMode = 0
+Name = "Mage"
 Active = false
 TowerTier = 0
 TowerTierTexture = ExtResource("3_7wdpo")
