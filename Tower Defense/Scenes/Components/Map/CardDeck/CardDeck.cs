@@ -70,14 +70,17 @@ public partial class CardDeck : Control
 		
 		if (CollisionRect.GetGlobalRect().HasPoint(mousePos))
 		{
-			
+			if (!_animating && _hidden)
+			{
+				ShowDeckAnimation();
+			}
 			if (_hoveringBackground) return;
 			_hoveringBackground = true;
 			MouseEnteredDeck();
 		}
 		else
 		{
-			if (!_animating && !_hidden )
+			if (!_animating && !_hidden)
 			{
 				HideDeckAnimation();
 			}
