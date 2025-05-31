@@ -64,21 +64,23 @@ public partial class CardDeck : Control
 
 	public override void _Process(double delta)
 	{
-		if (!_animating && !_hidden)
-		{
-			HideDeckAnimation();
-		}
+		
 		
 		var mousePos = GetGlobalMousePosition();
 		
 		if (CollisionRect.GetGlobalRect().HasPoint(mousePos))
 		{
+			
 			if (_hoveringBackground) return;
 			_hoveringBackground = true;
 			MouseEnteredDeck();
 		}
 		else
 		{
+			if (!_animating && !_hidden )
+			{
+				HideDeckAnimation();
+			}
 			if (!_hoveringBackground) return;
 			_hoveringBackground = false;
 			MouseExitedDeck();
