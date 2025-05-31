@@ -28,6 +28,7 @@ public partial class TowerBeamShooting : Node2D
 
 	public override void _Draw()
 	{
+		if (!Tower.RangedBeamTowerInfo.Active) return;
 		if (!_canShoot || _shootingAt == null) return;
 
 		var shootFrom = Tower.RangedBeamTowerInfo.BeamSpawnOffset;

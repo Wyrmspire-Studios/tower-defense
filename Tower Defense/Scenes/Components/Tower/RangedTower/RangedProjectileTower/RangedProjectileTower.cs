@@ -25,13 +25,12 @@ public partial class RangedProjectileTower : RangedTower
 	public override void OnStartPlacing()
 	{
 		_updateTowerInfo((RangedProjectileTowerInfo)_baseRangedProjectileTowerInfo.Duplicate(true));
+		RangedProjectileTowerInfo.Active = false;
 		
 		base.OnStartPlacing();
 		
 		TowerProjectileShooting = GetNode<TowerProjectileShooting>("TowerProjectileShooting");
 		TowerProjectileShooting.Initialize(this);
-		
-		RangedProjectileTowerInfo.Active = false;
 		
 		ApplyEnhancements();
 	}

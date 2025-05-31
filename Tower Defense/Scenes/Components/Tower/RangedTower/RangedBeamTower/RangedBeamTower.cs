@@ -24,13 +24,12 @@ public partial class RangedBeamTower : RangedTower
 	public override void OnStartPlacing()
 	{
 		_updateTowerInfo((RangedBeamTowerInfo) _baseRangedBeamTowerInfo.Duplicate(true));
+		RangedBeamTowerInfo.Active = false;
 		
 		base.OnStartPlacing();
 
 		TowerBeamShooting = GetNode<TowerBeamShooting>("TowerBeamShooting");
 		TowerBeamShooting.Initialize(this);
-		
-		RangedBeamTowerInfo.Active = false;
 
 		ApplyEnhancements();
 	}
