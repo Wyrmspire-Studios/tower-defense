@@ -30,12 +30,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_cshyb")
-ButtonContainer = NodePath("ColorRect/ColorRect/MarginContainer/ButtonContainer")
+ButtonContainer = NodePath("ColorRect/ButtonContainer")
 MainMenuScene = ExtResource("2_7jjt0")
 
 [node name="MenuButtonGroupController" parent="PauseMenu" node_paths=PackedStringArray("MenuButtons") instance=ExtResource("3_7jjt0")]
 z_index = 1000
-MenuButtons = [NodePath("../ColorRect/ColorRect/MarginContainer/ButtonContainer/ContinueMenuButton"), NodePath("../ColorRect/ColorRect/MarginContainer/ButtonContainer/StatisticsMenuButton"), NodePath("../ColorRect/ColorRect/MarginContainer/ButtonContainer/ExitMenuButton")]
+MenuButtons = [NodePath("../ColorRect/ButtonContainer/ContinueMenuButton"), NodePath("../ColorRect/ButtonContainer/StatisticsMenuButton"), NodePath("../ColorRect/ButtonContainer/ExitMenuButton")]
 BaseTexture = SubResource("AtlasTexture_gu04h")
 HoverTexture = SubResource("AtlasTexture_urd3f")
 PressedTexture = SubResource("AtlasTexture_ho1h4")
@@ -52,6 +52,7 @@ mouse_filter = 1
 color = Color(0, 0, 0, 0.501961)
 
 [node name="ColorRect" type="NinePatchRect" parent="PauseMenu/ColorRect"]
+visible = false
 z_index = 1000
 layout_mode = 1
 anchors_preset = 8
@@ -85,12 +86,16 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="ButtonContainer" type="VBoxContainer" parent="PauseMenu/ColorRect/ColorRect/MarginContainer"]
+[node name="ButtonContainer" type="VBoxContainer" parent="PauseMenu/ColorRect"]
 z_index = 1000
 layout_mode = 2
+offset_left = 219.0
+offset_top = 116.0
+offset_right = 421.0
+offset_bottom = 244.0
 alignment = 1
 
-[node name="ContinueMenuButton" parent="PauseMenu/ColorRect/ColorRect/MarginContainer/ButtonContainer" instance=ExtResource("1_0nva5")]
+[node name="ContinueMenuButton" parent="PauseMenu/ColorRect/ButtonContainer" instance=ExtResource("1_0nva5")]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 Label = "Continue"
@@ -98,7 +103,7 @@ BaseTexture = SubResource("AtlasTexture_gu04h")
 HoverTexture = SubResource("AtlasTexture_urd3f")
 PressedTexture = SubResource("AtlasTexture_ho1h4")
 
-[node name="StatisticsMenuButton" parent="PauseMenu/ColorRect/ColorRect/MarginContainer/ButtonContainer" instance=ExtResource("1_0nva5")]
+[node name="StatisticsMenuButton" parent="PauseMenu/ColorRect/ButtonContainer" instance=ExtResource("1_0nva5")]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 Label = "Statistics"
@@ -106,7 +111,7 @@ BaseTexture = SubResource("AtlasTexture_gu04h")
 HoverTexture = SubResource("AtlasTexture_urd3f")
 PressedTexture = SubResource("AtlasTexture_ho1h4")
 
-[node name="ExitMenuButton" parent="PauseMenu/ColorRect/ColorRect/MarginContainer/ButtonContainer" instance=ExtResource("1_0nva5")]
+[node name="ExitMenuButton" parent="PauseMenu/ColorRect/ButtonContainer" instance=ExtResource("1_0nva5")]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 Label = "Exit"

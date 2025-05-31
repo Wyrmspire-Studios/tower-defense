@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://y1tl75a87wmt"]
+[gd_scene load_steps=12 format=3 uid="uid://y1tl75a87wmt"]
 
 [ext_resource type="Theme" uid="uid://dl3phl78tl4u3" path="res://Scenes/Components/Map/MapUI/MapUIPanelTheme.tres" id="1_c6my3"]
 [ext_resource type="Script" uid="uid://bddk78tin8110" path="res://Scenes/Components/Map/MapUI/MapUi.cs" id="1_n7h4j"]
 [ext_resource type="Texture2D" uid="uid://d2cjrito6dthd" path="res://Assets/window.png" id="1_yl1al"]
+[ext_resource type="PackedScene" uid="uid://bhxcmvil3d6dk" path="res://Scenes/Components/Map/CardDeck/CardDeck.tscn" id="2_285sl"]
 [ext_resource type="Script" uid="uid://byaifws2jofn6" path="res://Scenes/Components/Map/MapUI/WavePanel.cs" id="3_md2gh"]
 [ext_resource type="Script" uid="uid://cbf8qtfeu48d3" path="res://Scenes/Components/Map/MapUI/StatusPanel.cs" id="5_285sl"]
 
@@ -114,6 +115,9 @@ script = ExtResource("1_n7h4j")
 libraries = {
 &"": SubResource("AnimationLibrary_md2gh")
 }
+
+[node name="CardDeck" parent="MapUI" instance=ExtResource("2_285sl")]
+layout_mode = 1
 
 [node name="WavePanel" type="PanelContainer" parent="MapUI"]
 custom_minimum_size = Vector2(126, 0)

@@ -22,13 +22,13 @@ public partial class TowerPlacement : Node2D
 	{
 		if (_currentlyPlacing != null) _handleMouseMovement();
 		
-		if (Input.IsActionJustPressed("Start Placing Tower")) _startPlacingTower();
-		if (_currentlyPlacing != null && Input.IsActionJustPressed("Cancel Placing Tower")) _cancelPlacingTower();
+		// if (Input.IsActionJustPressed("Start Placing Tower")) StartPlacingTower();
+		// if (_currentlyPlacing != null && Input.IsActionJustPressed("Cancel Placing Tower")) CancelPlacingTower();
 		
-		if (_canPlace && _currentlyPlacing != null && Input.IsActionJustPressed("Place Tower")) _placeTower();
+		// if (_canPlace && _currentlyPlacing != null && Input.IsActionJustPressed("Place Tower")) PlaceTower();
 	}
 	
-	private void _startPlacingTower()
+	public void StartPlacingTower()
 	{
 		_occupied.ShowTileMap();
 		
@@ -39,16 +39,21 @@ public partial class TowerPlacement : Node2D
 		_placedTowers.AddChild(_currentlyPlacing);
 	}
 
-	private void _cancelPlacingTower()
+	public void CancelPlacingTower()
 	{
 		_occupied.HideTileMap();
 		_currentlyPlacing?.QueueFree();
 		_currentlyPlacing = null;
 	}
 	
-	private void _placeTower()
+	public bool PlaceTower()
 	{
 		_occupied.HideTileMap();
+		if (!_canPlace || _currentlyPlacing == null)
+		{
+			CancelPlacingTower();
+			return false;
+		} ;
 		
 		_currentlyPlacing.OnPlaceTower();
 
@@ -62,6 +67,7 @@ public partial class TowerPlacement : Node2D
 		_currentlyPlacing.PlacedAt = mouseTile;
 		_currentlyPlacing.Modulate = NoTint;
 		_currentlyPlacing = null;
+		return true;
 	}
 
 	private Vector2I _getMouseTile()
@@ -76,5 +82,20 @@ public partial class TowerPlacement : Node2D
 		_canPlace = !_occupied.IsTileOccupied(mouseTile);
 		_currentlyPlacing.Modulate = _canPlace ? PlaceableTint : UnplaceableTint;
 		_currentlyPlacing.QueueRedraw();
+	}
+
+	public void ChangePlacedScene(PackedScene scene)
+	{
+		_placedScene = scene;
+	}
+	
+	public PackedScene GetPlacedScene()
+	{
+		return _placedScene;
+	}
+
+	public bool IsPlacing()
+	{
+		return _currentlyPlacing != null;
 	}
 }

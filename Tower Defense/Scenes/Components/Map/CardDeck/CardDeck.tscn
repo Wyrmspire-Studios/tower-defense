@@ -1,0 +1,112 @@
+[gd_scene load_steps=8 format=3 uid="uid://bhxcmvil3d6dk"]
+
+[ext_resource type="Texture2D" uid="uid://d2cjrito6dthd" path="res://Assets/window.png" id="1_6ici3"]
+[ext_resource type="Script" uid="uid://doa7l0xhs53vh" path="res://Scenes/Components/Map/CardDeck/CardDeck.cs" id="1_dcp54"]
+[ext_resource type="PackedScene" uid="uid://bksr4kilkosp0" path="res://Scenes/Components/Map/CardDeck/Card/Card.tscn" id="1_gyegu"]
+
+[sub_resource type="Animation" id="Animation_abwmi"]
+resource_name = "HideDeck"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NinePatchRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-132, 0), Vector2(-132, 64)]
+}
+
+[sub_resource type="Animation" id="Animation_u3d5s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NinePatchRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-132, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_dcp54"]
+resource_name = "ShowDeck"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NinePatchRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-132, 64), Vector2(-132, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u3d5s"]
+_data = {
+&"HideDeck": SubResource("Animation_abwmi"),
+&"RESET": SubResource("Animation_u3d5s"),
+&"ShowDeck": SubResource("Animation_dcp54")
+}
+
+[node name="CardDeck" type="Control" node_paths=PackedStringArray("CardsContainer", "AnimationPlayer")]
+custom_minimum_size = Vector2(0, 72)
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_top = -72.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("1_dcp54")
+CardScene = ExtResource("1_gyegu")
+CardsContainer = NodePath("NinePatchRect/MarginContainer/CardsContainer")
+AnimationPlayer = NodePath("AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_u3d5s")
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+custom_minimum_size = Vector2(264, 72)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -132.0
+offset_right = 132.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+texture = ExtResource("1_6ici3")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect"]
+custom_minimum_size = Vector2(0, 72)
+layout_mode = 1
+offset_right = 264.0
+offset_bottom = 72.0
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="CardsContainer" type="HBoxContainer" parent="NinePatchRect/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1

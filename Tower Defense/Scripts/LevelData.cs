@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using WyrmspireStudios.Events;
 
 namespace WyrmspireStudios.Data;
@@ -12,6 +13,7 @@ public static class LevelData
     
     private static int CurrentWave { get; set; }
     private static int MaxWave { get; set; }
+    private static List<Card> Cards { get; set; } = new List<Card>();
     
     public static event EventHandlers.ValueChangeHandler HealthChanged;
     public static event EventHandlers.ValueChangeHandler GoldChanged;
