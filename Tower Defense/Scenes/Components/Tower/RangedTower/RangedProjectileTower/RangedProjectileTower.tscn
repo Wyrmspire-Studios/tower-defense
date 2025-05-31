@@ -6,6 +6,6 @@
 
 [node name="RangedProjectileTower" instance=ExtResource("1_8du8w")]
 script = ExtResource("2_jlugo")
-RangedProjectileTowerInfo = null
+_baseRangedProjectileTowerInfo = null
 
 [node name="TowerProjectileShooting" parent="." index="2" instance=ExtResource("3_jlugo")]

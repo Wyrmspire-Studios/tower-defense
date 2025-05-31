@@ -88,7 +88,7 @@ public partial class TowerPlacement : Node2D
 		var mouseTile = _getMouseTile();
 		var givenEnhancement = _currentlyPlacing.TowerInfo.GivenEnhancement;
 		var tower = _towers[mouseTile];
-		tower.TowerActions.IncreaseCurrentCost(Mathf.FloorToInt(50 * 0.5));
+		tower.TowerUi.TowerActions.IncreaseCurrentCost(Mathf.FloorToInt(50 * 0.5));
 		tower.TowerEnhancements.Add(givenEnhancement);
 		tower.ApplyEnhancements();
 

@@ -1,0 +1,76 @@
+[gd_scene load_steps=6 format=3 uid="uid://btd5tpgcepm6y"]
+
+[ext_resource type="Texture2D" uid="uid://ebvk0n80f676" path="res://Assets/Towers/SellTower.png" id="1_572bv"]
+[ext_resource type="Texture2D" uid="uid://b3xj1u0bxi7l1" path="res://Assets/buttons.png" id="1_kv1l1"]
+[ext_resource type="Texture2D" uid="uid://chu1att6xrusg" path="res://Assets/Towers/UpgradeTower.png" id="2_ddorc"]
+[ext_resource type="Script" uid="uid://dkryu8on6qe3b" path="res://Scenes/Components/Tower/TowerUI/TowerActions/TowerActions.cs" id="2_idnx4"]
+[ext_resource type="Texture2D" uid="uid://b0xf2sirqode" path="res://Assets/Towers/UpgradeTowerDisabled.png" id="3_kv1l1"]
+
+[node name="TowerActions" type="NinePatchRect" node_paths=PackedStringArray("_sellLabel", "_upgradeLabel", "_sellTowerButton", "_upgradeTowerButton")]
+z_index = 100
+custom_minimum_size = Vector2(100, 50)
+offset_right = 100.0
+offset_bottom = 50.0
+texture = ExtResource("1_kv1l1")
+region_rect = Rect2(129, 65, 62, 30)
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+script = ExtResource("2_idnx4")
+_sellLabel = NodePath("SellLabel")
+_upgradeLabel = NodePath("UpgradeLabel")
+_sellTowerButton = NodePath("Sell Tower")
+_upgradeTowerButton = NodePath("Upgrade Tower")
+
+[node name="SellLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -26.0
+offset_right = 48.0
+offset_bottom = -3.0
+grow_vertical = 0
+text = "$000"
+horizontal_alignment = 1
+
+[node name="UpgradeLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -48.0
+offset_top = -26.0
+offset_right = -8.0
+offset_bottom = -3.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "$000"
+horizontal_alignment = 1
+
+[node name="Sell Tower" type="TextureButton" parent="."]
+layout_mode = 1
+offset_left = 20.0
+offset_top = 8.0
+offset_right = 36.0
+offset_bottom = 24.0
+texture_normal = ExtResource("1_572bv")
+stretch_mode = 0
+
+[node name="Upgrade Tower" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -36.0
+offset_top = 8.0
+offset_right = -20.0
+offset_bottom = 24.0
+grow_horizontal = 0
+texture_normal = ExtResource("2_ddorc")
+texture_disabled = ExtResource("3_kv1l1")
+stretch_mode = 0

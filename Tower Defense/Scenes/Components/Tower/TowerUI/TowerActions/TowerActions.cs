@@ -8,6 +8,8 @@ public partial class TowerActions : NinePatchRect
 	public Tower Tower;
 	
 	[ExportGroup("Internal")]
+	[Export] private Label _sellLabel;
+	[Export] private Label _upgradeLabel;
 	[Export] private TextureButton _sellTowerButton;
 	[Export] private TextureButton _upgradeTowerButton;
 
@@ -15,12 +17,12 @@ public partial class TowerActions : NinePatchRect
 	private int _upgradeCost;
 	private bool _canUpgrade;
 	
+	private static readonly Color UpgradeableTint = Color.Color8(128, 255, 128);
+	private static readonly Color NotUpgradeableTint = Color.Color8(255, 128, 128);
+	
 	public void Initialize(Tower tower)
 	{
 		Tower = tower;
-
-		Tower.TowerCollider.TowerClickedInside += _onTowerClickedInside;
-		Tower.TowerCollider.TowerClickedOutside += _onTowerClickedOutside;
 
 		_sellTowerButton.Pressed += _onSellTower;
 		_upgradeTowerButton.Pressed += _onUpgradeTower;
@@ -30,38 +32,21 @@ public partial class TowerActions : NinePatchRect
 		
 		LevelData.GoldChanged += _recheckUpgradeAvailable;
 		_recheckUpgradeAvailable(0, LevelData.GetGold());
+		_updateLabels();
 	}
 
 	public override void _ExitTree()
 	{
-		Tower.TowerCollider.TowerClickedInside -= _onTowerClickedInside;
-		Tower.TowerCollider.TowerClickedOutside -= _onTowerClickedOutside;
 		_sellTowerButton.Pressed -= _onSellTower;
 		_upgradeTowerButton.Pressed -= _onUpgradeTower;
 		LevelData.GoldChanged -= _recheckUpgradeAvailable;
-	}
-
-	public void ToggleVisibility()
-	{
-		Visible = !Visible;
-	}
-
-	private void _onTowerClickedInside(InputEventMouseButton ev)
-	{
-		ToggleVisibility();
-	}
-
-	private void _onTowerClickedOutside(InputEventMouseButton ev)
-	{
-		if (!Visible) return;
-		if (GetGlobalRect().HasPoint(ev.GlobalPosition)) return;
-		ToggleVisibility();
 	}
 
 	private void _recheckUpgradeAvailable(int oldGold, int newGold)
 	{
 		_canUpgrade = Tower.TowerInfo.TowerTier != TowerTier.Four && newGold >= _upgradeCost;
 		_upgradeTowerButton.Disabled = !_canUpgrade;
+		_updateLabels();
 	}
 
 	private void _onSellTower()
@@ -81,10 +66,20 @@ public partial class TowerActions : NinePatchRect
 		
 		_currentCost += _upgradeCost;
 		_upgradeCost = Mathf.FloorToInt(_upgradeCost * 1.5);
+		_updateLabels();
 	}
 
 	public void IncreaseCurrentCost(int increaseBy)
 	{
 		_currentCost += increaseBy;
+	}
+
+	private void _updateLabels()
+	{
+		if (Tower.TowerInfo.TowerTier == TowerTier.Four) _upgradeLabel.Visible = false;
+		
+		_sellLabel.Text = $"${Mathf.Floor(_currentCost * 0.5)}";
+		_upgradeLabel.Text = $"${_upgradeCost}";
+		_upgradeLabel.Modulate = _canUpgrade ? UpgradeableTint : NotUpgradeableTint; 
 	}
 }

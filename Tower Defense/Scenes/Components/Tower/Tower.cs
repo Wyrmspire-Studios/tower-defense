@@ -13,17 +13,17 @@ public partial class Tower : Node2D
 	public Vector2I PlacedAt;
 	public TowerSprite TowerSprite;
 	public TowerCollider TowerCollider;
-	public TowerActions TowerActions;
+	public TowerUI TowerUi;
 
 	public virtual void OnStartPlacing()
 	{
 		TowerSprite = GetNodeOrNull<TowerSprite>("TowerSprite");
 		TowerCollider = GetNodeOrNull<TowerCollider>("TowerCollider");
-		TowerActions = GetNodeOrNull<TowerActions>("TowerActions");
+		TowerUi = GetNodeOrNull<TowerUI>("TowerUI");
 		
 		TowerSprite?.Initialize(this);
 		TowerCollider?.Initialize(this);
-		TowerActions?.Initialize(this);
+		TowerUi?.Initialize(this);
 		
 		TowerEnhancements.Add(TowerInfo.TowerTierEnhancements[TowerTier.One.ToIndex()]);
 	}

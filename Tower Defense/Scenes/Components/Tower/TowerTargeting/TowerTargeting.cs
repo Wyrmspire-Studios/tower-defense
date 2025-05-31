@@ -96,7 +96,7 @@ public partial class TowerTargeting : Area2D
 	private void _onTowerClickedOutside(InputEventMouseButton ev)
 	{
 		if (!_rangeVisible) return;
-		if (Tower.TowerActions.GetGlobalRect().HasPoint(ev.GlobalPosition)) return;
+		if (Tower.TowerUi.TowerActions.GetGlobalRect().HasPoint(ev.GlobalPosition)) return;
 		ToggleRangeVisible();
 	}
 }

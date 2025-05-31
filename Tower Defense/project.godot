@@ -37,6 +37,11 @@ project/assembly_name="Tower Defense"
 
 enabled=PackedStringArray()
 
+[gui]
+
+theme/default_font_multichannel_signed_distance_field=true
+theme/default_font_generate_mipmaps=true
+
 [input]
 
 Confirm={
