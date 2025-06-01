@@ -6,10 +6,10 @@
 
 [sub_resource type="Resource" id="Resource_wyu7o"]
 script = ExtResource("2_3thtv")
-Speed = 16
+Speed = 32
 Health = 128
 Damage = 10
-GoldDrop = 50
+GoldDrop = 8
 metadata/_custom_type_script = "uid://bu5ms6gagi6m"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kexyb"]
@@ -68,6 +68,7 @@ size = Vector2(30, 21.6667)
 
 [node name="UltraSlowSlime" instance=ExtResource("1_88kdt")]
 modulate = Color(1, 0, 0, 1)
+scale = Vector2(0.8, 0.8)
 _enemyInfo = SubResource("Resource_wyu7o")
 
 [node name="Enemy Sprite" parent="." index="0"]

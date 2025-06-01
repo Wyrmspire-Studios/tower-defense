@@ -9,7 +9,7 @@ script = ExtResource("2_xg65r")
 Speed = 256
 Health = 1
 Damage = 2
-GoldDrop = 30
+GoldDrop = 8
 metadata/_custom_type_script = "uid://bu5ms6gagi6m"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kexyb"]
