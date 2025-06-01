@@ -40,12 +40,10 @@ public partial class MapPicker : Control
 
 	private void _generateMapLayers()
 	{
-		var amount = Random.Shared.Next(2, 4);
-
 		var tutorialLayer = CreateLayer();
 		tutorialLayer.GenerateTutorialMaps();
 
-		for (var i = 0; i < amount; i++)
+		for (var i = 0; i < 3; i++)
 		{
 			var mapLayer = CreateLayer();
 			mapLayer.GenerateMaps();
