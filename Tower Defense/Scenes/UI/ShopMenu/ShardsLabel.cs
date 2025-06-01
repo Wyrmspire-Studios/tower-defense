@@ -9,6 +9,11 @@ public partial class ShardsLabel : Label
 		GameData.ShardsChanged += OnShardsChanged;
 	}
 
+	public override void _ExitTree()
+	{
+		GameData.ShardsChanged -= OnShardsChanged;
+	}
+
 	private void OnShardsChanged(int from, int to)
 	{
 		Text = $"Shards: {to}";
