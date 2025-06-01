@@ -76,7 +76,7 @@ public partial class RangedProjectileTower : RangedTower
 				if (towerEnhancement.Additive) newTowerData.FireDelay -= towerEnhancement.NewProjectileFireDelay * GameData.GetModifier("cooldown_modifier");
 				else newTowerData.FireDelay = towerEnhancement.NewProjectileFireDelay / GameData.GetModifier("cooldown_modifier");
 				
-				newTowerData.FireDelay = Math.Max(0.1f, newTowerData.FireDelay);
+				newTowerData.FireDelay = Math.Max(0.1f, (float)Math.Round(newTowerData.FireDelay, 2));
 			}
 
 			if (towerEnhancement.NewRange != -1)
