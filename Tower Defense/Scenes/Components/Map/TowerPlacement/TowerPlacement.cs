@@ -27,6 +27,11 @@ public partial class TowerPlacement : Node2D
 		Tower.TowerSold += _onTowerSold;
 	}
 
+	public override void _ExitTree()
+	{
+		Tower.TowerSold -= _onTowerSold;
+	}
+
 	public override void _Process(double delta)
 	{
 		if (_currentlyPlacing != null) _handleMouseMovement();

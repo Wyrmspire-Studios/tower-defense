@@ -119,8 +119,9 @@ public partial class MapUi : Control
 			mapInstance.GetNode<AnimationPlayer>("MapUi/MapPickerAnimationPlayer").Play("HideBlack");
 			if (mapType == MapType.Boss) mapInstance.GetNode<MapUi>("MapUi/MapUI")._finishedAfterWave = true;
 			root.AddChild(mapInstance);
+			var current = GetTree().CurrentScene;
 			GetTree().CurrentScene = mapInstance;
-			root.RemoveChild(GetParent().GetParent());
+			current.QueueFree();
 		};
 	}
 }
