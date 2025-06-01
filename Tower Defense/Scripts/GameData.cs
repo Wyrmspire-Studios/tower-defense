@@ -6,7 +6,7 @@ namespace WyrmspireStudios.Data;
 
 public static class GameData
 {
-    private static int Shards { get; set; } = 1000;
+    private static int Shards { get; set; }
     private static int EnemyDeaths { get; set; }
     
     private static readonly Dictionary<string, int> Upgrades = new();
