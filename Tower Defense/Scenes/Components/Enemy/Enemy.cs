@@ -56,7 +56,7 @@ public partial class Enemy : PathFollow2D
 
 	private void OnDamagePlayer()
 	{
-		LevelData.RemoveHealth(_currentEnemyInfo.Damage * _currentEnemyInfo.Health / GetHealth());
+		if (GetHealth() > 0) LevelData.RemoveHealth(_currentEnemyInfo.Damage * _currentEnemyInfo.Health / GetHealth());
 		EnemyDied?.Invoke(this);
 		QueueFree();
 	}
