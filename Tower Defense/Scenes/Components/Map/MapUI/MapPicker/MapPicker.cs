@@ -221,11 +221,9 @@ public partial class MapPicker : Control
 
 		for (var i = 0; i < MapLayers.Count - 1; i++)
 		{
-			GD.Print($"i: {i}");
 			var nextLayer = MapLayers[i + 1];
 			for (var j = 0; j < MapLayers[i].MapButtons.Count; j++)
 			{
-				GD.Print($"j: {j}");
 				MapLayers[i].MapButtons[j].ConnectedTo =
 					GeneratedMapLayers[i].MapButtons[j].ConnectedTo.Select(buttonIndex => nextLayer.MapButtons[buttonIndex]).ToList();
 			}
