@@ -52,8 +52,8 @@ public partial class UpgradeButton : MenuButton
 	{
 		if (GameData.GetShards() >= _shardPrice)
 		{
-			GameData.BoughtUpgrade(UpgradeId, ModifierUpgrade);
 			GameData.RemoveShards(_shardPrice);
+			GameData.BoughtUpgrade(UpgradeId, ModifierUpgrade);
 		}
 	}
 
