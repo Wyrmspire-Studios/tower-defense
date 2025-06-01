@@ -1,8 +1,9 @@
-[gd_scene load_steps=31 format=3 uid="uid://y1tl75a87wmt"]
+[gd_scene load_steps=37 format=3 uid="uid://y1tl75a87wmt"]
 
 [ext_resource type="Theme" uid="uid://dl3phl78tl4u3" path="res://Scenes/Components/Map/MapUI/MapUIPanelTheme.tres" id="1_c6my3"]
 [ext_resource type="Script" uid="uid://bddk78tin8110" path="res://Scenes/Components/Map/MapUI/MapUi.cs" id="1_n7h4j"]
 [ext_resource type="Texture2D" uid="uid://d2cjrito6dthd" path="res://Assets/window.png" id="1_yl1al"]
+[ext_resource type="PackedScene" uid="uid://loofwjkv30nw" path="res://Scenes/UI/MainMenu/MainMenu.tscn" id="2_8v82o"]
 [ext_resource type="PackedScene" uid="uid://bhxcmvil3d6dk" path="res://Scenes/Components/Map/CardDeck/CardDeck.tscn" id="2_285sl"]
 [ext_resource type="Script" uid="uid://byaifws2jofn6" path="res://Scenes/Components/Map/MapUI/WavePanel.cs" id="3_md2gh"]
 [ext_resource type="Script" uid="uid://cbf8qtfeu48d3" path="res://Scenes/Components/Map/MapUI/StatusPanel.cs" id="5_285sl"]
@@ -10,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cbove36h35ibi" path="res://Assets/Coins/Coin.png" id="8_jaoyu"]
 [ext_resource type="PackedScene" uid="uid://csrfdiiimjy4c" path="res://Scenes/Components/Map/MapUI/MapPicker/MapPicker.tscn" id="9_jaoyu"]
 [ext_resource type="PackedScene" uid="uid://ds6cy4qv5lent" path="res://Scenes/UI/ShopMenu/ShopMenu.tscn" id="10_7ndhy"]
+[ext_resource type="Texture2D" uid="uid://b3xj1u0bxi7l1" path="res://Assets/buttons.png" id="11_d6rw8"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_osesm"]
 shadow_color = Color(0, 0, 0, 1)
@@ -139,15 +141,15 @@ _data = {
 &"ShowUI": SubResource("Animation_c6my3")
 }
 
-[sub_resource type="LabelSettings" id="LabelSettings_7ndhy"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_d6rw8"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_8v82o"]
-
 [sub_resource type="LabelSettings" id="LabelSettings_hjvkb"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ku0a7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_jbmix"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_co2mg"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5mypq"]
 
 [sub_resource type="Animation" id="Animation_8v82o"]
 resource_name = "HideBlack"
@@ -301,6 +303,30 @@ tracks/5/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("GameState:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("GameState/NinePatchRect/Label:text")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["You Lose!"]
+}
 
 [sub_resource type="Animation" id="Animation_d6rw8"]
 resource_name = "ShowBlack"
@@ -380,13 +406,69 @@ tracks/2/keys = {
 "values": [2, 0]
 }
 
+[sub_resource type="Animation" id="Animation_co2mg"]
+resource_name = "ShowYouLose"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GameState:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GameState/NinePatchRect/Label:text")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["You Lose!"]
+}
+
+[sub_resource type="Animation" id="Animation_5mypq"]
+resource_name = "ShowYouWin"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GameState:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GameState/NinePatchRect/Label:text")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["You Win!"]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_d6rw8"]
 _data = {
 &"HideBlack": SubResource("Animation_8v82o"),
 &"HideMapPicker": SubResource("Animation_hjvkb"),
 &"RESET": SubResource("Animation_7ndhy"),
 &"ShowBlack": SubResource("Animation_d6rw8"),
-&"ShowMapPicker": SubResource("Animation_jaoyu")
+&"ShowMapPicker": SubResource("Animation_jaoyu"),
+&"ShowYouLose": SubResource("Animation_co2mg"),
+&"ShowYouWin": SubResource("Animation_5mypq")
 }
 
 [sub_resource type="Animation" id="Animation_jbmix"]
@@ -513,9 +595,15 @@ _data = {
 &"ShowShopMenu": SubResource("Animation_ku0a7")
 }
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_8v82o"]
+atlas = ExtResource("11_d6rw8")
+
+[sub_resource type="LabelSettings" id="LabelSettings_c4bd2"]
+font_size = 24
+
 [node name="MapUi" type="CanvasLayer"]
 
-[node name="MapUI" type="Control" parent="." node_paths=PackedStringArray("_animationPlayer", "_mapPickerAnimationPlayer", "_shopMenuAnimationPlayer", "_mapPicker", "_closeMapMenuButton")]
+[node name="MapUI" type="Control" parent="." node_paths=PackedStringArray("_animationPlayer", "_mapPickerAnimationPlayer", "_shopMenuAnimationPlayer", "_mapPicker", "_closeMapMenuButton", "_exitButton")]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -530,6 +618,8 @@ _mapPickerAnimationPlayer = NodePath("../MapPickerAnimationPlayer")
 _shopMenuAnimationPlayer = NodePath("../ShopMenuAnimationPlayer")
 _mapPicker = NodePath("../MapPicker")
 _closeMapMenuButton = NodePath("../ShopMenu/Close")
+_mainMenuScene = ExtResource("2_8v82o")
+_exitButton = NodePath("../GameState/NinePatchRect/Button")
 
 [node name="CardDeck" parent="MapUI" instance=ExtResource("2_285sl")]
 layout_mode = 1
@@ -733,19 +823,19 @@ grow_vertical = 2
 mouse_filter = 1
 
 [node name="Label" parent="ShopMenu/ShopMenu/VBoxContainer/MarginContainer/Upgrades/UpgradeButtonContainer/UpgradeButton" index="2"]
-label_settings = SubResource("LabelSettings_7ndhy")
-
-[node name="Label" parent="ShopMenu/ShopMenu/VBoxContainer/MarginContainer/Upgrades/UpgradeButtonContainer/UpgradeButton2" index="2"]
-label_settings = SubResource("LabelSettings_d6rw8")
-
-[node name="Label" parent="ShopMenu/ShopMenu/VBoxContainer/MarginContainer/Upgrades/UpgradeButtonContainer/UpgradeButton3" index="2"]
-label_settings = SubResource("LabelSettings_8v82o")
-
-[node name="Label" parent="ShopMenu/ShopMenu/VBoxContainer/MarginContainer/Upgrades/UpgradeButtonContainer/UpgradeButton4" index="2"]
 label_settings = SubResource("LabelSettings_hjvkb")
 
-[node name="Label" parent="ShopMenu/ShopMenu/VBoxContainer/MarginContainer/Upgrades/UpgradeButtonContainer/UpgradeButton5" index="2"]
+[node name="Label" parent="ShopMenu/ShopMenu/VBoxContainer/MarginContainer/Upgrades/UpgradeButtonContainer/UpgradeButton2" index="2"]
 label_settings = SubResource("LabelSettings_ku0a7")
+
+[node name="Label" parent="ShopMenu/ShopMenu/VBoxContainer/MarginContainer/Upgrades/UpgradeButtonContainer/UpgradeButton3" index="2"]
+label_settings = SubResource("LabelSettings_jbmix")
+
+[node name="Label" parent="ShopMenu/ShopMenu/VBoxContainer/MarginContainer/Upgrades/UpgradeButtonContainer/UpgradeButton4" index="2"]
+label_settings = SubResource("LabelSettings_co2mg")
+
+[node name="Label" parent="ShopMenu/ShopMenu/VBoxContainer/MarginContainer/Upgrades/UpgradeButtonContainer/UpgradeButton5" index="2"]
+label_settings = SubResource("LabelSettings_5mypq")
 
 [node name="MapPickerAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -764,6 +854,103 @@ color = Color(0, 0, 0, 1)
 libraries = {
 &"": SubResource("AnimationLibrary_jbmix")
 }
+
+[node name="GameState" type="Control" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="GameState"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -181.0
+offset_top = -56.5
+offset_right = 181.0
+offset_bottom = 56.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_yl1al")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="Label" type="Label" parent="GameState/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -165.0
+offset_top = -55.0
+offset_right = 165.0
+offset_bottom = 55.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 101
+text = "You Lose!"
+
+[node name="Button" type="Button" parent="GameState/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -90.5
+offset_top = 11.35
+offset_right = 90.5
+offset_bottom = 68.35
+grow_horizontal = 2
+grow_vertical = 0
+flat = true
+
+[node name="NinePatchRect" type="NinePatchRect" parent="GameState/NinePatchRect/Button"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_8v82o")
+region_rect = Rect2(0, 32, 64, 32)
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="Label" type="Label" parent="GameState/NinePatchRect/Button"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -9.0
+offset_right = 20.0
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Exit"
+label_settings = SubResource("LabelSettings_c4bd2")
+horizontal_alignment = 1
 
 [editable path="ShopMenu"]
 [editable path="ShopMenu/ShopMenu/VBoxContainer/MarginContainer/Upgrades/UpgradeButtonContainer/UpgradeButton"]

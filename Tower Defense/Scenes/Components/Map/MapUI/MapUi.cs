@@ -12,6 +12,9 @@ public partial class MapUi : Control
 	[Export] private MapPicker _mapPicker;
 	[Export] private TextureButton _closeMapMenuButton;
 
+	[Export] private PackedScene _mainMenuScene;
+	[Export] private Button _exitButton;
+
 	public static bool Transitioning;
 
 	private MapType _lastMapType = MapType.Enemy;
@@ -26,6 +29,7 @@ public partial class MapUi : Control
 		EnemySpawner.EnemiesDead += _onEnemiesDead;
 		MapPicker.MapPicked += _onMapPicked;
 		_closeMapMenuButton.ButtonDown += _onCloseMapMenu;
+		_exitButton.ButtonDown += _onExitButton;
 	}
 
 	public override void _ExitTree()
@@ -36,6 +40,15 @@ public partial class MapUi : Control
 		EnemySpawner.EnemiesDead -= _onEnemiesDead;
 		MapPicker.MapPicked -= _onMapPicked;
 		_closeMapMenuButton.ButtonDown -= _onCloseMapMenu;
+		_exitButton.ButtonDown -= _onExitButton;
+	}
+
+	private void _onExitButton()
+	{
+		GetTree().ChangeSceneToPacked(_mainMenuScene);
+		MapPicker.Reset();
+		LevelData.ResetLevelData();
+		GameData.ResetGameData();
 	}
 
 	public void _onHealthChange(int oldValue, int newValue)
@@ -44,7 +57,7 @@ public partial class MapUi : Control
 		{
 			_animationPlayer.Play("HideUI");
 			_died = true;
-			GD.Print("You Lose!");
+			_mapPickerAnimationPlayer.Play("ShowYouLose");
 		}
 	}
 
@@ -54,7 +67,7 @@ public partial class MapUi : Control
 		
 		if (_finishedAfterWave)
 		{
-			GD.Print("You Win!");
+			_mapPickerAnimationPlayer.Play("ShowYouWin");
 		}
 		else
 		{
