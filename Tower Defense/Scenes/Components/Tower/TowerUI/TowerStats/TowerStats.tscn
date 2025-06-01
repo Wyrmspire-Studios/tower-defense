@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bghpuyynvtrkm"]
+[gd_scene load_steps=11 format=3 uid="uid://bghpuyynvtrkm"]
 
 [ext_resource type="Texture2D" uid="uid://d2cjrito6dthd" path="res://Assets/window.png" id="1_qb6om"]
 [ext_resource type="Script" uid="uid://cnbw8mmpd2i0n" path="res://Scenes/Components/Tower/TowerUI/TowerStats/TowerStats.cs" id="2_pmikh"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://hti6w0rdmty6" path="res://Scenes/Components/Tower/TowerUI/TowerStats/Stats/FireDurationStat.tscn" id="6_dcdl8"]
 [ext_resource type="PackedScene" uid="uid://1cyqmjeffl7q" path="res://Scenes/Components/Tower/TowerUI/TowerStats/Stats/RangeStat.tscn" id="7_kmlsj"]
 [ext_resource type="PackedScene" uid="uid://bpp8r1hu3031s" path="res://Scenes/Components/Tower/TowerUI/TowerStats/Stats/HealthStat.tscn" id="8_qb6om"]
+[ext_resource type="PackedScene" uid="uid://dligbfbrwfpp6" path="res://Scenes/Components/Tower/TowerUI/TowerStats/Stats/StunStat.tscn" id="9_dcdl8"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_qb6om"]
 shadow_color = Color(0, 0, 0, 1)
@@ -31,10 +32,12 @@ _fireDelayStat = ExtResource("5_qb6om")
 _fireDurationStat = ExtResource("6_dcdl8")
 _rangeStat = ExtResource("7_kmlsj")
 _healthStat = ExtResource("8_qb6om")
+_stunStat = ExtResource("9_dcdl8")
 
 [node name="Shadow" type="NinePatchRect" parent="."]
 self_modulate = Color(0, 0, 0, 0.501961)
 custom_minimum_size = Vector2(84, 32)
+layout_mode = 0
 offset_left = 1.0
 offset_top = -39.0
 offset_right = 85.0
@@ -50,6 +53,7 @@ patch_margin_bottom = 8
 self_modulate = Color(0, 0, 0, 0.501961)
 show_behind_parent = true
 custom_minimum_size = Vector2(84, 32)
+layout_mode = 0
 offset_left = 1.0
 offset_top = 1.0
 offset_right = 85.0
