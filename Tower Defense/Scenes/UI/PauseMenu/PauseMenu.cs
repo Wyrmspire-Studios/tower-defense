@@ -60,7 +60,7 @@ public partial class PauseMenu : Control
 	{
 		if (@event is InputEventKey { Pressed: true, Keycode: Key.Escape })
 		{
-			if (GetTree().GetCurrentScene().Name != "MainMenu")
+			if (!MapUi.Transitioning && GetTree().GetCurrentScene().Name != "MainMenu")
 			{
 				Visible = !Visible;
 				Engine.TimeScale = Visible ? 0 : 1;

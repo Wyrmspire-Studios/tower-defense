@@ -12,6 +12,8 @@ public partial class MapUi : Control
 	[Export] private MapPicker _mapPicker;
 	[Export] private TextureButton _closeMapMenuButton;
 
+	public static bool Transitioning;
+
 	private MapType _lastMapType = MapType.Enemy;
 	private bool _finishedAfterWave;
 	private bool _died;
@@ -101,10 +103,14 @@ public partial class MapUi : Control
 		
 		var pickedMap = GD.Load<PackedScene>(pickedMapPath);
 
+		Transitioning = true;
+
 		var mapInstance = pickedMap.Instantiate();
 		var root = GetTree().GetRoot();
 		GetTree().CreateTimer(1).Timeout += () =>
 		{
+			Transitioning = false;
+			
 			LevelData.ResetLevelData();
 			TowerSpawning.SpawnedUnits.Clear();
 			
