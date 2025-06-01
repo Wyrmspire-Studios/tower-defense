@@ -83,7 +83,8 @@ public partial class SpawningTower : Tower
 			if (towerEnhancement.NewUnitSpawnRate > 0)
 			{
 				if (towerEnhancement.Additive) newTowerData.UnitSpawnRate -= towerEnhancement.NewUnitSpawnRate * GameData.GetModifier("cooldown_modifier");
-				else newTowerData.UnitSpawnRate = towerEnhancement.NewUnitSpawnRate / GameData.GetModifier("cooldown_modifier");;
+				else newTowerData.UnitSpawnRate = towerEnhancement.NewUnitSpawnRate / GameData.GetModifier("cooldown_modifier");
+				newTowerData.UnitSpawnRate = Math.Max(0.1f, newTowerData.UnitSpawnRate);
 			}
 
 			if (towerEnhancement.NewUnitStunDuration > 0)

@@ -70,6 +70,8 @@ public partial class RangedBeamTower : RangedTower
 			{
 				if (towerEnhancement.Additive) newTowerData.FireDelay -= towerEnhancement.NewBeamFireDelay * GameData.GetModifier("cooldown_modifier");
 				else newTowerData.FireDelay = towerEnhancement.NewBeamFireDelay / GameData.GetModifier("cooldown_modifier");
+
+				newTowerData.FireDelay = Math.Max(0.1f, newTowerData.FireDelay);
 			}
 			
 			if (towerEnhancement.NewBeamFireDuration > 0)
