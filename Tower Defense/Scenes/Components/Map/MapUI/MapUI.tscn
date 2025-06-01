@@ -188,6 +188,45 @@ tracks/2/keys = {
 "values": [true, false]
 }
 
+[sub_resource type="Animation" id="Animation_hjvkb"]
+resource_name = "HideMapPicker"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MapPicker:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MapPicker:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MapPicker:mouse_filter")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 2]
+}
+
 [sub_resource type="Animation" id="Animation_7ndhy"]
 length = 0.001
 tracks/0/type = "value"
@@ -341,12 +380,21 @@ tracks/2/keys = {
 "values": [2, 0]
 }
 
-[sub_resource type="Animation" id="Animation_hjvkb"]
-resource_name = "HideMapPicker"
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_d6rw8"]
+_data = {
+&"HideBlack": SubResource("Animation_8v82o"),
+&"HideMapPicker": SubResource("Animation_hjvkb"),
+&"RESET": SubResource("Animation_7ndhy"),
+&"ShowBlack": SubResource("Animation_d6rw8"),
+&"ShowMapPicker": SubResource("Animation_jaoyu")
+}
+
+[sub_resource type="Animation" id="Animation_jbmix"]
+resource_name = "HideShopMenu"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MapPicker:modulate")
+tracks/0/path = NodePath("ShopMenu:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -358,7 +406,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MapPicker:visible")
+tracks/1/path = NodePath("ShopMenu:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -370,54 +418,6 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("MapPicker:mouse_filter")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.0333334),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [0, 2]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_d6rw8"]
-_data = {
-&"HideBlack": SubResource("Animation_8v82o"),
-&"HideMapPicker": SubResource("Animation_hjvkb"),
-&"RESET": SubResource("Animation_7ndhy"),
-&"ShowBlack": SubResource("Animation_d6rw8"),
-&"ShowMapPicker": SubResource("Animation_jaoyu")
-}
-
-[sub_resource type="Animation" id="Animation_ku0a7"]
-resource_name = "ShowShopMenu"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ShopMenu:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("ShopMenu:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.0333333),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
 tracks/2/path = NodePath("ShopMenu:mouse_filter")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
@@ -425,7 +425,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.0333333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [2, 0]
+"values": [0, 2]
 }
 
 [sub_resource type="Animation" id="Animation_c4bd2"]
@@ -467,8 +467,8 @@ tracks/2/keys = {
 "values": [1]
 }
 
-[sub_resource type="Animation" id="Animation_jbmix"]
-resource_name = "HideShopMenu"
+[sub_resource type="Animation" id="Animation_ku0a7"]
+resource_name = "ShowShopMenu"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -479,7 +479,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -488,10 +488,10 @@ tracks/1/path = NodePath("ShopMenu:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 0.0333333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true, false]
+"values": [false, true]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -503,7 +503,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.0333333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [0, 2]
+"values": [2, 0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jbmix"]

@@ -12,6 +12,7 @@ public partial class MapUi : Control
 	[Export] private MapPicker _mapPicker;
 	[Export] private TextureButton _closeMapMenuButton;
 
+	private MapType _lastMapType = MapType.Enemy;
 	private bool _finishedAfterWave;
 	private bool _died;
 
@@ -68,6 +69,17 @@ public partial class MapUi : Control
 
 	public void _onMapPicked(MapType mapType)
 	{
+		var givenShards = _lastMapType switch
+		{
+			MapType.Enemy => 10,
+			MapType.HardEnemy => 20,
+			MapType.VeryHardEnemy => 30,
+			MapType.Boss => 40,
+			_ => 0
+		};
+		
+		GameData.AddShards(givenShards);
+		
 		if (mapType == MapType.Shop)
 		{
 			_mapPickerAnimationPlayer.Play("HideMapPicker");
@@ -76,14 +88,25 @@ public partial class MapUi : Control
 		}
 		
 		_mapPickerAnimationPlayer.Play("ShowBlack");
-		var mapIndex = 8; // Random.Shared.Next(1, 7);
-		var pickedMap = GD.Load<PackedScene>($"res://Scenes/Maps/Map{mapIndex}.tscn");
+		
+		var mapIndex = Random.Shared.Next(1, 4);
+		var pickedMapPath = mapType switch
+		{
+			MapType.Enemy => $"res://Scenes/Maps/EasyMaps/EasyMap{mapIndex}.tscn",
+			MapType.HardEnemy => $"res://Scenes/Maps/MediumMaps/MediumMap{mapIndex}.tscn",
+			MapType.VeryHardEnemy => $"res://Scenes/Maps/HardMaps/HardMap{mapIndex}.tscn",
+			MapType.Boss => "res://Scenes/Maps/BossMaps/BossMap1.tscn",
+			_ => throw new ArgumentOutOfRangeException(nameof(mapType), mapType, null)
+		};
+		
+		var pickedMap = GD.Load<PackedScene>(pickedMapPath);
 
 		var mapInstance = pickedMap.Instantiate();
 		var root = GetTree().GetRoot();
 		GetTree().CreateTimer(1).Timeout += () =>
 		{
 			LevelData.ResetLevelData();
+			_lastMapType = mapType;
 			
 			mapInstance.GetNode<AnimationPlayer>("MapUi/MapPickerAnimationPlayer").Play("HideBlack");
 			if (mapType == MapType.Boss) mapInstance.GetNode<MapUi>("MapUi/MapUI")._finishedAfterWave = true;
