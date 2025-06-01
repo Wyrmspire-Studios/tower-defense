@@ -106,6 +106,8 @@ public partial class MapUi : Control
 		GetTree().CreateTimer(1).Timeout += () =>
 		{
 			LevelData.ResetLevelData();
+			TowerSpawning.SpawnedUnits.Clear();
+			
 			_lastMapType = mapType;
 			
 			mapInstance.GetNode<AnimationPlayer>("MapUi/MapPickerAnimationPlayer").Play("HideBlack");
