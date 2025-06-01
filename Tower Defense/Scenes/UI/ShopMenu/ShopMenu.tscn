@@ -1,15 +1,14 @@
-[gd_scene load_steps=11 format=3 uid="uid://ds6cy4qv5lent"]
+[gd_scene load_steps=12 format=3 uid="uid://ds6cy4qv5lent"]
 
 [ext_resource type="Texture2D" uid="uid://d2cjrito6dthd" path="res://Assets/window.png" id="1_xwios"]
 [ext_resource type="Script" uid="uid://drunf8qj3peyi" path="res://Scenes/UI/ShopMenu/ShardsLabel.cs" id="2_ss2ti"]
 [ext_resource type="PackedScene" uid="uid://bsyuetqh7843s" path="res://Scenes/UI/Elements/UpgradeButton/UpgradeButton.tscn" id="2_whp7o"]
+[ext_resource type="Texture2D" uid="uid://d08dkhr44m12q" path="res://Assets/Towers/Close.png" id="4_5qm5e"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_whp7o"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_whp7o"]
 font_size = 32
-
-[sub_resource type="LabelSettings" id="LabelSettings_ss2ti"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_5qm5e"]
 
@@ -19,10 +18,16 @@ font_size = 32
 
 [sub_resource type="LabelSettings" id="LabelSettings_qhhw2"]
 
-[node name="ShopMenu" type="CanvasLayer"]
-layer = 2
+[sub_resource type="LabelSettings" id="LabelSettings_5narx"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 250.0
+offset_bottom = 239.0
 
 [node name="ShopMenu" type="PanelContainer" parent="."]
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -79,7 +84,7 @@ Label = "Starting Card (+1)"
 
 [node name="Label" parent="ShopMenu/VBoxContainer/MarginContainer/Upgrades/UpgradeButtonContainer/UpgradeButton" index="2"]
 text = "Starting Card (+1)"
-label_settings = SubResource("LabelSettings_ss2ti")
+label_settings = SubResource("LabelSettings_5qm5e")
 
 [node name="ModifierLabel" parent="ShopMenu/VBoxContainer/MarginContainer/Upgrades/UpgradeButtonContainer/UpgradeButton" index="3"]
 text = "5 cards"
@@ -93,7 +98,7 @@ Label = "Cheaper next card cost (+25%)"
 
 [node name="Label" parent="ShopMenu/VBoxContainer/MarginContainer/Upgrades/UpgradeButtonContainer/UpgradeButton2" index="2"]
 text = "Cheaper next card cost (+25%)"
-label_settings = SubResource("LabelSettings_5qm5e")
+label_settings = SubResource("LabelSettings_yb5r7")
 
 [node name="ModifierLabel" parent="ShopMenu/VBoxContainer/MarginContainer/Upgrades/UpgradeButtonContainer/UpgradeButton2" index="3"]
 text = "100%"
@@ -110,7 +115,7 @@ Label = "Damage boost (+25%)"
 
 [node name="Label" parent="ShopMenu/VBoxContainer/MarginContainer/Upgrades/UpgradeButtonContainer/UpgradeButton3" index="2"]
 text = "Damage boost (+25%)"
-label_settings = SubResource("LabelSettings_yb5r7")
+label_settings = SubResource("LabelSettings_i2w46")
 
 [node name="ModifierLabel" parent="ShopMenu/VBoxContainer/MarginContainer/Upgrades/UpgradeButtonContainer/UpgradeButton3" index="3"]
 text = "100%"
@@ -127,7 +132,7 @@ Label = "Cheaper upgrade cost (+25%)"
 
 [node name="Label" parent="ShopMenu/VBoxContainer/MarginContainer/Upgrades/UpgradeButtonContainer/UpgradeButton4" index="2"]
 text = "Cheaper upgrade cost (+25%)"
-label_settings = SubResource("LabelSettings_i2w46")
+label_settings = SubResource("LabelSettings_qhhw2")
 
 [node name="ModifierLabel" parent="ShopMenu/VBoxContainer/MarginContainer/Upgrades/UpgradeButtonContainer/UpgradeButton4" index="3"]
 text = "100%"
@@ -144,13 +149,28 @@ Label = "Faster cooldown (+25%)"
 
 [node name="Label" parent="ShopMenu/VBoxContainer/MarginContainer/Upgrades/UpgradeButtonContainer/UpgradeButton5" index="2"]
 text = "Faster cooldown (+25%)"
-label_settings = SubResource("LabelSettings_qhhw2")
+label_settings = SubResource("LabelSettings_5narx")
 
 [node name="ModifierLabel" parent="ShopMenu/VBoxContainer/MarginContainer/Upgrades/UpgradeButtonContainer/UpgradeButton5" index="3"]
 text = "100%"
 
 [node name="PriceLabel" parent="ShopMenu/VBoxContainer/MarginContainer/Upgrades/UpgradeButtonContainer/UpgradeButton5" index="4"]
 text = "5 Shards"
+
+[node name="Close" type="TextureButton" parent="."]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -28.0
+offset_top = 12.0
+offset_right = -12.0
+offset_bottom = 28.0
+grow_horizontal = 0
+texture_normal = ExtResource("4_5qm5e")
+ignore_texture_size = true
+stretch_mode = 0
 
 [editable path="ShopMenu/VBoxContainer/MarginContainer/Upgrades/UpgradeButtonContainer/UpgradeButton"]
 [editable path="ShopMenu/VBoxContainer/MarginContainer/Upgrades/UpgradeButtonContainer/UpgradeButton2"]

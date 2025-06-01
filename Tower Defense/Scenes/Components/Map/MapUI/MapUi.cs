@@ -7,6 +7,10 @@ public partial class MapUi : Control
 {
 	[Export] private AnimationPlayer _animationPlayer;
 	[Export] private AnimationPlayer _mapPickerAnimationPlayer;
+	[Export] private AnimationPlayer _shopMenuAnimationPlayer;
+
+	[Export] private MapPicker _mapPicker;
+	[Export] private TextureButton _closeMapMenuButton;
 
 	private bool _finishedAfterWave;
 	private bool _died;
@@ -18,6 +22,7 @@ public partial class MapUi : Control
 		LevelData.HealthChanged += _onHealthChange;
 		EnemySpawner.EnemiesDead += _onEnemiesDead;
 		MapPicker.MapPicked += _onMapPicked;
+		_closeMapMenuButton.ButtonDown += _onCloseMapMenu;
 	}
 
 	public override void _ExitTree()
@@ -27,6 +32,7 @@ public partial class MapUi : Control
 		LevelData.HealthChanged -= _onHealthChange;
 		EnemySpawner.EnemiesDead -= _onEnemiesDead;
 		MapPicker.MapPicked -= _onMapPicked;
+		_closeMapMenuButton.ButtonDown -= _onCloseMapMenu;
 	}
 
 	public void _onHealthChange(int oldValue, int newValue)
@@ -53,10 +59,24 @@ public partial class MapUi : Control
 		}
 	}
 
+	public void _onCloseMapMenu()
+	{
+		_mapPicker.EnableButtons();
+		_mapPickerAnimationPlayer.Play("ShowMapPicker");
+		_shopMenuAnimationPlayer.Play("HideShopMenu");
+	}
+
 	public void _onMapPicked(MapType mapType)
 	{
+		if (mapType == MapType.Shop)
+		{
+			_mapPickerAnimationPlayer.Play("HideMapPicker");
+			_shopMenuAnimationPlayer.Play("ShowShopMenu");
+			return;
+		}
+		
 		_mapPickerAnimationPlayer.Play("ShowBlack");
-		var mapIndex = Random.Shared.Next(1, 7);
+		var mapIndex = 8; // Random.Shared.Next(1, 7);
 		var pickedMap = GD.Load<PackedScene>($"res://Scenes/Maps/Map{mapIndex}.tscn");
 
 		var mapInstance = pickedMap.Instantiate();
@@ -66,7 +86,7 @@ public partial class MapUi : Control
 			LevelData.ResetLevelData();
 			
 			mapInstance.GetNode<AnimationPlayer>("MapUi/MapPickerAnimationPlayer").Play("HideBlack");
-			if (mapType == MapType.Boss) mapInstance.GetNode<MapUi>("MapUi)")._finishedAfterWave = true;
+			if (mapType == MapType.Boss) mapInstance.GetNode<MapUi>("MapUi/MapUI")._finishedAfterWave = true;
 			root.AddChild(mapInstance);
 			GetTree().CurrentScene = mapInstance;
 			root.RemoveChild(GetParent().GetParent());

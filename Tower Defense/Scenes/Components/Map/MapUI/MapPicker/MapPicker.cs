@@ -12,7 +12,7 @@ public partial class MapPicker : Control
 	[Export] private PackedScene _mapLayerScene;
 	[Export] private HBoxContainer _mapLayerContainer;
 	[Export] private MapPaths _mapPaths;
-
+	
 	public static int CurrentLayer = 1;
 	public static List<int> PickedMaps = [];
 	public static List<MapLayerInfo> GeneratedMapLayers = [];
@@ -53,6 +53,11 @@ public partial class MapPicker : Control
 
 		var bossLayer = CreateLayer();
 		bossLayer.GenerateBossMaps();
+
+		var withShop = MapLayers[Random.Shared.Next(1, MapLayers.Count - 1)];
+		var shopButton = withShop.MapButtons[Random.Shared.Next(0, withShop.MapButtons.Count)];
+		shopButton.MapType = MapType.Shop;
+		shopButton.UpdateIcon();
 
 		if (PickedMaps.Count == 0)
 		{
@@ -126,11 +131,11 @@ public partial class MapPicker : Control
 		_mapPaths.MapPicker = this;
 		_mapPaths.QueueRedraw();
 
-		_enableButtons();
+		EnableButtons();
 		_saveGeneratedMapLayers();
 	}
 
-	private void _enableButtons(bool onlyMark = false)
+	public void EnableButtons(bool onlyMark = false)
 	{
 		foreach (var mapLayer in MapLayers)
 		{
@@ -164,7 +169,7 @@ public partial class MapPicker : Control
 		CurrentLayer = layerIndex + 1;
 		PickedMaps[layerIndex] = buttonIndex;
 
-		_enableButtons(true);
+		EnableButtons(true);
 
 		MapPicked?.Invoke(mapType);
 	}
@@ -216,16 +221,19 @@ public partial class MapPicker : Control
 
 		for (var i = 0; i < MapLayers.Count - 1; i++)
 		{
+			GD.Print($"i: {i}");
 			var nextLayer = MapLayers[i + 1];
 			for (var j = 0; j < MapLayers[i].MapButtons.Count; j++)
 			{
-				MapLayers[i].MapButtons[j].ConnectedTo = GeneratedMapLayers[i].MapButtons[j].ConnectedTo.Select(buttonIndex => nextLayer.MapButtons[buttonIndex]).ToList();
+				GD.Print($"j: {j}");
+				MapLayers[i].MapButtons[j].ConnectedTo =
+					GeneratedMapLayers[i].MapButtons[j].ConnectedTo.Select(buttonIndex => nextLayer.MapButtons[buttonIndex]).ToList();
 			}
 		}
 		
 		_mapPaths.MapPicker = this;
 		_mapPaths.QueueRedraw();
 		
-		_enableButtons();
+		EnableButtons();
 	}
 }

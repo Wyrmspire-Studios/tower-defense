@@ -7,6 +7,7 @@ public enum MapType
 	HardEnemy,
 	VeryHardEnemy,
 	Boss,
+	Shop
 }
 
 public static class MapTypeExtensions
@@ -19,6 +20,7 @@ public static class MapTypeExtensions
 			MapType.HardEnemy => 1,
 			MapType.VeryHardEnemy => 2,
 			MapType.Boss => 3,
+			MapType.Shop => 4,
 			_ => throw new ArgumentOutOfRangeException(nameof(mapType), mapType, null)
 		};
 	}

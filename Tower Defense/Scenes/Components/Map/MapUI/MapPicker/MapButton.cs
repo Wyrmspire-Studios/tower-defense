@@ -24,8 +24,7 @@ public partial class MapButton : Button
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		_iconTexture.Region = new Rect2(new Vector2(32, 0) * MapType.ToTextureIndex(), new Vector2(32, 32));
-		_iconRect.Texture = _iconTexture;
+		UpdateIcon();
 		
 		_setBackgroundTexture(_baseTexture);
 
@@ -35,6 +34,12 @@ public partial class MapButton : Button
 		ButtonUp += _onMouseUp;
 		
 		Disable();
+	}
+
+	public void UpdateIcon()
+	{
+		_iconTexture.Region = new Rect2(new Vector2(32, 0) * MapType.ToTextureIndex(), new Vector2(32, 32));
+		_iconRect.Texture = _iconTexture;
 	}
 
 	private void _setBackgroundTexture(Texture2D texture)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://co4vvln87bywk"]
+[gd_scene load_steps=16 format=4 uid="uid://co4vvln87bywk"]
 
 [ext_resource type="PackedScene" uid="uid://y1tl75a87wmt" path="res://Scenes/Components/Map/MapUI/MapUI.tscn" id="1_ah1jo"]
 [ext_resource type="PackedScene" uid="uid://bfaw150aps460" path="res://Scenes/Components/Map/MapTiles/MapTiles.tscn" id="1_mik4u"]
@@ -7,8 +7,16 @@
 [ext_resource type="PackedScene" uid="uid://drpmojh54436v" path="res://Scenes/Enemies/Slime.tscn" id="2_ipyvt"]
 [ext_resource type="Script" uid="uid://db072fixsh811" path="res://Scenes/Components/Map/EnemySpawner/EnemyGroup.cs" id="3_7fg68"]
 [ext_resource type="Script" uid="uid://dut1irbek148f" path="res://Scenes/Components/Map/EnemySpawner/EnemyWave.cs" id="4_ipyvt"]
-[ext_resource type="PackedScene" uid="uid://c6embu1anb0ai" path="res://Scenes/Enemies/FastSlime.tscn" id="8_7fg68"]
-[ext_resource type="PackedScene" uid="uid://d0bbbmoraofao" path="res://Scenes/Enemies/SlowSlime.tscn" id="9_ipyvt"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_mik4u"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7fg68"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ipyvt"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ah1jo"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wu13y"]
 
 [sub_resource type="Resource" id="Resource_wu13y"]
 script = ExtResource("3_7fg68")
@@ -25,45 +33,6 @@ EnemyGroups = Array[Object]([SubResource("Resource_wu13y")])
 DelayUntilNextWave = 20.0
 metadata/_custom_type_script = "uid://dut1irbek148f"
 
-[sub_resource type="Resource" id="Resource_ipyvt"]
-script = ExtResource("3_7fg68")
-EnemyToSpawn = ExtResource("8_7fg68")
-PathIdToSpawnOn = 0
-EnemyCount = 5
-SpawnIntervalSeconds = 2.0
-DelayUntilNextGroup = 1.0
-metadata/_custom_type_script = "uid://db072fixsh811"
-
-[sub_resource type="Resource" id="Resource_ah1jo"]
-script = ExtResource("4_ipyvt")
-EnemyGroups = Array[Object]([SubResource("Resource_ipyvt")])
-DelayUntilNextWave = 20.0
-metadata/_custom_type_script = "uid://dut1irbek148f"
-
-[sub_resource type="Resource" id="Resource_noocy"]
-script = ExtResource("3_7fg68")
-EnemyToSpawn = ExtResource("2_ipyvt")
-PathIdToSpawnOn = 0
-EnemyCount = 5
-SpawnIntervalSeconds = 1.0
-DelayUntilNextGroup = 1.0
-metadata/_custom_type_script = "uid://db072fixsh811"
-
-[sub_resource type="Resource" id="Resource_vqjx3"]
-script = ExtResource("3_7fg68")
-EnemyToSpawn = ExtResource("9_ipyvt")
-PathIdToSpawnOn = 0
-EnemyCount = 5
-SpawnIntervalSeconds = 1.0
-DelayUntilNextGroup = 1.0
-metadata/_custom_type_script = "uid://db072fixsh811"
-
-[sub_resource type="Resource" id="Resource_4phxu"]
-script = ExtResource("4_ipyvt")
-EnemyGroups = Array[Object]([SubResource("Resource_noocy"), SubResource("Resource_vqjx3")])
-DelayUntilNextWave = 20.0
-metadata/_custom_type_script = "uid://dut1irbek148f"
-
 [sub_resource type="Curve2D" id="Curve2D_7fg68"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -16, 176, 0, 0, 0, 0, 112, 176, 0, 0, 0, 0, 112, 112, 0, 0, 0, 0, 176, 112, 0, 0, 0, 0, 176, 240, 0, 0, 0, 0, 80, 240, 0, 0, 0, 0, 80, 304, 0, 0, 0, 0, 272, 304, 0, 0, 0, 0, 272, 112, 0, 0, 0, 0, 496, 112, 0, 0, 0, 0, 496, 176, 0, 0, 0, 0, 368, 176, 0, 0, 0, 0, 368, 304, 0, 0, 0, 0, 656, 304)
@@ -76,6 +45,21 @@ point_count = 14
 
 [node name="CardDeck" parent="MapUi/MapUI" index="0" node_paths=PackedStringArray("TowerPlacement")]
 TowerPlacement = NodePath("../../../TowerPlacement")
+
+[node name="Label" parent="MapUi/ShopMenu/ShopMenu/VBoxContainer/MarginContainer/Upgrades/UpgradeButtonContainer/UpgradeButton" index="2"]
+label_settings = SubResource("LabelSettings_mik4u")
+
+[node name="Label" parent="MapUi/ShopMenu/ShopMenu/VBoxContainer/MarginContainer/Upgrades/UpgradeButtonContainer/UpgradeButton2" index="2"]
+label_settings = SubResource("LabelSettings_7fg68")
+
+[node name="Label" parent="MapUi/ShopMenu/ShopMenu/VBoxContainer/MarginContainer/Upgrades/UpgradeButtonContainer/UpgradeButton3" index="2"]
+label_settings = SubResource("LabelSettings_ipyvt")
+
+[node name="Label" parent="MapUi/ShopMenu/ShopMenu/VBoxContainer/MarginContainer/Upgrades/UpgradeButtonContainer/UpgradeButton4" index="2"]
+label_settings = SubResource("LabelSettings_ah1jo")
+
+[node name="Label" parent="MapUi/ShopMenu/ShopMenu/VBoxContainer/MarginContainer/Upgrades/UpgradeButtonContainer/UpgradeButton5" index="2"]
+label_settings = SubResource("LabelSettings_wu13y")
 
 [node name="MapTiles" parent="." instance=ExtResource("1_mik4u")]
 
@@ -96,7 +80,7 @@ tile_map_data = PackedByteArray("AAD//wUAAAACAAEAAAAAAAUAAAABAAQAAAABAAUAAAABAAQ
 
 [node name="EnemySpawner" parent="." node_paths=PackedStringArray("SpawnPoints") instance=ExtResource("1_tw565")]
 SpawnPoints = [NodePath("Path2D")]
-Waves = Array[Object]([SubResource("Resource_trfe8"), SubResource("Resource_ah1jo"), SubResource("Resource_4phxu")])
+Waves = Array[Object]([SubResource("Resource_trfe8")])
 
 [node name="Path2D" type="Path2D" parent="EnemySpawner"]
 rotation = 0.00243818
@@ -104,5 +88,11 @@ curve = SubResource("Curve2D_7fg68")
 
 [editable path="MapUi"]
 [editable path="MapUi/MapUI/CardDeck"]
+[editable path="MapUi/ShopMenu"]
+[editable path="MapUi/ShopMenu/ShopMenu/VBoxContainer/MarginContainer/Upgrades/UpgradeButtonContainer/UpgradeButton"]
+[editable path="MapUi/ShopMenu/ShopMenu/VBoxContainer/MarginContainer/Upgrades/UpgradeButtonContainer/UpgradeButton2"]
+[editable path="MapUi/ShopMenu/ShopMenu/VBoxContainer/MarginContainer/Upgrades/UpgradeButtonContainer/UpgradeButton3"]
+[editable path="MapUi/ShopMenu/ShopMenu/VBoxContainer/MarginContainer/Upgrades/UpgradeButtonContainer/UpgradeButton4"]
+[editable path="MapUi/ShopMenu/ShopMenu/VBoxContainer/MarginContainer/Upgrades/UpgradeButtonContainer/UpgradeButton5"]
 [editable path="MapTiles"]
 [editable path="TowerPlacement"]

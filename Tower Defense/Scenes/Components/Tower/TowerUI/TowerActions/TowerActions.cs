@@ -69,7 +69,7 @@ public partial class TowerActions : NinePatchRect
 		LevelData.RemoveGold(_upgradeCost);
 		
 		_currentCost += _upgradeCost;
-		_unmodifiedUpgradeCost = Mathf.FloorToInt(_currentCost * 1.5);
+		_unmodifiedUpgradeCost = Mathf.FloorToInt(_unmodifiedUpgradeCost * 1.5);
 		_upgradeCost = Mathf.FloorToInt(_unmodifiedUpgradeCost / GameData.GetModifier("upgrade_price_modifier"));
 		_updateLabels();
 	}
