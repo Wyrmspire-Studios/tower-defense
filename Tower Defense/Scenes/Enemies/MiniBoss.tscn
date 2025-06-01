@@ -1,0 +1,79 @@
+[gd_scene load_steps=11 format=3 uid="uid://dsdaibtbk0xae"]
+
+[ext_resource type="PackedScene" uid="uid://cwrunk0piod8b" path="res://Scenes/Components/Enemy/Enemy.tscn" id="1_gn407"]
+[ext_resource type="Script" uid="uid://bu5ms6gagi6m" path="res://Scenes/Components/Enemy/EnemyInfo.cs" id="2_o00qb"]
+[ext_resource type="Texture2D" uid="uid://bppem7pax5wdk" path="res://Assets/Enemies/Slime/SlimeMovement.png" id="3_pqplh"]
+
+[sub_resource type="Resource" id="Resource_svi3h"]
+script = ExtResource("2_o00qb")
+Speed = 64
+Health = 1024
+Damage = 10
+GoldDrop = 20
+metadata/_custom_type_script = "uid://bu5ms6gagi6m"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kexyb"]
+atlas = ExtResource("3_pqplh")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s88bi"]
+atlas = ExtResource("3_pqplh")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ua82p"]
+atlas = ExtResource("3_pqplh")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_otd3f"]
+atlas = ExtResource("3_pqplh")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jus8j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kexyb")
+}],
+"loop": true,
+"name": &"Down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s88bi")
+}],
+"loop": true,
+"name": &"Left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ua82p")
+}],
+"loop": true,
+"name": &"Right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_otd3f")
+}],
+"loop": true,
+"name": &"Up",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kexyb"]
+size = Vector2(30, 21.6667)
+
+[node name="Enemy" instance=ExtResource("1_gn407")]
+modulate = Color(0, 1, 1, 1)
+_enemyInfo = SubResource("Resource_svi3h")
+
+[node name="Enemy Sprite" parent="." index="0"]
+position = Vector2(0, -6)
+sprite_frames = SubResource("SpriteFrames_jus8j")
+animation = &"Down"
+
+[node name="CollisionShape2D" parent="Enemy Collision" index="0"]
+shape = SubResource("RectangleShape2D_kexyb")
