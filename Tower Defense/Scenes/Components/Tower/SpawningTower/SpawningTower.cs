@@ -38,10 +38,11 @@ public partial class SpawningTower : Tower
 		TowerPlacement = towerPlacement;
 		
 		base.OnStartPlacing(towerPlacement, headless);
+		
+		TowerSpawning = GetNode<TowerSpawning>("TowerSpawning");
 
 		if (headless) return;
 		
-		TowerSpawning = GetNode<TowerSpawning>("TowerSpawning");
 		TowerSpawning.Initialize(this);
 		TowerSpawning.UpdateSpawnRate();
 		
