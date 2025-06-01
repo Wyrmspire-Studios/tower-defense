@@ -2,6 +2,7 @@ using System;
 using System.Runtime.InteropServices.JavaScript;
 using System.Threading.Tasks;
 using Godot;
+using WyrmspireStudios.Data;
 using WyrmspireStudios.Events;
 
 namespace WyrmspireStudios;
@@ -47,7 +48,17 @@ public partial class CardDeck : Control
 		AddChild(timer);
 		timer.Timeout += UpdateCardsPositions;
 		timer.Start();
-		GetTree().CreateTimer(0.5).Timeout += HideDeckAnimation;
+		
+		// GetTree().CreateTimer(0.5).Timeout += HideDeckAnimation;
+		
+		_background.Position = new Vector2(-132, 64);
+		_hidden = true;
+		
+		var startingCards = Mathf.FloorToInt(GameData.GetModifier("starting_cards"));
+		for (var i = 0; i < startingCards; i++)
+		{
+			RollCard();
+		}
 	}
 
 	private void OnCardDeselected(Node node, bool inDeck)
@@ -64,8 +75,6 @@ public partial class CardDeck : Control
 
 	public override void _Process(double delta)
 	{
-		
-		
 		var mousePos = GetGlobalMousePosition();
 		
 		if (CollisionRect.GetGlobalRect().HasPoint(mousePos))
@@ -259,12 +268,17 @@ public partial class CardDeck : Control
 	{
 		return PossibleTowers[Random.Shared.Next(PossibleTowers.Length)];
 	}
+
+	public void RollCard()
+	{
+		AddCard(_pickTower());
+	}
 	
 	public override void _Input(InputEvent @event)
 	{
 		if (@event is InputEventKey keyEvent && keyEvent.Pressed && keyEvent.Keycode == Key.A)
 		{
-			AddCard(_pickTower());
+			RollCard();
 		}
 	}
 }

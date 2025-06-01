@@ -14,6 +14,7 @@ public partial class TowerActions : NinePatchRect
 	[Export] private TextureButton _upgradeTowerButton;
 
 	private int _currentCost;
+	private int _unmodifiedUpgradeCost;
 	private int _upgradeCost;
 	private bool _canUpgrade;
 	
@@ -27,8 +28,9 @@ public partial class TowerActions : NinePatchRect
 		_sellTowerButton.Pressed += _onSellTower;
 		_upgradeTowerButton.Pressed += _onUpgradeTower;
 
-		_currentCost = 50;
-		_upgradeCost = Tower.TowerInfo.BaseUpgradeCost;
+		_currentCost = LevelData.GetCardCost();
+		_unmodifiedUpgradeCost = Tower.TowerInfo.BaseUpgradeCost;
+		_upgradeCost = Mathf.FloorToInt(_unmodifiedUpgradeCost / GameData.GetModifier("upgrade_price_modifier"));
 		
 		LevelData.GoldChanged += _recheckUpgradeAvailable;
 		_recheckUpgradeAvailable(0, LevelData.GetGold());
@@ -67,7 +69,8 @@ public partial class TowerActions : NinePatchRect
 		LevelData.RemoveGold(_upgradeCost);
 		
 		_currentCost += _upgradeCost;
-		_upgradeCost = Mathf.FloorToInt(_upgradeCost * 1.5);
+		_unmodifiedUpgradeCost = Mathf.FloorToInt(_currentCost * 1.5);
+		_upgradeCost = Mathf.FloorToInt(_unmodifiedUpgradeCost / GameData.GetModifier("upgrade_price_modifier"));
 		_updateLabels();
 	}
 

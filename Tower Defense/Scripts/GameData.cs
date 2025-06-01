@@ -21,8 +21,6 @@ public static class GameData
     private static float NextCardPriceModifier { get; set; } = DefaultNextCardPriceModifier;
     private static float CooldownModifier { get; set; } = DefaultCooldownModifier;
     
-    
-    
     public static event EventHandlers.UpgradesChangesHandler UpgradesChanged;
     
     public static int GetUpgradeBoughtTimes(string id)

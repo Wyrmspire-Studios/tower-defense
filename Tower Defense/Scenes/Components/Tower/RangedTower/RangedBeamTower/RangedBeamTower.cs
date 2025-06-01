@@ -10,18 +10,6 @@ public partial class RangedBeamTower : RangedTower
 
 	public TowerBeamShooting TowerBeamShooting;
 	
-	public override void _Ready()
-	{
-		_baseRangedBeamTowerInfo.Damage = (int)Math.Round(
-			_baseRangedBeamTowerInfo.Damage * GameData.GetModifier("damage_modifier"),
-			2
-		);
-		_baseRangedBeamTowerInfo.FireDelay = (float)Math.Round(
-			_baseRangedBeamTowerInfo.FireDelay / GameData.GetModifier("cooldown_modifier"),
-			2
-		);
-	}
-	
 	public virtual void OnEnemyShot(Enemy enemy)
 	{
 		if (RangedBeamTowerInfo.StunDuration > 0) enemy.ApplyStun(RangedBeamTowerInfo.StunDuration);
@@ -67,33 +55,22 @@ public partial class RangedBeamTower : RangedTower
 		
 		foreach (var towerEnhancement in TowerEnhancements.OrderBy(enhancement => enhancement.Additive))
 		{
-			// if (towerEnhancement.NewBeamDamage != -1)
-			// 	if (towerEnhancement.Additive) newTowerData.Damage += towerEnhancement.NewBeamDamage;
-			// 	else newTowerData.Damage = towerEnhancement.NewBeamDamage;
-			
 			if (towerEnhancement.NewBeamDamage != -1)
-				if (towerEnhancement.Additive) newTowerData.FireDelay += (float)Math.Round(
-					towerEnhancement.NewBeamDamage * GameData.GetModifier("damage_modifier"),
-					2
-				);
-				else newTowerData.FireDelay = (float)Math.Round(
-					towerEnhancement.NewBeamDamage * GameData.GetModifier("damage_modifier"),
-					2
-				);
+			{
+				var newDamage = Mathf.FloorToInt(towerEnhancement.NewBeamDamage * GameData.GetModifier("damage_modifier"));
+				if (towerEnhancement.Additive) newTowerData.Damage += newDamage;
+				else newTowerData.Damage = newDamage;
+			}
 			
 			if (towerEnhancement.NewBeamSpawnOffset != Vector2.Inf)
 				if (towerEnhancement.Additive) newTowerData.BeamSpawnOffset += towerEnhancement.NewBeamSpawnOffset;
 				else newTowerData.BeamSpawnOffset = towerEnhancement.NewBeamSpawnOffset;
-			
+
 			if (towerEnhancement.NewBeamFireDelay > 0)
-				if (towerEnhancement.Additive) newTowerData.FireDelay -= (float)Math.Round(
-					towerEnhancement.NewBeamFireDelay / GameData.GetModifier("cooldown_modifier"),
-					2
-				);
-				else newTowerData.FireDelay = (float)Math.Round(
-					towerEnhancement.NewBeamFireDelay / GameData.GetModifier("cooldown_modifier"),
-					2
-				);
+			{
+				if (towerEnhancement.Additive) newTowerData.FireDelay -= towerEnhancement.NewBeamFireDelay * GameData.GetModifier("cooldown_modifier");
+				else newTowerData.FireDelay = towerEnhancement.NewBeamFireDelay / GameData.GetModifier("cooldown_modifier");
+			}
 			
 			if (towerEnhancement.NewBeamFireDuration > 0)
 				if (towerEnhancement.Additive) newTowerData.FireDuration += towerEnhancement.NewBeamFireDuration;

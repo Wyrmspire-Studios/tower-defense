@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using WyrmspireStudios.Data;
 
 public partial class MainMenu : Control
 {
@@ -38,6 +39,8 @@ public partial class MainMenu : Control
         _uiAnimationPlayer.Play("Hide");
         GetTree().CreateTimer(0.5).Timeout += () =>
         {
+            LevelData.ResetLevelData();
+            
             tutorialMap.GetNode<ColorRect>("MapUi/ColorRect").Visible = false;
             tutorialMap.GetNode<ColorRect>("MapUi/ColorRect").MouseFilter = MouseFilterEnum.Ignore;
             

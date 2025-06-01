@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Godot;
 using WyrmspireStudios.Events;
 
 namespace WyrmspireStudios.Data;
@@ -7,12 +8,14 @@ public static class LevelData
 {
     private const int DefaultHealth = 25;
     private const int DefaultGold = 150;
+    private const int DefaultCardCost = 50;
     private static int Health { get; set; } = DefaultHealth;
     private static int Gold { get; set; } = DefaultGold;
     private static int EnemyDeaths { get; set; }
     
     private static int CurrentWave { get; set; }
     private static int MaxWave { get; set; }
+    private static int CardCost { get; set; } = DefaultCardCost;
     private static List<Card> Cards { get; set; } = new List<Card>();
     
     public static event EventHandlers.ValueChangeHandler HealthChanged;
@@ -20,6 +23,7 @@ public static class LevelData
     public static event EventHandlers.ValueChangeHandler EnemyDeath;
     public static event EventHandlers.ValueChangeHandler CurrentWaveChanged;
     public static event EventHandlers.ValueChangeHandler MaxWaveChanged;
+    public static event EventHandlers.ValueChangeHandler CardCostChanged;
     
     public static int GetHealth()
     {
@@ -131,6 +135,23 @@ public static class LevelData
         MaxWaveChanged?.Invoke(MaxWave, 0);
         MaxWave = 0;
     }
+
+    public static int GetCardCost()
+    {
+        return CardCost;
+    }
+
+    public static void AddCardCost(int amount)
+    {
+        int oldCardCost = CardCost;
+        CardCost += Mathf.FloorToInt(amount / GameData.GetModifier("next_card_price_modifier"));
+        CardCostChanged?.Invoke(oldCardCost, CardCost);
+    }
+
+    private static void ResetCardCost()
+    {
+        CardCost = Mathf.FloorToInt(DefaultCardCost / GameData.GetModifier("next_card_price_modifier"));
+    }
     
     private static void ResetEvents()
     {
@@ -139,6 +160,7 @@ public static class LevelData
         EnemyDeath = null;
         CurrentWaveChanged = null;
         MaxWaveChanged = null;
+        CardCostChanged = null;
     }
     
     public static void ResetLevelData()
@@ -148,6 +170,7 @@ public static class LevelData
         ResetEnemyDeaths();
         ResetCurrentWave();
         ResetMaxWave();
+        ResetCardCost();
         ResetEvents();
     }
 }

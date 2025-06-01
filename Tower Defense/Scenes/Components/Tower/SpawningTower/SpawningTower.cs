@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using TowerDefense.Scenes.Components.Map.TowerPlacement;
+using WyrmspireStudios.Data;
 
 public partial class SpawningTower : Tower
 {
@@ -73,12 +74,17 @@ public partial class SpawningTower : Tower
 		foreach (var towerEnhancement in TowerEnhancements)
 		{
 			if (towerEnhancement.NewUnitHealth != -1)
-				if (towerEnhancement.Additive) newTowerData.UnitHealth += towerEnhancement.NewUnitHealth;
-				else newTowerData.UnitHealth = towerEnhancement.NewUnitHealth;
-			
+			{
+				var newHealth = Mathf.FloorToInt(towerEnhancement.NewUnitHealth * GameData.GetModifier("damage_modifier"));
+				if (towerEnhancement.Additive) newTowerData.UnitHealth += newHealth;
+				else newTowerData.UnitHealth = newHealth;
+			}
+
 			if (towerEnhancement.NewUnitSpawnRate > 0)
-				if (towerEnhancement.Additive) newTowerData.UnitSpawnRate -= towerEnhancement.NewUnitSpawnRate;
-				else newTowerData.UnitSpawnRate = towerEnhancement.NewUnitSpawnRate;
+			{
+				if (towerEnhancement.Additive) newTowerData.UnitSpawnRate -= towerEnhancement.NewUnitSpawnRate * GameData.GetModifier("cooldown_modifier");
+				else newTowerData.UnitSpawnRate = towerEnhancement.NewUnitSpawnRate / GameData.GetModifier("cooldown_modifier");;
+			}
 
 			if (towerEnhancement.NewUnitStunDuration > 0)
 				if (towerEnhancement.Additive) newTowerData.UnitStunDuration += towerEnhancement.NewUnitStunDuration;
@@ -119,7 +125,7 @@ public partial class SpawningTower : Tower
 	public override void UpdateStatsUi(TowerStats towerStats)
 	{
 		towerStats.HealthStatContainer.SetStatText($"{SpawningTowerInfo.UnitHealth}");
-		towerStats.FireDelayStatContainer.SetStatText($"{SpawningTowerInfo.UnitSpawnRate}");
+		towerStats.FireDelayStatContainer.SetStatText($"{SpawningTowerInfo.UnitSpawnRate}s");
 		towerStats.StunStatContainer?.SetStatText($"{SpawningTowerInfo.UnitStunDuration}s");
 	}
 }

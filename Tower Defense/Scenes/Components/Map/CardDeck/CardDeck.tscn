@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bhxcmvil3d6dk"]
+[gd_scene load_steps=15 format=3 uid="uid://bhxcmvil3d6dk"]
 
 [ext_resource type="Texture2D" uid="uid://d2cjrito6dthd" path="res://Assets/window.png" id="1_6ici3"]
 [ext_resource type="Script" uid="uid://doa7l0xhs53vh" path="res://Scenes/Components/Map/CardDeck/CardDeck.cs" id="1_dcp54"]
@@ -7,6 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://bt1efhy4djaqj" path="res://Scenes/Towers/MageTower.tscn" id="4_p0h3r"]
 [ext_resource type="PackedScene" uid="uid://b3f8xjxol4l8t" path="res://Scenes/Towers/Barracks.tscn" id="5_p0h3r"]
 [ext_resource type="PackedScene" uid="uid://d3xe4dt5f1nix" path="res://Scenes/Towers/TrapperTower.tscn" id="6_h2p5k"]
+[ext_resource type="Texture2D" uid="uid://dcc3alldfr5qe" path="res://Assets/Cards/Common.png" id="8_aeq1b"]
+[ext_resource type="Script" uid="uid://bh2g1wjtwgspg" path="res://Scenes/Components/Map/CardDeck/BuyCardButton.cs" id="8_pop1b"]
+[ext_resource type="Texture2D" uid="uid://c3j8pa1dwuupy" path="res://Assets/Icons/Buy.png" id="9_ib84q"]
 
 [sub_resource type="Animation" id="Animation_abwmi"]
 resource_name = "HideDeck"
@@ -146,8 +149,79 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -8.0
 offset_top = -8.0
-offset_right = 8.0
+offset_right = 71.0
 offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="BuyCardButton" type="Button" parent="NinePatchRect" node_paths=PackedStringArray("_cardDeck", "_cardCost")]
+custom_minimum_size = Vector2(48, 64)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 16.0
+offset_top = -32.0
+offset_right = 64.0
+offset_bottom = 32.0
+grow_horizontal = 0
+grow_vertical = 2
+flat = true
+script = ExtResource("8_pop1b")
+_cardDeck = NodePath("../..")
+_cardCost = NodePath("NinePatchRect/CardCost")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="NinePatchRect/BuyCardButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_aeq1b")
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect/BuyCardButton/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="TextureRect" type="TextureRect" parent="NinePatchRect/BuyCardButton/NinePatchRect/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("9_ib84q")
+expand_mode = 1
+
+[node name="CardCost" type="Label" parent="NinePatchRect/BuyCardButton/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "$5555"
+horizontal_alignment = 1

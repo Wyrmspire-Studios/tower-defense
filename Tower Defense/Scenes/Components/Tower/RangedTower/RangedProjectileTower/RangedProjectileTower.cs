@@ -10,14 +10,6 @@ public partial class RangedProjectileTower : RangedTower
 	
 	public TowerProjectileShooting TowerProjectileShooting;
 
-	public override void _Ready()
-	{
-		_baseRangedProjectileTowerInfo.FireDelay = (float)Math.Round(
-			_baseRangedProjectileTowerInfo.FireDelay / GameData.GetModifier("cooldown_modifier"),
-			2
-		);
-	}
-
 	public virtual void OnEnemyHit(Enemy enemy, Projectile projectile)
 	{
 		if (RangedProjectileTowerInfo.StunDuration > 0) enemy.ApplyStun(RangedProjectileTowerInfo.StunDuration);
@@ -65,8 +57,11 @@ public partial class RangedProjectileTower : RangedTower
 		foreach (var towerEnhancement in TowerEnhancements.OrderBy(enhancement => enhancement.Additive))
 		{
 			if (towerEnhancement.NewProjectileDamage != -1)
-				if (towerEnhancement.Additive) newTowerData.BaseProjectileInfo.Damage += towerEnhancement.NewProjectileDamage;
-				else newTowerData.BaseProjectileInfo.Damage = towerEnhancement.NewProjectileDamage;
+			{
+				var newDamage = Mathf.FloorToInt(towerEnhancement.NewProjectileDamage * GameData.GetModifier("damage_modifier"));
+				if (towerEnhancement.Additive) newTowerData.BaseProjectileInfo.Damage += newDamage;
+				else newTowerData.BaseProjectileInfo.Damage = newDamage;
+			}
 			
 			if (towerEnhancement.NewProjectileSpeed != -1)
 				if (towerEnhancement.Additive) newTowerData.BaseProjectileInfo.Speed += towerEnhancement.NewProjectileSpeed;
@@ -75,10 +70,12 @@ public partial class RangedProjectileTower : RangedTower
 			if (towerEnhancement.NewProjectileSpawnOffset != Vector2.Inf)
 				if (towerEnhancement.Additive) newTowerData.ProjectileSpawnOffset += towerEnhancement.NewProjectileSpawnOffset;
 				else newTowerData.ProjectileSpawnOffset = towerEnhancement.NewProjectileSpawnOffset;
-			
+
 			if (towerEnhancement.NewProjectileFireDelay > 0)
-				if (towerEnhancement.Additive) newTowerData.FireDelay += towerEnhancement.NewProjectileFireDelay;
-				else newTowerData.FireDelay = towerEnhancement.NewProjectileFireDelay;
+			{
+				if (towerEnhancement.Additive) newTowerData.FireDelay -= towerEnhancement.NewProjectileFireDelay * GameData.GetModifier("cooldown_modifier");
+				else newTowerData.FireDelay = towerEnhancement.NewProjectileFireDelay / GameData.GetModifier("cooldown_modifier");
+			}
 
 			if (towerEnhancement.NewRange != -1)
 				if (towerEnhancement.Additive) newTowerData.Range += towerEnhancement.NewRange;
