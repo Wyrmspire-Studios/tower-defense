@@ -1,0 +1,55 @@
+[gd_scene load_steps=5 format=3 uid="uid://csrfdiiimjy4c"]
+
+[ext_resource type="Script" uid="uid://53p6mtpwfp8y" path="res://Scenes/Components/Map/MapUI/MapPicker/MapPicker.cs" id="1_dw7fx"]
+[ext_resource type="PackedScene" uid="uid://dqnuny71l4mno" path="res://Scenes/Components/Map/MapUI/MapPicker/MapLayer.tscn" id="2_iuoqi"]
+[ext_resource type="Texture2D" uid="uid://dx8wfwi117fng" path="res://Assets/Towers/Map.png" id="2_wrw4b"]
+[ext_resource type="Script" uid="uid://c7vubt3jvjped" path="res://Scenes/Components/Map/MapUI/MapPicker/MapPaths.cs" id="3_iuoqi"]
+
+[node name="MapPicker" type="Control" node_paths=PackedStringArray("_mapLayerContainer", "_mapPaths")]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dw7fx")
+_mapLayerScene = ExtResource("2_iuoqi")
+_mapLayerContainer = NodePath("NinePatchRect/HBoxContainer")
+_mapPaths = NodePath("NinePatchRect/MapPaths")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 73.0
+offset_top = 41.0
+offset_right = -73.0
+offset_bottom = -41.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_wrw4b")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="MapPaths" type="Control" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_iuoqi")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 64
+alignment = 1

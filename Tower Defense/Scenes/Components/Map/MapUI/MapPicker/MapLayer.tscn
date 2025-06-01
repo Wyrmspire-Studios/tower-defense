@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqnuny71l4mno"]
+
+[ext_resource type="Script" uid="uid://bpbuxreylcvq8" path="res://Scenes/Components/Map/MapUI/MapPicker/MapLayer.cs" id="1_11jrb"]
+[ext_resource type="PackedScene" uid="uid://dlw0b7ukf0ne7" path="res://Scenes/Components/Map/MapUI/MapPicker/MapButton.tscn" id="2_oqrhp"]
+
+[node name="MapLayer" type="VBoxContainer"]
+theme_override_constants/separation = 48
+alignment = 1
+script = ExtResource("1_11jrb")
+_mapButtonScene = ExtResource("2_oqrhp")

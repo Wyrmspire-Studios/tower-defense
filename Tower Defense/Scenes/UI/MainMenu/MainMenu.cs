@@ -38,6 +38,9 @@ public partial class MainMenu : Control
         _uiAnimationPlayer.Play("Hide");
         GetTree().CreateTimer(0.5).Timeout += () =>
         {
+            tutorialMap.GetNode<ColorRect>("MapUi/ColorRect").Visible = false;
+            tutorialMap.GetNode<ColorRect>("MapUi/ColorRect").MouseFilter = MouseFilterEnum.Ignore;
+            
             root.AddChild(tutorialMap);
             GetTree().CurrentScene = tutorialMap;
             root.RemoveChild(this);

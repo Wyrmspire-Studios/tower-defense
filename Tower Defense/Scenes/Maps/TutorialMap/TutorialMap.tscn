@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://co4vvln87bywk"]
+[gd_scene load_steps=18 format=4 uid="uid://co4vvln87bywk"]
 
 [ext_resource type="PackedScene" uid="uid://y1tl75a87wmt" path="res://Scenes/Components/Map/MapUI/MapUI.tscn" id="1_ah1jo"]
 [ext_resource type="PackedScene" uid="uid://bfaw150aps460" path="res://Scenes/Components/Map/MapTiles/MapTiles.tscn" id="1_mik4u"]
@@ -6,74 +6,62 @@
 [ext_resource type="PackedScene" uid="uid://bo54w4efanqvm" path="res://Scenes/Components/Map/TowerPlacement/TowerPlacement.tscn" id="2_7fg68"]
 [ext_resource type="PackedScene" uid="uid://drpmojh54436v" path="res://Scenes/Enemies/Slime.tscn" id="2_ipyvt"]
 [ext_resource type="Script" uid="uid://db072fixsh811" path="res://Scenes/Components/Map/EnemySpawner/EnemyGroup.cs" id="3_7fg68"]
-[ext_resource type="PackedScene" uid="uid://d0bbbmoraofao" path="res://Scenes/Enemies/SlowSlime.tscn" id="4_ah1jo"]
 [ext_resource type="Script" uid="uid://dut1irbek148f" path="res://Scenes/Components/Map/EnemySpawner/EnemyWave.cs" id="4_ipyvt"]
-[ext_resource type="PackedScene" uid="uid://c6embu1anb0ai" path="res://Scenes/Enemies/FastSlime.tscn" id="6_wu13y"]
+[ext_resource type="PackedScene" uid="uid://c6embu1anb0ai" path="res://Scenes/Enemies/FastSlime.tscn" id="8_7fg68"]
+[ext_resource type="PackedScene" uid="uid://d0bbbmoraofao" path="res://Scenes/Enemies/SlowSlime.tscn" id="9_ipyvt"]
 
 [sub_resource type="Resource" id="Resource_wu13y"]
 script = ExtResource("3_7fg68")
 EnemyToSpawn = ExtResource("2_ipyvt")
 PathIdToSpawnOn = 0
-EnemyCount = 5
-SpawnIntervalSeconds = 2.0
-DelayUntilNextGroup = 1.0
-metadata/_custom_type_script = "uid://db072fixsh811"
-
-[sub_resource type="Resource" id="Resource_vqjx3"]
-script = ExtResource("3_7fg68")
-EnemyToSpawn = ExtResource("4_ah1jo")
-PathIdToSpawnOn = 0
-EnemyCount = 5
+EnemyCount = 10
 SpawnIntervalSeconds = 2.0
 DelayUntilNextGroup = 1.0
 metadata/_custom_type_script = "uid://db072fixsh811"
 
 [sub_resource type="Resource" id="Resource_trfe8"]
 script = ExtResource("4_ipyvt")
-EnemyGroups = Array[Object]([SubResource("Resource_wu13y"), SubResource("Resource_vqjx3")])
-DelayUntilNextWave = 30.0
+EnemyGroups = Array[Object]([SubResource("Resource_wu13y")])
+DelayUntilNextWave = 20.0
 metadata/_custom_type_script = "uid://dut1irbek148f"
-
-[sub_resource type="Resource" id="Resource_7fg68"]
-script = ExtResource("3_7fg68")
-EnemyToSpawn = ExtResource("4_ah1jo")
-PathIdToSpawnOn = 0
-EnemyCount = 2
-SpawnIntervalSeconds = 1.0
-DelayUntilNextGroup = 2.0
-metadata/_custom_type_script = "uid://db072fixsh811"
 
 [sub_resource type="Resource" id="Resource_ipyvt"]
 script = ExtResource("3_7fg68")
-EnemyToSpawn = ExtResource("2_ipyvt")
+EnemyToSpawn = ExtResource("8_7fg68")
 PathIdToSpawnOn = 0
-EnemyCount = 3
-SpawnIntervalSeconds = 1.0
-DelayUntilNextGroup = 3.0
+EnemyCount = 5
+SpawnIntervalSeconds = 2.0
+DelayUntilNextGroup = 1.0
 metadata/_custom_type_script = "uid://db072fixsh811"
 
 [sub_resource type="Resource" id="Resource_ah1jo"]
-script = ExtResource("3_7fg68")
-EnemyToSpawn = ExtResource("6_wu13y")
-PathIdToSpawnOn = 0
-EnemyCount = 2
-SpawnIntervalSeconds = 1.0
-DelayUntilNextGroup = 2.0
-metadata/_custom_type_script = "uid://db072fixsh811"
+script = ExtResource("4_ipyvt")
+EnemyGroups = Array[Object]([SubResource("Resource_ipyvt")])
+DelayUntilNextWave = 20.0
+metadata/_custom_type_script = "uid://dut1irbek148f"
 
 [sub_resource type="Resource" id="Resource_noocy"]
 script = ExtResource("3_7fg68")
-EnemyToSpawn = ExtResource("4_ah1jo")
+EnemyToSpawn = ExtResource("2_ipyvt")
 PathIdToSpawnOn = 0
-EnemyCount = 3
+EnemyCount = 5
 SpawnIntervalSeconds = 1.0
-DelayUntilNextGroup = 3.0
+DelayUntilNextGroup = 1.0
+metadata/_custom_type_script = "uid://db072fixsh811"
+
+[sub_resource type="Resource" id="Resource_vqjx3"]
+script = ExtResource("3_7fg68")
+EnemyToSpawn = ExtResource("9_ipyvt")
+PathIdToSpawnOn = 0
+EnemyCount = 5
+SpawnIntervalSeconds = 1.0
+DelayUntilNextGroup = 1.0
 metadata/_custom_type_script = "uid://db072fixsh811"
 
 [sub_resource type="Resource" id="Resource_4phxu"]
 script = ExtResource("4_ipyvt")
-EnemyGroups = Array[Object]([SubResource("Resource_7fg68"), SubResource("Resource_ipyvt"), SubResource("Resource_ah1jo"), SubResource("Resource_noocy")])
-DelayUntilNextWave = 30.0
+EnemyGroups = Array[Object]([SubResource("Resource_noocy"), SubResource("Resource_vqjx3")])
+DelayUntilNextWave = 20.0
 metadata/_custom_type_script = "uid://dut1irbek148f"
 
 [sub_resource type="Curve2D" id="Curve2D_7fg68"]
@@ -86,7 +74,7 @@ point_count = 14
 
 [node name="MapUi" parent="." instance=ExtResource("1_ah1jo")]
 
-[node name="CardDeck" parent="MapUi/MapUI" index="1" node_paths=PackedStringArray("TowerPlacement")]
+[node name="CardDeck" parent="MapUi/MapUI" index="0" node_paths=PackedStringArray("TowerPlacement")]
 TowerPlacement = NodePath("../../../TowerPlacement")
 
 [node name="MapTiles" parent="." instance=ExtResource("1_mik4u")]
@@ -108,7 +96,7 @@ tile_map_data = PackedByteArray("AAD//wUAAAACAAEAAAAAAAUAAAABAAQAAAABAAUAAAABAAQ
 
 [node name="EnemySpawner" parent="." node_paths=PackedStringArray("SpawnPoints") instance=ExtResource("1_tw565")]
 SpawnPoints = [NodePath("Path2D")]
-Waves = Array[Object]([SubResource("Resource_trfe8"), SubResource("Resource_4phxu")])
+Waves = Array[Object]([SubResource("Resource_trfe8"), SubResource("Resource_ah1jo"), SubResource("Resource_4phxu")])
 
 [node name="Path2D" type="Path2D" parent="EnemySpawner"]
 rotation = 0.00243818
