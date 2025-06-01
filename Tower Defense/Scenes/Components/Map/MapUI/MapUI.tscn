@@ -145,7 +145,7 @@ patch_margin_right = 8
 patch_margin_bottom = 8
 
 [node name="BackgroundShadow" type="NinePatchRect" parent="MapUI/WavePanel/Background"]
-self_modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 0.501961)
 show_behind_parent = true
 layout_mode = 2
 offset_left = 1.0
@@ -196,7 +196,7 @@ patch_margin_right = 8
 patch_margin_bottom = 8
 
 [node name="BackgroundShadow" type="NinePatchRect" parent="MapUI/StatusPanel/Background"]
-self_modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 0.501961)
 show_behind_parent = true
 layout_mode = 2
 offset_left = 1.0
@@ -230,7 +230,7 @@ texture = ExtResource("7_osesm")
 stretch_mode = 4
 
 [node name="TextureRect2" type="TextureRect" parent="MapUI/StatusPanel/MarginContainer/VBoxContainer/HSplitContainer/TextureRect"]
-self_modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 0.501961)
 show_behind_parent = true
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 1
@@ -269,7 +269,7 @@ texture = ExtResource("8_jaoyu")
 stretch_mode = 4
 
 [node name="TextureRect2" type="TextureRect" parent="MapUI/StatusPanel/MarginContainer/VBoxContainer/HSplitContainer2/MarginContainer/TextureRect"]
-self_modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 0.501961)
 show_behind_parent = true
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 1
