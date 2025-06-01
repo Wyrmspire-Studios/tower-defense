@@ -58,7 +58,7 @@ patch_margin_right = 8
 patch_margin_bottom = 8
 
 [node name="BackgroundShadow" type="NinePatchRect" parent="Background"]
-self_modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 0.501961)
 show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15

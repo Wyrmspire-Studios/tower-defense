@@ -34,6 +34,37 @@ _rangeStat = ExtResource("7_kmlsj")
 _healthStat = ExtResource("8_qb6om")
 _stunStat = ExtResource("9_dcdl8")
 
+[node name="Shadow" type="NinePatchRect" parent="."]
+self_modulate = Color(0, 0, 0, 0.501961)
+custom_minimum_size = Vector2(84, 32)
+layout_mode = 0
+offset_left = 1.0
+offset_top = -39.0
+offset_right = 85.0
+offset_bottom = -7.0
+texture = ExtResource("1_qb6om")
+region_rect = Rect2(0, 0, 64, 64)
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="Shadow2" type="NinePatchRect" parent="."]
+self_modulate = Color(0, 0, 0, 0.501961)
+show_behind_parent = true
+custom_minimum_size = Vector2(84, 32)
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 85.0
+offset_bottom = 33.0
+texture = ExtResource("1_qb6om")
+region_rect = Rect2(0, 0, 64, 64)
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 custom_minimum_size = Vector2(84, 32)
 layout_mode = 0
