@@ -37,8 +37,7 @@ public partial class UpgradeButton : MenuButton
     public override void _Ready()
     {
         ModifierLabel.Text = UpgradeId != "starting_cards" ? $"{GameData.GetModifier(UpgradeId) * 100}%" : $"{(int)GameData.GetModifier(UpgradeId)} cards";
-
-    UpdateShardPrice(_defaultShardPrice * (GameData.GetUpgradeBoughtTimes(UpgradeId) + 1));
+        UpdateShardPrice(_defaultShardPrice * (GameData.GetUpgradeBoughtTimes(UpgradeId) + 1));
         Pressed += OnUpgradeButtonPressed;
         GameData.UpgradesChanged += OnUpgradesChanged;
     }
@@ -61,7 +60,7 @@ public partial class UpgradeButton : MenuButton
     private void OnUpgradesChanged(string upgradeId, int level, float modifier)
     {
         if (upgradeId != UpgradeId) return;
-        UpdateShardPrice(_defaultShardPrice * level);
+        UpdateShardPrice(_defaultShardPrice * (level + 1));
         ModifierLabel.Text = UpgradeId != "starting_cards" ? $"{GameData.GetModifier(UpgradeId) * 100}%" : $"{(int)GameData.GetModifier(UpgradeId)} cards";
     }
 }

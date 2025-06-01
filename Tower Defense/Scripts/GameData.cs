@@ -42,19 +42,19 @@ public static class GameData
     ///   </item>
     ///   <item>
     ///     <term>"damage_modifier"</term>
-    ///     <description>Multiplier applied to damage dealt by the player.</description>
+    ///     <description>Multiplier applied to damage dealt by all towers.</description>
     ///   </item>
     ///   <item>
     ///     <term>"upgrade_price_modifier"</term>
-    ///     <description>Modifier applied to the cost of upgrades (e.g., discounts).</description>
+    ///     <description>Modifier applied to the cost of tower upgrades.</description>
     ///   </item>
     ///   <item>
     ///     <term>"next_card_price_modifier"</term>
-    ///     <description>Modifier applied to the cost of the next card in a sequence/shop.</description>
+    ///     <description>Modifier applied to the cost of the next card in a level.</description>
     ///   </item>
     ///   <item>
     ///     <term>"cooldown_modifier"</term>
-    ///     <description>Multiplier that affects cooldown times (e.g., abilities or actions).</description>
+    ///     <description>Multiplier that affects cooldown times of towers.</description>
     ///   </item>
     /// </list>
     /// </param>
