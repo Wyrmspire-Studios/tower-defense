@@ -75,8 +75,5 @@ position = Vector2(0, -6)
 sprite_frames = SubResource("SpriteFrames_jus8j")
 animation = &"Down"
 
-[node name="Enemy Collision" parent="." index="1"]
-visible = false
-
 [node name="CollisionShape2D" parent="Enemy Collision" index="0"]
 shape = SubResource("RectangleShape2D_kexyb")
