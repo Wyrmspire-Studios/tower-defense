@@ -1,4 +1,5 @@
 using Godot;
+using WyrmspireStudios.Data;
 
 namespace WyrmspireStudios.UI;
 
@@ -56,6 +57,8 @@ public partial class PauseMenu : Control
 		GetTree().ChangeSceneToPacked(MainMenuScene);
 
 		MapPicker.Reset();
+		LevelData.ResetLevelData();
+		GameData.ResetGameData();
 	}
 	
 	public override void _Input(InputEvent @event)
