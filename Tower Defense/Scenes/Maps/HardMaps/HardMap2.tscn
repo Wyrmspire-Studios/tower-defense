@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=4 uid="uid://cljmbwi5irb7g"]
+[gd_scene load_steps=53 format=4 uid="uid://cljmbwi5irb7g"]
 
 [ext_resource type="PackedScene" uid="uid://l1hce7nsraba" path="res://Scenes/Maps/TemplateMap.tscn" id="1_gwmui"]
 [ext_resource type="PackedScene" uid="uid://drpmojh54436v" path="res://Scenes/Enemies/Slime.tscn" id="2_u1gvv"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dqa4pw7i5wv5t" path="res://Scenes/Enemies/UltraFastSlime.tscn" id="5_jve7p"]
 [ext_resource type="PackedScene" uid="uid://c6embu1anb0ai" path="res://Scenes/Enemies/FastSlime.tscn" id="6_7urlt"]
 [ext_resource type="PackedScene" uid="uid://d0bbbmoraofao" path="res://Scenes/Enemies/SlowSlime.tscn" id="7_o2k81"]
+[ext_resource type="PackedScene" uid="uid://dsdaibtbk0xae" path="res://Scenes/Enemies/MiniBoss.tscn" id="8_5qxdn"]
 [ext_resource type="PackedScene" uid="uid://d3g75wvfm4lx5" path="res://Scenes/Enemies/UltraSlowSlime.tscn" id="8_lc1sr"]
 
 [sub_resource type="Resource" id="Resource_ehm5b"]
@@ -129,12 +130,21 @@ EnemyToSpawn = ExtResource("5_jve7p")
 PathIdToSpawnOn = 0
 EnemyCount = 16
 SpawnIntervalSeconds = 1.0
+DelayUntilNextGroup = 3.0
+metadata/_custom_type_script = "uid://db072fixsh811"
+
+[sub_resource type="Resource" id="Resource_o6bmn"]
+script = ExtResource("3_5qxdn")
+EnemyToSpawn = ExtResource("8_5qxdn")
+PathIdToSpawnOn = 1
+EnemyCount = 1
+SpawnIntervalSeconds = 1.0
 DelayUntilNextGroup = 1.0
 metadata/_custom_type_script = "uid://db072fixsh811"
 
 [sub_resource type="Resource" id="Resource_op00j"]
 script = ExtResource("4_hqhdf")
-EnemyGroups = Array[Object]([SubResource("Resource_dn848"), SubResource("Resource_x7kur"), SubResource("Resource_caf78")])
+EnemyGroups = Array[Object]([SubResource("Resource_dn848"), SubResource("Resource_x7kur"), SubResource("Resource_caf78"), SubResource("Resource_o6bmn")])
 DelayUntilNextWave = 60.0
 metadata/_custom_type_script = "uid://dut1irbek148f"
 
@@ -315,9 +325,27 @@ SpawnIntervalSeconds = 0.5
 DelayUntilNextGroup = 1.0
 metadata/_custom_type_script = "uid://db072fixsh811"
 
+[sub_resource type="Resource" id="Resource_r7g5v"]
+script = ExtResource("3_5qxdn")
+EnemyToSpawn = ExtResource("8_5qxdn")
+PathIdToSpawnOn = 0
+EnemyCount = 1
+SpawnIntervalSeconds = 1.0
+DelayUntilNextGroup = 0.0
+metadata/_custom_type_script = "uid://db072fixsh811"
+
+[sub_resource type="Resource" id="Resource_8mr6i"]
+script = ExtResource("3_5qxdn")
+EnemyToSpawn = ExtResource("8_5qxdn")
+PathIdToSpawnOn = 1
+EnemyCount = 1
+SpawnIntervalSeconds = 1.0
+DelayUntilNextGroup = 1.0
+metadata/_custom_type_script = "uid://db072fixsh811"
+
 [sub_resource type="Resource" id="Resource_uq802"]
 script = ExtResource("4_hqhdf")
-EnemyGroups = Array[Object]([SubResource("Resource_3ge5o"), SubResource("Resource_63lo5"), SubResource("Resource_bl4gi"), SubResource("Resource_ghkb3"), SubResource("Resource_cel4q"), SubResource("Resource_ldp4s")])
+EnemyGroups = Array[Object]([SubResource("Resource_3ge5o"), SubResource("Resource_63lo5"), SubResource("Resource_bl4gi"), SubResource("Resource_ghkb3"), SubResource("Resource_cel4q"), SubResource("Resource_ldp4s"), SubResource("Resource_r7g5v"), SubResource("Resource_8mr6i")])
 DelayUntilNextWave = 60.0
 metadata/_custom_type_script = "uid://dut1irbek148f"
 
@@ -358,6 +386,12 @@ curve = SubResource("Curve2D_gwmui")
 curve = SubResource("Curve2D_0abfw")
 
 [editable path="MapUi"]
+[editable path="MapUi/ShopMenu"]
+[editable path="MapUi/ShopMenu/ShopMenu/VBoxContainer/MarginContainer/Upgrades/UpgradeButtonContainer/UpgradeButton"]
+[editable path="MapUi/ShopMenu/ShopMenu/VBoxContainer/MarginContainer/Upgrades/UpgradeButtonContainer/UpgradeButton2"]
+[editable path="MapUi/ShopMenu/ShopMenu/VBoxContainer/MarginContainer/Upgrades/UpgradeButtonContainer/UpgradeButton3"]
+[editable path="MapUi/ShopMenu/ShopMenu/VBoxContainer/MarginContainer/Upgrades/UpgradeButtonContainer/UpgradeButton4"]
+[editable path="MapUi/ShopMenu/ShopMenu/VBoxContainer/MarginContainer/Upgrades/UpgradeButtonContainer/UpgradeButton5"]
 [editable path="MapTiles"]
 [editable path="TowerPlacement"]
 [editable path="EnemySpawner"]
