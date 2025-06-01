@@ -54,6 +54,8 @@ public partial class PauseMenu : Control
 		Visible = false;
 		Engine.TimeScale = 1;
 		GetTree().ChangeSceneToPacked(MainMenuScene);
+
+		MapPicker.Reset();
 	}
 	
 	public override void _Input(InputEvent @event)

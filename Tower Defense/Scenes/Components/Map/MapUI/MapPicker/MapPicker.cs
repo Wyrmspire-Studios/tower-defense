@@ -29,6 +29,13 @@ public partial class MapPicker : Control
 		}
 	}
 
+	public static void Reset()
+	{
+		PickedMaps.Clear();
+		CurrentLayer = 1;
+		GeneratedMapLayers.Clear();
+	}
+
 	public MapLayer CreateLayer()
 	{
 		var mapLayer = _mapLayerScene.Instantiate<MapLayer>();
