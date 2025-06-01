@@ -706,6 +706,40 @@ text = "XXX"
 label_settings = SubResource("LabelSettings_osesm")
 vertical_alignment = 1
 
+[node name="YouLoseLabel" type="Label" parent="MapUI"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.5
+offset_top = -9.0
+offset_right = 24.5
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 76
+text = "You Lose!"
+
+[node name="YouWinLabel" type="Label" parent="MapUI"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -118.0
+offset_top = -41.5
+offset_right = 118.0
+offset_bottom = 41.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 76
+text = "You Win!"
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../MapUI")
 libraries = {

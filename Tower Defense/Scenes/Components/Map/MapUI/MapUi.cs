@@ -12,6 +12,9 @@ public partial class MapUi : Control
 	[Export] private MapPicker _mapPicker;
 	[Export] private TextureButton _closeMapMenuButton;
 
+	[Export] private Label _youLoseLabel;
+	[Export] private Label _youWinLabel;
+
 	public static bool Transitioning;
 
 	private MapType _lastMapType = MapType.Enemy;
@@ -44,7 +47,8 @@ public partial class MapUi : Control
 		{
 			_animationPlayer.Play("HideUI");
 			_died = true;
-			GD.Print("You Lose!");
+			Engine.TimeScale = 0;
+			_youLoseLabel.Visible = true;
 		}
 	}
 
@@ -54,7 +58,8 @@ public partial class MapUi : Control
 		
 		if (_finishedAfterWave)
 		{
-			GD.Print("You Win!");
+			_youWinLabel.Visible = true;
+			Engine.TimeScale = 0;
 		}
 		else
 		{
