@@ -20,7 +20,7 @@ atlas = ExtResource("4_jb1ys")
 region = Rect2(129, 33, 62, 30)
 
 [node name="PauseMenu" type="CanvasLayer"]
-layer = 2
+layer = 10
 
 [node name="PauseMenu" type="Control" parent="." node_paths=PackedStringArray("ButtonContainer")]
 layout_mode = 3

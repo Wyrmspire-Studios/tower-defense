@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Linq;
+using WyrmspireStudios.Data;
 
 public partial class RangedProjectileTower : RangedTower
 {
@@ -8,7 +9,15 @@ public partial class RangedProjectileTower : RangedTower
 	public RangedProjectileTowerInfo RangedProjectileTowerInfo;
 	
 	public TowerProjectileShooting TowerProjectileShooting;
-	
+
+	public override void _Ready()
+	{
+		_baseRangedProjectileTowerInfo.FireDelay = (float)Math.Round(
+			_baseRangedProjectileTowerInfo.FireDelay / GameData.GetModifier("cooldown_modifier"),
+			2
+		);
+	}
+
 	public virtual void OnEnemyHit(Enemy enemy, Projectile projectile)
 	{
 		if (RangedProjectileTowerInfo.StunDuration > 0) enemy.ApplyStun(RangedProjectileTowerInfo.StunDuration);

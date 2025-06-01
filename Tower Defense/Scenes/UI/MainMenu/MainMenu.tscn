@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://loofwjkv30nw"]
+[gd_scene load_steps=29 format=3 uid="uid://loofwjkv30nw"]
 
 [ext_resource type="PackedScene" uid="uid://bvl7tqhygriej" path="res://Scenes/UI/Elements/MenuButtonGroupController/MenuButtonGroupController.tscn" id="1_8x0bb"]
 [ext_resource type="Script" uid="uid://dpv1tde35onc2" path="res://Scenes/UI/MainMenu/MainMenu.cs" id="1_67d64"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cosb8wvxuxjln" path="res://Assets/logo-pixelart-2.png" id="6_u8hla"]
 [ext_resource type="Texture2D" uid="uid://dhqgm044nr5rg" path="res://Assets/Cards/Rare.png" id="8_jhcbk"]
 [ext_resource type="Script" uid="uid://dmjgu34vhsev4" path="res://Scenes/UI/MainMenu/Statistics.cs" id="9_32jca"]
+[ext_resource type="PackedScene" uid="uid://ds6cy4qv5lent" path="res://Scenes/UI/ShopMenu/ShopMenu.tscn" id="10_tbwd8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4elqj"]
 atlas = ExtResource("2_nahvw")
@@ -473,3 +474,5 @@ Label = "Statistics ->"
 BaseTexture = SubResource("AtlasTexture_4elqj")
 HoverTexture = SubResource("AtlasTexture_ri767")
 PressedTexture = SubResource("AtlasTexture_a712v")
+
+[node name="ShopMenu" parent="." instance=ExtResource("10_tbwd8")]
