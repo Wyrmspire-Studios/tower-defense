@@ -9,7 +9,7 @@
 
 [node name="MapUi" parent="." instance=ExtResource("1_q2r42")]
 
-[node name="CardDeck" parent="MapUi/MapUI" index="1" node_paths=PackedStringArray("TowerPlacement")]
+[node name="CardDeck" parent="MapUi/MapUI" index="0" node_paths=PackedStringArray("TowerPlacement")]
 TowerPlacement = NodePath("../../../TowerPlacement")
 
 [node name="MapTiles" parent="." instance=ExtResource("2_y1n2n")]
@@ -21,6 +21,12 @@ Paths = NodePath("../MapTiles/Paths")
 SpawnPoints = []
 
 [editable path="MapUi"]
+[editable path="MapUi/ShopMenu"]
+[editable path="MapUi/ShopMenu/ShopMenu/VBoxContainer/MarginContainer/Upgrades/UpgradeButtonContainer/UpgradeButton"]
+[editable path="MapUi/ShopMenu/ShopMenu/VBoxContainer/MarginContainer/Upgrades/UpgradeButtonContainer/UpgradeButton2"]
+[editable path="MapUi/ShopMenu/ShopMenu/VBoxContainer/MarginContainer/Upgrades/UpgradeButtonContainer/UpgradeButton3"]
+[editable path="MapUi/ShopMenu/ShopMenu/VBoxContainer/MarginContainer/Upgrades/UpgradeButtonContainer/UpgradeButton4"]
+[editable path="MapUi/ShopMenu/ShopMenu/VBoxContainer/MarginContainer/Upgrades/UpgradeButtonContainer/UpgradeButton5"]
 [editable path="MapTiles"]
 [editable path="TowerPlacement"]
 [editable path="EnemySpawner"]

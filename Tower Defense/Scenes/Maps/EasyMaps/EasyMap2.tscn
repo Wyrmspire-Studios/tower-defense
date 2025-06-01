@@ -331,6 +331,12 @@ Waves = Array[Object]([SubResource("Resource_luigp"), SubResource("Resource_alce
 curve = SubResource("Curve2D_se7qa")
 
 [editable path="MapUi"]
+[editable path="MapUi/ShopMenu"]
+[editable path="MapUi/ShopMenu/ShopMenu/VBoxContainer/MarginContainer/Upgrades/UpgradeButtonContainer/UpgradeButton"]
+[editable path="MapUi/ShopMenu/ShopMenu/VBoxContainer/MarginContainer/Upgrades/UpgradeButtonContainer/UpgradeButton2"]
+[editable path="MapUi/ShopMenu/ShopMenu/VBoxContainer/MarginContainer/Upgrades/UpgradeButtonContainer/UpgradeButton3"]
+[editable path="MapUi/ShopMenu/ShopMenu/VBoxContainer/MarginContainer/Upgrades/UpgradeButtonContainer/UpgradeButton4"]
+[editable path="MapUi/ShopMenu/ShopMenu/VBoxContainer/MarginContainer/Upgrades/UpgradeButtonContainer/UpgradeButton5"]
 [editable path="MapTiles"]
 [editable path="TowerPlacement"]
 [editable path="EnemySpawner"]
