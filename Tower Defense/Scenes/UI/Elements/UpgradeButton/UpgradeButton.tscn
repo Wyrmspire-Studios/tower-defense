@@ -1,0 +1,160 @@
+[gd_scene load_steps=21 format=3 uid="uid://bsyuetqh7843s"]
+
+[ext_resource type="Script" uid="uid://bggkbxktw5520" path="res://Scenes/UI/Elements/UpgradeButton/UpgradeButton.cs" id="1_mu6bm"]
+[ext_resource type="Texture2D" uid="uid://b3xj1u0bxi7l1" path="res://Assets/buttons.png" id="2_mu6bm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c7j8o"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fu2ug"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cylhw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hgw6l"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pn23v"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_udhny"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w2y8v"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6nvg3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l715s"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4ecu3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4ufmu"]
+
+[sub_resource type="Theme" id="Theme_f6pap"]
+Button/styles/disabled = SubResource("StyleBoxEmpty_c7j8o")
+Button/styles/disabled_mirrored = SubResource("StyleBoxEmpty_fu2ug")
+Button/styles/focus = SubResource("StyleBoxEmpty_cylhw")
+Button/styles/hover = SubResource("StyleBoxEmpty_hgw6l")
+Button/styles/hover_mirrored = SubResource("StyleBoxEmpty_pn23v")
+Button/styles/hover_pressed = SubResource("StyleBoxEmpty_udhny")
+Button/styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_w2y8v")
+Button/styles/normal = SubResource("StyleBoxEmpty_6nvg3")
+Button/styles/normal_mirrored = SubResource("StyleBoxEmpty_l715s")
+Button/styles/pressed = SubResource("StyleBoxEmpty_4ecu3")
+Button/styles/pressed_mirrored = SubResource("StyleBoxEmpty_4ufmu")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pms0r"]
+atlas = ExtResource("2_mu6bm")
+region = Rect2(1, 33, 62, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kb1mo"]
+atlas = ExtResource("2_mu6bm")
+region = Rect2(65, 33, 62, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3rfun"]
+atlas = ExtResource("2_mu6bm")
+region = Rect2(129, 33, 62, 30)
+
+[sub_resource type="LabelSettings" id="LabelSettings_pms0r"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_mu6bm"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6aimg"]
+
+[node name="UpgradeButton" type="Button" node_paths=PackedStringArray("PriceLabel", "ModifierLabel")]
+custom_minimum_size = Vector2(0, 50)
+offset_right = 150.0
+offset_bottom = 50.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = SubResource("Theme_f6pap")
+script = ExtResource("1_mu6bm")
+PriceLabel = NodePath("PriceLabel")
+ModifierLabel = NodePath("ModifierLabel")
+ShardPrice = 10
+BaseTexture = SubResource("AtlasTexture_pms0r")
+HoverTexture = SubResource("AtlasTexture_kb1mo")
+PressedTexture = SubResource("AtlasTexture_3rfun")
+
+[node name="BoughtForeground" type="ColorRect" parent="."]
+visible = false
+modulate = Color(0, 0, 0, 0.501961)
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = -1.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_pms0r")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="BackgroundShadow" type="NinePatchRect" parent="Background"]
+self_modulate = Color(0, 0, 0, 0.501961)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_pms0r")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+offset_left = 8.0
+offset_top = 4.0
+offset_right = 36.0
+offset_bottom = 22.0
+text = "Label"
+label_settings = SubResource("LabelSettings_pms0r")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ModifierLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -36.0
+offset_top = 4.0
+offset_right = -8.0
+offset_bottom = 22.0
+grow_horizontal = 0
+text = "Label"
+label_settings = SubResource("LabelSettings_mu6bm")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PriceLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -22.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "10 Shards"
+label_settings = SubResource("LabelSettings_6aimg")
+horizontal_alignment = 1
+vertical_alignment = 1
